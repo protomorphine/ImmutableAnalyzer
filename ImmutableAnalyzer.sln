@@ -1,0 +1,28 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImmutableAnalyzer", "ImmutableAnalyzer\ImmutableAnalyzer\ImmutableAnalyzer.csproj", "{380E8C03-4CB5-4967-B14D-DB122941BAF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImmutableAnalyzer.Sample", "ImmutableAnalyzer\ImmutableAnalyzer.Sample\ImmutableAnalyzer.Sample.csproj", "{53A22804-D5EA-4C0F-A881-2F6C72693F8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImmutableAnalyzer.Tests", "ImmutableAnalyzer\ImmutableAnalyzer.Tests\ImmutableAnalyzer.Tests.csproj", "{3A9682AB-9337-45FE-A4F8-EA934046A8BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{380E8C03-4CB5-4967-B14D-DB122941BAF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{380E8C03-4CB5-4967-B14D-DB122941BAF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{380E8C03-4CB5-4967-B14D-DB122941BAF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{380E8C03-4CB5-4967-B14D-DB122941BAF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53A22804-D5EA-4C0F-A881-2F6C72693F8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53A22804-D5EA-4C0F-A881-2F6C72693F8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53A22804-D5EA-4C0F-A881-2F6C72693F8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53A22804-D5EA-4C0F-A881-2F6C72693F8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A9682AB-9337-45FE-A4F8-EA934046A8BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A9682AB-9337-45FE-A4F8-EA934046A8BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A9682AB-9337-45FE-A4F8-EA934046A8BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A9682AB-9337-45FE-A4F8-EA934046A8BD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
