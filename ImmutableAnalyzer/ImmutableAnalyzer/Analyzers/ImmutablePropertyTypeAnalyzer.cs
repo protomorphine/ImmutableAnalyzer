@@ -1,4 +1,5 @@
-﻿using ImmutableAnalyzer.Extensions;
+﻿using System.Collections.Immutable;
+using ImmutableAnalyzer.Extensions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -10,13 +11,24 @@ namespace ImmutableAnalyzer.Analyzers;
 /// Analyzer to check property types of immutable classes.
 /// </summary>
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-internal class ImmutablePropertyTypeAnalyzer : BaseImmutableAnalyzer
+internal sealed class ImmutablePropertyTypeAnalyzer : BaseImmutableAnalyzer
 {
-    protected override string DiagnosticId => "IM0001";
-    protected override string Title => "Mutable member in immutable class";
-    protected override string MessageFormat => "Immutable class can't have property of type '{0}'";
-    protected override string Description => "Class member must have immutable type";
-    protected override string Category => "Design";
+    private const string DiagnosticId = "IM0001";
+    private const string Title = "Mutable member in immutable class";
+    private const string MessageFormat = "Immutable class can't have property of type '{0}'";
+    private const string Description = "Class member must have immutable type.";
+    private const string Category = "Design";
+    
+    /// <inheritdoc />
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(Rule);
+
+    /// <summary>
+    /// Diagnostic descriptor.
+    /// </summary>
+    private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(
+        DiagnosticId, Title, MessageFormat,
+        Category, DiagnosticSeverity.Error, true, Description
+    );
 
     /// <inheritdoc/>
     protected override void AnalyzeSyntax(
