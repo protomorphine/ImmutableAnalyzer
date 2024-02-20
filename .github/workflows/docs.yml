@@ -12,4 +12,5 @@ jobs:
     steps:
       - uses: mattnotmitt/doxygen-action@v1.9.5
         with:
-          doxyfile-path: 'doc/Doxyfile'
+          working-directory: 'doc'
+          doxyfile-path: 'Doxyfile'
