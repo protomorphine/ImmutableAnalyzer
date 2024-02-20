@@ -3,7 +3,11 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.IO;
 using ImmutableAnalyzer.Analyzers;
+using Microsoft.CodeAnalysis.CSharp.Testing;
+using Microsoft.CodeAnalysis.Testing;
+using Microsoft.CodeAnalysis.Testing.Verifiers;
 using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<ImmutableAnalyzer.Analyzers.ImmutablePropertyTypeAnalyzer>;
 
 namespace ImmutableAnalyzer.Tests;
@@ -18,8 +22,22 @@ public class PropertyTypeAnalyzerTests
     [MemberData(nameof(ImmutableGenericTypes))]
     public async Task BuildInClassPropertyType_ShouldNotAlert(string property)
     {
-        var source = SourceFactory.ImmutableClassWithProperty(property);
-        await Verifier.VerifyAnalyzerAsync(source).ConfigureAwait(false);
+        var analyzerTest =  new CSharpAnalyzerTest<ImmutablePropertyTypeAnalyzer, XUnitVerifier>
+        {
+            TestState =
+            {
+                Sources = { SourceFactory.ImmutableClassWithProperty(property) },
+                
+                ReferenceAssemblies = new ReferenceAssemblies(
+                    "net5.0", 
+                    new PackageIdentity("Microsoft.NETCore.App.Ref", "5.0.0"), 
+                    Path.Combine("ref", "net5.0"))
+            }
+        };
+
+        await analyzerTest.RunAsync().ConfigureAwait(false);
+        
+        Assert.True(true);
     }
 
     [Theory]

@@ -48,8 +48,7 @@ internal sealed class ImmutablePropertyTypeAnalyzer : BaseImmutableAnalyzer
         typeof(ImmutableArray<>).Name, typeof(ImmutableDictionary<,>).Name, typeof(ImmutableList<>).Name,
         typeof(ImmutableHashSet<>).Name, typeof(ImmutableSortedDictionary<,>).Name, typeof(ImmutableSortedSet<>).Name,
         typeof(ImmutableStack<>).Name, typeof(ImmutableQueue<>).Name, typeof(IReadOnlyList<>).Name,
-        // TODO: #1 issue
-        /*typeof(IReadOnlySet<>).Name,*/ typeof(IReadOnlyCollection<>).Name, typeof(IReadOnlyDictionary<,>).Name
+        typeof(IReadOnlySet<>).Name, typeof(IReadOnlyCollection<>).Name, typeof(IReadOnlyDictionary<,>).Name
     };
 
     /// <inheritdoc/>
