@@ -3,35 +3,16 @@ name: Docs
 on:
   push:
     branches:
-      - main  # Set a branch name to trigger deployment
-  pull_request:
+      - main
+  workflow_dispatch:
 
 jobs:
   deploy:
-    runs-on: ubuntu-22.04
-    permissions:
-      contents: write
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: true  # Fetch Hugo themes (true OR recursive)
-          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
-
-      - name: Install Doxygen
-        run: sudo apt-get update -q
-          && sudo apt-get install doxygen -q -y
-
-      - name: Build
-        run: doxygen doc/Doxyfile
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        # If you're changing the branch from main,
-        # also change the `main` in `refs/heads/main`
-        # below accordingly.
-        if: github.ref == 'refs/heads/main'
+      - uses: DenverCoder1/doxygen-github-pages-action@v1.3.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./doc/html
+          branch: gh-pages
+          folder: doc/html
+          config_file: doc/Doxyfile
