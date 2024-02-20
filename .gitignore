@@ -3,6 +3,7 @@
 
 .idea/
 .vs/
+doc/html/
 
 # User-specific files
 *.suo
