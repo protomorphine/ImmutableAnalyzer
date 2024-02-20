@@ -1,12 +1,10 @@
 ﻿using Xunit;
 using System;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-
-using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<
-    ImmutableAnalyzer.Analyzers.ImmutablePropertyTypeAnalyzer>;
+using ImmutableAnalyzer.Analyzers;
+using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<ImmutableAnalyzer.Analyzers.ImmutablePropertyTypeAnalyzer>;
 
 namespace ImmutableAnalyzer.Tests;
 
@@ -38,26 +36,17 @@ public class PropertyTypeAnalyzerTests
     /// Immutable class declarations.
     /// </summary>
     public static IEnumerable<object[]> ImmutableTypes =>
-        Constants.ImmutableClassTypes.Select(it => new object[] {it});
+        ImmutablePropertyTypeAnalyzer.ImmutableClassTypes.Select(it => new object[] {it});
 
     /// <summary>
     /// Immutable generic class declarations.
     /// </summary>
-    public static IEnumerable<object[]> ImmutableGenericTypes => Constants.ImmutableGenericClassTypes
+    public static IEnumerable<object[]> ImmutableGenericTypes => ImmutablePropertyTypeAnalyzer.ImmutableGenericClassTypes
         .Select(it =>
         {
             var genericParamsCount = it[^1] - '0';
-            var paramsString = new StringBuilder("<");
-            for (var i = 0; i < genericParamsCount; ++i)
-            {
-                paramsString.Append("int");
-                if (genericParamsCount - i != 1)
-                    paramsString.Append(',');
-            }
-
-            paramsString.Append('>');
-
-            return new object[] {it[..^2] + paramsString};
+            var genericParams = $"<{string.Join(',', Enumerable.Range(0, genericParamsCount).Select(_ => "int"))}>";
+            return new object[] {it[..^2] + genericParams};
         });
 
     /// <summary>
@@ -65,9 +54,9 @@ public class PropertyTypeAnalyzerTests
     /// </summary>
     public static IEnumerable<object[]> MutableTypes => new List<object[]>()
     {
-        new object[] {nameof(Object)},
-        new object[] {nameof(DateTime)},
-        new object[] {typeof(List<>).Name[..^2] + "<int>"},
-        new object[] {typeof(Dictionary<,>).Name[..^2] + "<int, int>"}
+        new object[] { nameof(Object) },
+        new object[] { nameof(DateTime) },
+        new object[] { typeof(List<>).Name[..^2] + "<int>" },
+        new object[] { typeof(Dictionary<,>).Name[..^2] + "<int, int>" }
     };
 }

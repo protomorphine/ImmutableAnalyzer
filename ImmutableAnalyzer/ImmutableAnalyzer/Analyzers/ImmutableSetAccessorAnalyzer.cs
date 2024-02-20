@@ -12,12 +12,6 @@ namespace ImmutableAnalyzer.Analyzers;
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 internal sealed class ImmutableSetAccessorAnalyzer : BaseImmutableAnalyzer
 {
-    private const string DiagnosticId = "IM0002";
-    private const string Title = "Public setter violates class immutability";
-    private const string MessageFormat = "Member of immutable class can't have '{0}' accessor";
-    private const string Description = "Setter can't be public, because it's give possibility to change member from the outer.";
-    private const string Category = "Design";
-    
     /// <inheritdoc />
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(Rule);
 
@@ -25,8 +19,13 @@ internal sealed class ImmutableSetAccessorAnalyzer : BaseImmutableAnalyzer
     /// Diagnostic descriptor.
     /// </summary>
     private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(
-        DiagnosticId, Title, MessageFormat,
-        Category, DiagnosticSeverity.Error, true, Description
+        id:                 "IM0002",
+        title:              "Public setter violates class immutability",
+        messageFormat:      "Member of immutable class can't have '{0}' accessor",
+        category:           "Design",
+        defaultSeverity:    DiagnosticSeverity.Error,
+        isEnabledByDefault: true,
+        description:        "Setter can't be public, because it's give possibility to change member from the outer."
     );
 
     protected override void AnalyzeSyntax(ClassDeclarationSyntax classDeclarationNode, SyntaxNodeAnalysisContext context)

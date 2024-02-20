@@ -1,4 +1,6 @@
-﻿using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
 using ImmutableAnalyzer.Extensions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -13,12 +15,6 @@ namespace ImmutableAnalyzer.Analyzers;
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 internal sealed class ImmutablePropertyTypeAnalyzer : BaseImmutableAnalyzer
 {
-    private const string DiagnosticId = "IM0001";
-    private const string Title = "Mutable member in immutable class";
-    private const string MessageFormat = "Immutable class can't have property of type '{0}'";
-    private const string Description = "Class member must have immutable type.";
-    private const string Category = "Design";
-    
     /// <inheritdoc />
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(Rule);
 
@@ -26,9 +22,35 @@ internal sealed class ImmutablePropertyTypeAnalyzer : BaseImmutableAnalyzer
     /// Diagnostic descriptor.
     /// </summary>
     private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(
-        DiagnosticId, Title, MessageFormat,
-        Category, DiagnosticSeverity.Error, true, Description
+        id:                 "IM0001",
+        title:              "Mutable member in immutable class",
+        messageFormat:      "Immutable class can't have property of type '{0}'",
+        category:           "Design",
+        defaultSeverity:    DiagnosticSeverity.Error,
+        isEnabledByDefault: true,
+        description:        "Class member must have immutable type."
     );
+    
+    /// <summary>
+    /// Set of valid immutable class types.
+    /// </summary>
+    public static readonly IReadOnlySet<string> ImmutableClassTypes = new HashSet<string>
+    {
+        nameof(Boolean), nameof(Byte), nameof(SByte), nameof(Char), nameof(Decimal), nameof(Double), nameof(Single),
+        nameof(Int32), nameof(UInt32), nameof(Int64), nameof(UInt64), nameof(Int16), nameof(UInt16), nameof(String)
+    };
+
+    /// <summary>
+    /// Set of generic immutable class types.
+    /// </summary>
+    public static readonly IReadOnlySet<string> ImmutableGenericClassTypes = new HashSet<string>
+    {
+        typeof(ImmutableArray<>).Name, typeof(ImmutableDictionary<,>).Name, typeof(ImmutableList<>).Name,
+        typeof(ImmutableHashSet<>).Name, typeof(ImmutableSortedDictionary<,>).Name, typeof(ImmutableSortedSet<>).Name,
+        typeof(ImmutableStack<>).Name, typeof(ImmutableQueue<>).Name, typeof(IReadOnlyList<>).Name,
+        // TODO: #1 issue
+        /*typeof(IReadOnlySet<>).Name,*/ typeof(IReadOnlyCollection<>).Name, typeof(IReadOnlyDictionary<,>).Name
+    };
 
     /// <inheritdoc/>
     protected override void AnalyzeSyntax(
@@ -60,8 +82,8 @@ internal sealed class ImmutablePropertyTypeAnalyzer : BaseImmutableAnalyzer
 
         return prop.Type switch
         {
-            GenericNameSyntax => Constants.ImmutableGenericClassTypes.Contains(symbol.MetadataName),
-            _ => Constants.ImmutableClassTypes.Contains(symbol.Name)
+            GenericNameSyntax => ImmutableGenericClassTypes.Contains(symbol.MetadataName),
+            _ => ImmutableClassTypes.Contains(symbol.Name)
         };
     }
 }
