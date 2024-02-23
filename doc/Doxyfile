@@ -1056,7 +1056,6 @@ RECURSIVE              = YES
 
 EXCLUDE                = ./ImmutableAnalyzer/ImmutableAnalyzer/bin \
                          ./ImmutableAnalyzer/ImmutableAnalyzer/obj \
-                         ./ImmutableAnalyzer/ImmutableAnalyzer.Sample \
                          ./ImmutableAnalyzer/ImmutableAnalyzer.Tests \
                          ./doc \
                          ./doc/doxygen-awesome-css
