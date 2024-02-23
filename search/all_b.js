@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['names_0',['Names',['../classImmutableAnalyzer_1_1Sample_1_1Example.html#a3b77baf24490c36735450330743b453e',1,'ImmutableAnalyzer::Sample::Example']]],
-  ['new_20rules_1',['New Rules',['../md_ImmutableAnalyzer_2ImmutableAnalyzer_2AnalyzerReleases_8Shipped.html#new-rules',1,'']]],
-  ['notimmutableexample_2',['NotImmutableExample',['../classImmutableAnalyzer_1_1Sample_1_1NotImmutableExample.html',1,'ImmutableAnalyzer::Sample']]]
+  ['how_20to_0',['How To?',['../md_ImmutableAnalyzer_2ImmutableAnalyzer_2Readme.html#how-to',1,'']]],
+  ['how_20to_20debug_1',['How to debug?',['../md_ImmutableAnalyzer_2ImmutableAnalyzer_2Readme.html#how-to-debug',1,'']]],
+  ['how_20to_20use_2',['How to use?',['../md_ImmutableAnalyzer_2ImmutableAnalyzer_2Readme.html#how-to-use',1,'']]]
 ];

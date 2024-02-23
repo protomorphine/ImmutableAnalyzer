@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['samples_0',['Samples',['../md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2README.html',1,'']]]
+  ['of_20conduct_0',['Contributor Covenant Code of Conduct',['../md_CODE__OF__CONDUCT.html',1,'']]]
 ];

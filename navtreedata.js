@@ -26,6 +26,20 @@ var NAVTREE =
 [
   [ "ImmutableAnalyzer", "index.html", [
     [ "Immutable Analyzer", "index.html", "index" ],
+    [ "Contributor Covenant Code of Conduct", "md_CODE__OF__CONDUCT.html", [
+      [ "Our Pledge", "md_CODE__OF__CONDUCT.html#our-pledge", null ],
+      [ "Our Standards", "md_CODE__OF__CONDUCT.html#our-standards", null ],
+      [ "Enforcement Responsibilities", "md_CODE__OF__CONDUCT.html#enforcement-responsibilities", null ],
+      [ "Scope", "md_CODE__OF__CONDUCT.html#scope", null ],
+      [ "Enforcement", "md_CODE__OF__CONDUCT.html#enforcement", null ],
+      [ "Enforcement Guidelines", "md_CODE__OF__CONDUCT.html#enforcement-guidelines", [
+        [ "Correction", "md_CODE__OF__CONDUCT.html#autotoc_md1-correction", null ],
+        [ "Warning", "md_CODE__OF__CONDUCT.html#autotoc_md2-warning", null ],
+        [ "Temporary Ban", "md_CODE__OF__CONDUCT.html#autotoc_md3-temporary-ban", null ],
+        [ "Permanent Ban", "md_CODE__OF__CONDUCT.html#autotoc_md4-permanent-ban", null ]
+      ] ],
+      [ "Attribution", "md_CODE__OF__CONDUCT.html#attribution", null ]
+    ] ],
     [ "Samples", "md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2README.html", [
       [ "Mutable property in immutable class (IM0001)", "md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2README.html#mutable-property-in-immutable-class-im0001", null ],
       [ "Public setter in immutable class (IM0002)", "md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2README.html#public-setter-in-immutable-class-im0002", null ]
