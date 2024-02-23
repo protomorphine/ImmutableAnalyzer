@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['of_20conduct_0',['Contributor Covenant Code of Conduct',['../md_CODE__OF__CONDUCT.html',1,'']]]
+  ['use_0',['How To Use',['../md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2how-to-use.html',1,'']]]
 ];

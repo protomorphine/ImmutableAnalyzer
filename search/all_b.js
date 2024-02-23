@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['how_20to_0',['How To?',['../md_ImmutableAnalyzer_2ImmutableAnalyzer_2Readme.html#how-to',1,'']]],
-  ['how_20to_20debug_1',['How to debug?',['../md_ImmutableAnalyzer_2ImmutableAnalyzer_2Readme.html#how-to-debug',1,'']]],
-  ['how_20to_20use_2',['How to use?',['../md_ImmutableAnalyzer_2ImmutableAnalyzer_2Readme.html#how-to-use',1,'']]]
+  ['use_0',['Use',['../md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2how-to-use.html',1,'How To Use'],['../index.html#how-to-use',1,'How To Use']]],
+  ['user_20defined_20types_1',['Example with user defined types',['..//github/workspace/ImmutableAnalyzer/ImmutableAnalyzer.Sample/README.md#example-with-user-defined-types',1,'']]]
 ];

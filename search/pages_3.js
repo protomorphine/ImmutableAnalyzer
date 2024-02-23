@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['code_20of_20conduct_0',['Contributor Covenant Code of Conduct',['../md_CODE__OF__CONDUCT.html',1,'']]],
-  ['conduct_1',['Contributor Covenant Code of Conduct',['../md_CODE__OF__CONDUCT.html',1,'']]],
-  ['contributor_20covenant_20code_20of_20conduct_2',['Contributor Covenant Code of Conduct',['../md_CODE__OF__CONDUCT.html',1,'']]],
-  ['covenant_20code_20of_20conduct_3',['Contributor Covenant Code of Conduct',['../md_CODE__OF__CONDUCT.html',1,'']]]
+  ['im0001_0',['IM0001',['../im0001.html',1,'md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2diagnostics']]],
+  ['im0002_1',['IM0002',['../im0002.html',1,'md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2diagnostics']]],
+  ['immutable_20analyzer_2',['Immutable Analyzer',['../index.html',1,'']]]
 ];

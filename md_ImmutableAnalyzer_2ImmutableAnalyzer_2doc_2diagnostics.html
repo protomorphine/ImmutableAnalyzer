@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ImmutableAnalyzer: Samples</title>
+<title>ImmutableAnalyzer: Available Diagnostics</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -76,7 +76,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2README.html',''); initResizable(); });
+$(function(){initNavTree('md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2diagnostics.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -102,33 +102,19 @@ $(function(){initNavTree('md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2READM
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Samples</div></div>
+  <div class="headertitle"><div class="title">Available Diagnostics</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="samples"></a> </p>
-<h1><a class="anchor" id="mutable-property-in-immutable-class-im0001"></a>
-Mutable property in immutable class (IM0001)</h1>
-<div class="fragment"><div class="line">[Immutable]</div>
-<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>Example</div>
-<div class="line">{</div>
-<div class="line">    <span class="keyword">public</span> <span class="keywordtype">long</span> Id { <span class="keyword">get</span>; init; }</div>
-<div class="line"> </div>
-<div class="line">    <span class="keyword">public</span> List&lt;string&gt; Names { <span class="keyword">get</span>; init; } = <span class="keyword">new</span>(); <span class="comment">// Diagnostic &#39;IM0001&#39; will be reported on this line</span></div>
-<div class="line"> </div>
-<div class="line">    <span class="keyword">public</span> IReadOnlySet&lt;int&gt; MyInts { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; } = <span class="keyword">new</span> HashSet&lt;int&gt;();</div>
-<div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="public-setter-in-immutable-class-im0002"></a>
-Public setter in immutable class (IM0002)</h1>
-<div class="fragment"><div class="line">[Immutable]</div>
-<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>Example</div>
-<div class="line">{</div>
-<div class="line">    <span class="keyword">public</span> <span class="keywordtype">long</span> Id { <span class="keyword">get</span>; <span class="keyword">set</span>; } <span class="comment">// Diagnostic &#39;IM0002&#39; will be reported on this line</span></div>
-<div class="line"> </div>
-<div class="line">    <span class="keyword">public</span> IReadOnlyList&lt;string&gt; Names { <span class="keyword">get</span>; init; } = <span class="keyword">new</span> List&lt;string&gt;();</div>
-<div class="line"> </div>
-<div class="line">    <span class="keyword">public</span> IReadOnlySet&lt;int&gt; MyInts { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; } = <span class="keyword">new</span> HashSet&lt;int&gt;();</div>
-<div class="line">}</div>
-</div><!-- fragment --> </div></div><!-- contents -->
+<div class="textblock"><p><a class="anchor" id="available-diagnostics"></a> Rules below are available and tested.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Rule ID   </th><th class="markdownTableHeadNone">Category   </th><th class="markdownTableHeadNone">Severity   </th><th class="markdownTableHeadNone">Notes    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">IM0001   </td><td class="markdownTableBodyNone">Design   </td><td class="markdownTableBodyNone">Error   </td><td class="markdownTableBodyNone">Immutable classes should not contain mutable members. <a class="el" href="im0001.html">IM0001</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">IM0002   </td><td class="markdownTableBodyNone">Design   </td><td class="markdownTableBodyNone">Error   </td><td class="markdownTableBodyNone">Members of immutable classes shoud not have public setters. <a class="el" href="im0002.html">IM0002</a>   </td></tr>
+</table>
+</div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->

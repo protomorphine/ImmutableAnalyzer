@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ImmutableAnalyzer: Release 0.1.0</title>
+<title>ImmutableAnalyzer: How To Use</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -76,7 +76,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('md_ImmutableAnalyzer_2ImmutableAnalyzer_2AnalyzerReleases_8Unshipped.html',''); initResizable(); });
+$(function(){initNavTree('md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2how-to-use.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -102,10 +102,16 @@ $(function(){initNavTree('md_ImmutableAnalyzer_2ImmutableAnalyzer_2AnalyzerRelea
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Release 0.1.0</div></div>
+  <div class="headertitle"><div class="title">How To Use</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="release-010-1"></a></p>
+<div class="textblock"><p><a class="anchor" id="how-to-use-1"></a> Create reference to project, containig analyzers, in your <code>.csproj</code> file. </p><div class="fragment"><div class="line">&lt;<span class="keywordtype">ItemGroup</span>&gt;</div>
+<div class="line">    &lt;<span class="keywordtype">ProjectReference</span></div>
+<div class="line">        <span class="keyword">Include</span>=<span class="stringliteral">&quot;..\ImmutableAnalyzer\ImmutableAnalyzer.csproj&quot;</span></div>
+<div class="line">        <span class="keyword">OutputItemType</span>=<span class="stringliteral">&quot;Analyzer&quot;</span></div>
+<div class="line">        <span class="keyword">ReferenceOutputAssembly</span>=<span class="stringliteral">&quot;true&quot;</span> /&gt;</div>
+<div class="line">&lt;/<span class="keywordtype">ItemGroup</span>&gt;</div>
+</div><!-- fragment --><p> Mark classes, that you would like to be immutable, with special <code>[Immutable]</code> attribute. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
