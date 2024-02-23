@@ -3,17 +3,13 @@
 A set of two Roslyn Analyzers to check class immutability on compile time.   
 Immutable classes must be marked with [`[Immutable]`](ImmutableAttribute.cs) attribute.
 
-Inspired by [this](https://habr.com/ru/companies/otus/articles/676680/#comment_24523640) comment on [habr](https://habr.com/).
-
 ## Content
 ### ImmutableAnalyzer
-Contains analyzers.
-
+Contains analyzers:
 - [ImmutablePropertyTypeAnalyzer.cs](Analyzers/ImmutablePropertyTypeAnalyzer.cs): An analyzer that reports the mutable property types in immutable class.
 - [ImmutableSetAccessorAnalyzer.cs](Analyzers/ImmutableSetAccessorAnalyzer.cs): An analyzer that reports the public set accessor of property in immutable class.
 
 ### ImmutableAnalyzer.Sample
-
 Contains demo example of immutable analyzers.
 
 ### ImmutableAnalyzer.Tests
