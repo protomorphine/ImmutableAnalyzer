@@ -1,27 +1,42 @@
 # Samples
 
-## Mutable property in immutable class (IM0001)
+## Example with build in types
+
 ```csharp
 [Immutable]
-public class Example
+public class Person
 {
-    public long Id { get; init; }
+    public long Id { get; set; }
 
-    public List<string> Names { get; init; } = new(); // Diagnostic 'IM0001' will be reported on this line
+    public List<string> Names { get; init; } = new();
 
-    public IReadOnlySet<int> MyInts { get; private set; } = new HashSet<int>();
+    public IReadOnlySet<int> CompanyIds { get; private set; } = new HashSet<int>();
 }
 ```
 
-## Public setter in immutable class (IM0002)
+In the example above:
+- the `Id` property would be considered mutable due to it's public setter;
+- the `Names` list would be considered mutable due to it's mutable type;
+- the `CompanyIds` set would be considered immutable;
+
+## Example with user defined types
+
 ```csharp
-[Immutable]
-public class Example
+public class NotImmutableExample
 {
-    public long Id { get; set; } // Diagnostic 'IM0002' will be reported on this line
+    public List<int> Ints { get; set; } = new();
+}
 
-    public IReadOnlyList<string> Names { get; init; } = new List<string>();
-
-    public IReadOnlySet<int> MyInts { get; private set; } = new HashSet<int>();
+[Immutable]
+public class ImmtuableExample
+{
+    public Person Person { get; init; } = new();
+    public NotImmutableExample MutableExample { get; init; } = new();
 }
 ```
+
+In this example:
+- property `Person` of type `Person` - immutable due `[Immutable]` attribute usage;
+- property `MutableExample` of type `NotImmutableExample` - mutable;
+
+

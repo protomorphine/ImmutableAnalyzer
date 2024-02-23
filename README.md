@@ -2,15 +2,23 @@
 [![Tests](https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/dotnet-test.yaml/badge.svg)](https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/dotnet-test.yaml)
 [![Docs](https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/docs.yml/badge.svg?branch=master)](https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/docs.yml)
 
-Sometimes you need to have an immutable object - object, which can't be changed from the outside.
-This set of analyzers can help you to create immutable classes!
+This project is a .NET analyzer tool that utilizes Roslyn to check a class for immutability based on
+the types of it's properties and their accessor list.
 
-This analyzers:
-- checks class property types
-- check properties accessor list
+## Overview
 
-## Available rules
-See [this](ImmutableAnalyzer/ImmutableAnalyzer/AnalyzerReleases.Shipped.md) document.
+Immutability is a key concept in functional programming and can help  prevent bugs related to mutable state.
+The purpose of this tool is to help developers ensure that their classes follow immutability principles,
+which can lead to more stable and predictable code.
+
+## Diagnostics
+See [Diagnostics](ImmutableAnalyzer/ImmutableAnalyzer/doc/diagnostics.md).
+
+## How To Use
+See [How To Use](ImmutableAnalyzer/ImmutableAnalyzer/doc/how-to-use.md).
+
+## Sample
+See [Samples](ImmutableAnalyzer/ImmutableAnalyzer.Sample/README.md).
 
 ## Documentation
 Made with:

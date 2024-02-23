@@ -8,13 +8,13 @@ namespace ImmutableAnalyzer.Sample;
 // If you don't see warnings, build the Analyzers Project.
 
 [Immutable]
-public class Example
+public class Person
 {
     public long Id { get; set; }
 
     public List<string> Names { get; init; } = new();
 
-    public IReadOnlySet<int> MyInts { get; private set; } = new HashSet<int>();
+    public IReadOnlySet<int> CompanyIds { get; private set; } = new HashSet<int>();
 }
 
 public class NotImmutableExample
@@ -23,8 +23,8 @@ public class NotImmutableExample
 }
 
 [Immutable]
-public class AnotherExample
+public class ImmtuableExample
 {
-    public Example ImmutableExample { get; init; } = new();
+    public Person Person { get; init; } = new();
     public NotImmutableExample MutableExample { get; init; } = new();
 }
