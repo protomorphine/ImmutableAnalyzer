@@ -1409,8 +1409,7 @@ HTML_STYLESHEET        =
 # documentation.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_EXTRA_STYLESHEET  = ./doc/doxygen-awesome-css/doxygen-awesome.css \
-                         ./doc/doxygen-awesome-css/doxygen-awesome-sidebar-only.css
+HTML_EXTRA_STYLESHEET  = ./doc/doxygen-awesome-css/doxygen-awesome.css
 
 # The HTML_EXTRA_FILES tag can be used to specify one or more extra images or
 # other source files which should be copied to the HTML output directory. Note
@@ -1740,13 +1739,13 @@ ECLIPSE_DOC_ID         = org.doxygen.Project
 # DISABLE_INDEX tag can be used to turn on/off the condensed index (tabs) at top
 # of each HTML page. A value of NO enables the index and the value YES disables
 # it. Since the tabs in the index contain the same information as the navigation
-# tree, you can set this option to YES if you also set GENERATE_TREEVIEW to YES.
+# tree, you can set this option to YES if you also set to YES.
 # The default value is: NO.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
 DISABLE_INDEX          = NO
 
-# The GENERATE_TREEVIEW tag is used to specify whether a tree-like index
+# The tag is used to specify whether a tree-like index
 # structure should be generated to display hierarchical information. If the tag
 # value is set to YES, a side panel will be generated containing a tree-like
 # index structure (just like the one that is generated for HTML Help). For this
