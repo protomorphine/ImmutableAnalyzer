@@ -24,8 +24,12 @@
 */
 var NAVTREE =
 [
-  [ "ImmutableAnalyzer", "index.html", [
-    [ "Immutable Analyzer", "index.html", "index" ],
+  [ "Immutable Analyzer", "index.html", [
+    [ "Overview", "index.html#overview", null ],
+    [ "Diagnostics", "index.html#diagnostics", null ],
+    [ "How To Use", "index.html#how-to-use", null ],
+    [ "Sample", "index.html#sample", null ],
+    [ "Documentation", "index.html#documentation", null ],
     [ "Available Diagnostics", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2diagnostics.html", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2diagnostics" ],
     [ "How To Use", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2how-to-use.html", null ]
   ] ]
