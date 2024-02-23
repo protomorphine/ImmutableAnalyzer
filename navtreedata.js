@@ -26,6 +26,10 @@ var NAVTREE =
 [
   [ "ImmutableAnalyzer", "index.html", [
     [ "Immutable Analyzer", "index.html", "index" ],
+    [ "Samples", "md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2README.html", [
+      [ "Mutable property in immutable class (IM0001)", "md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2README.html#mutable-property-in-immutable-class-im0001", null ],
+      [ "Public setter in immutable class (IM0002)", "md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2README.html#public-setter-in-immutable-class-im0002", null ]
+    ] ],
     [ "Release 0.1.0", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2AnalyzerReleases_8Shipped.html", null ],
     [ "Release 0.1.0", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2AnalyzerReleases_8Unshipped.html", null ],
     [ "Immutable Analyzer", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2Readme.html", [
@@ -45,7 +49,11 @@ var NAVTREE =
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
-      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ]
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", null ],
+        [ "Properties", "functions_prop.html", null ]
+      ] ]
     ] ],
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ]
