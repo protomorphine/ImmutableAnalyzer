@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "ImmutableAnalyzer", "index.html", [
+    [ "Roslyn Analyzer for check immutability of objects", "index.html", null ],
     [ "Release 1.0", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2AnalyzerReleases_8Shipped.html", null ],
     [ "AnalyzerReleases.Unshipped", "analyzerreleasesunshipped.html", null ],
     [ "Immutable Analyzer", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2Readme.html", [
@@ -39,7 +40,6 @@ var NAVTREE =
         [ "Learn more about wiring analyzers", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2Readme.html#learn-more-about-wiring-analyzers", null ]
       ] ]
     ] ],
-    [ "Roslyn Analyzer for check immutability of objects", "md_README.html", null ],
     [ "Packages", "namespaces.html", [
       [ "Package List", "namespaces.html", "namespaces_dup" ]
     ] ],
