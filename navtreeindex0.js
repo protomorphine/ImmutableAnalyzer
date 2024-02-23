@@ -19,6 +19,7 @@ var NAVTREEINDEX0 =
 "hierarchy.html":[5,1],
 "index.html":[],
 "index.html":[0],
+"index.html#documentation":[0,0],
 "md_ImmutableAnalyzer_2ImmutableAnalyzer_2AnalyzerReleases_8Shipped.html":[1],
 "md_ImmutableAnalyzer_2ImmutableAnalyzer_2Readme.html":[3],
 "md_ImmutableAnalyzer_2ImmutableAnalyzer_2Readme.html#content":[3,0],
