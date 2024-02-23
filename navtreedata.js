@@ -27,7 +27,7 @@ var NAVTREE =
   [ "ImmutableAnalyzer", "index.html", [
     [ "Immutable Analyzer", "index.html", "index" ],
     [ "Release 0.1.0", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2AnalyzerReleases_8Shipped.html", null ],
-    [ "AnalyzerReleases.Unshipped", "analyzerreleasesunshipped.html", null ],
+    [ "Release 0.1.0", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2AnalyzerReleases_8Unshipped.html", null ],
     [ "Immutable Analyzer", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2Readme.html", [
       [ "Content", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2Readme.html#content", [
         [ "ImmutableAnalyzer", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2Readme.html#immutableanalyzer", null ],
