@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['sample_0',['Sample',['../index.html#sample',1,'']]],
-  ['supported_20property_20types_1',['Supported property types',['../im0001.html#supported-property-types',1,'']]]
+  ['use_0',['Use',['../md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2how-to-use.html',1,'How To Use'],['../index.html#how-to-use',1,'How To Use']]]
 ];

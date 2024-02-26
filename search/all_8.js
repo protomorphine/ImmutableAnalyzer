@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['readme_2emd_0',['README.md',['../ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2README_8md.html',1,'(Global Namespace)'],['../README_8md.html',1,'(Global Namespace)']]]
+  ['to_20use_0',['To Use',['../md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2how-to-use.html',1,'How To Use'],['../index.html#how-to-use',1,'How To Use']]],
+  ['types_1',['Supported property types',['../im0001.html#supported-property-types',1,'']]]
 ];
