@@ -11,5 +11,8 @@ var NAVTREEINDEX0 =
 "index.html#sample":[3],
 "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2diagnostics.html":[5],
 "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2how-to-use.html":[6],
+"md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2Samples.html":[7],
+"md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2Samples.html#example-with-build-in-types":[7,0],
+"md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2Samples.html#example-with-user-defined-types":[7,1],
 "pages.html":[]
 };
