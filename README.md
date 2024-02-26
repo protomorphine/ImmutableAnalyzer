@@ -7,7 +7,7 @@ the types of it's properties and their accessor list.
 
 ## Overview
 
-Immutability is a key concept in functional programming and can help  prevent bugs related to mutable state.
+Immutability is a key concept in functional programming and can help  prevent bugs related to mutable state.   
 The purpose of this tool is to help developers ensure that their classes follow immutability principles,
 which can lead to more stable and predictable code.
 
