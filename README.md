@@ -12,13 +12,13 @@ The purpose of this tool is to help developers ensure that their classes follow 
 which can lead to more stable and predictable code.
 
 ## Diagnostics
-See [Diagnostics](ImmutableAnalyzer/ImmutableAnalyzer/doc/diagnostics.md).
+See [Diagnostics](ImmutableAnalyzer/ImmutableAnalyzer/doc/diagnostics.md) page.
 
 ## How To Use
-See [How To Use](ImmutableAnalyzer/ImmutableAnalyzer/doc/how-to-use.md).
+See [How To Use](ImmutableAnalyzer/ImmutableAnalyzer/doc/how-to-use.md) page.
 
 ## Sample
-See [Samples](ImmutableAnalyzer/ImmutableAnalyzer.Sample/README.md).
+See [Samples](ImmutableAnalyzer/ImmutableAnalyzer.Sample/README.md) page.
 
 ## Documentation
 Made with:
