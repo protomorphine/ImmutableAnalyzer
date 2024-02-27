@@ -27,16 +27,16 @@ public class PropertyTypeAnalyzerTests
             TestState =
             {
                 Sources = { SourceFactory.ImmutableClassWithProperty(property) },
-                
+
                 ReferenceAssemblies = new ReferenceAssemblies(
-                    "net5.0", 
-                    new PackageIdentity("Microsoft.NETCore.App.Ref", "5.0.0"), 
+                    "net5.0",
+                    new PackageIdentity("Microsoft.NETCore.App.Ref", "5.0.0"),
                     Path.Combine("ref", "net5.0"))
             }
         };
 
         await analyzerTest.RunAsync().ConfigureAwait(false);
-        
+
         Assert.True(true);
     }
 

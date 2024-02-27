@@ -28,6 +28,7 @@ internal sealed class ImmutableSetAccessorAnalyzer : BaseImmutableAnalyzer
         description:        "Setter can't be public, because it's give possibility to change member from the outer."
     );
 
+    /// <inheritdoc />
     protected override void AnalyzeSyntax(ClassDeclarationSyntax classDeclarationNode, SyntaxNodeAnalysisContext context)
     {
         foreach (var member in classDeclarationNode.Members)
@@ -46,6 +47,11 @@ internal sealed class ImmutableSetAccessorAnalyzer : BaseImmutableAnalyzer
         }
     }
 
+    /// <summary>
+    /// Determine if `IM0002` diagnostic should report.
+    /// </summary>
+    /// <param name="setAccessor">Accessor declaration syntax.</param>
+    /// <returns>false - if accessor is `init` or `private set`, otherwise - true.</returns>
     private static bool ShouldReport(AccessorDeclarationSyntax setAccessor)
     {
         var accessorModifiers = setAccessor.Modifiers.Select(it => it.ValueText).ToList();

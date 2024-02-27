@@ -5,6 +5,9 @@ using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace ImmutableAnalyzer.Analyzers;
 
+/// <summary>
+/// Base class for immutable analyzers.
+/// </summary>
 internal abstract class BaseImmutableAnalyzer : DiagnosticAnalyzer
 {
     /// <inheritdoc />
@@ -24,6 +27,8 @@ internal abstract class BaseImmutableAnalyzer : DiagnosticAnalyzer
 
     /// <summary>
     /// Execute analyzer.
+    /// Executes <see cref="AnalyzeSyntax(ClassDeclarationSyntax, SyntaxNodeAnalysisContext)"/> only if class declaration
+    /// marked by <see cref="ImmutableAttribute"/>.
     /// </summary>
     /// <param name="context">Analysis context.</param>
     private void AnalyzeSyntax(SyntaxNodeAnalysisContext context)

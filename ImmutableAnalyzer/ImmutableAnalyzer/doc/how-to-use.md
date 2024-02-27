@@ -1,6 +1,6 @@
 # How To Use
 
-Create reference to project, containig analyzers, in your `.csproj` file.
+Create reference to project, containing analyzers, in your `.csproj` file.
 ```xml
     <ItemGroup>
         <ProjectReference

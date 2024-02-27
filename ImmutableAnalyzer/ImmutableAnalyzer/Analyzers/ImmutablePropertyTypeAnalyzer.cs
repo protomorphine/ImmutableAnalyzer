@@ -30,7 +30,7 @@ internal sealed class ImmutablePropertyTypeAnalyzer : BaseImmutableAnalyzer
         isEnabledByDefault: true,
         description:        "Class member must have immutable type."
     );
-    
+
     /// <summary>
     /// Set of valid immutable class types.
     /// </summary>

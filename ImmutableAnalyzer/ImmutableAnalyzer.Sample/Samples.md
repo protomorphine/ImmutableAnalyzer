@@ -28,7 +28,7 @@ public class NotImmutableExample
 }
 
 [Immutable]
-public class ImmtuableExample
+public class ImmutableExample
 {
     public Person Person { get; init; } = new();
     public NotImmutableExample MutableExample { get; init; } = new();
