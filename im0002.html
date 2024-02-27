@@ -35,7 +35,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Immutable Analyzer<span id="projectnumber">&#160;v0.1.0</span>
+   <div id="projectname">Immutable Analyzer<span id="projectnumber">&#160;v1.0.0</span>
    </div>
    <div id="projectbrief">class immutability analyzer</div>
   </td>
@@ -103,12 +103,14 @@ $(function(){initNavTree('im0002.html',''); initResizable(); });
   <div class="headertitle"><div class="title">IM0002</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2IM0002"></a> The analyser checks the accessor list of each property.</p>
-<ul>
-<li>if property has only a getter it's considered immutable;</li>
-<li>if property has a getter and private setter it's considered immutable;</li>
-<li>if property has a getter and <code>init</code> set accessor it's considered immutable;</li>
-<li>if property has a public setter it's considered mutable; </li>
+<div class="textblock"><p><a class="anchor" id="md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2IM0002"></a> The analyzer checks the accessor list of each property.</p>
+<p>Diagnostic wouldn't report if:</p><ul>
+<li>property has only a getter;</li>
+<li>property has a getter and private setter;</li>
+<li>property has a getter and <code>init</code> set accessor;</li>
+</ul>
+<p>Diagnostic will report if:</p><ul>
+<li>property has a public setter; </li>
 </ul>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
