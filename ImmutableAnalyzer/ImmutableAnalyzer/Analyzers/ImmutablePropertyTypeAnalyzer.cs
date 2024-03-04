@@ -36,8 +36,9 @@ internal sealed class ImmutablePropertyTypeAnalyzer : BaseImmutableAnalyzer
     /// </summary>
     public static readonly IReadOnlySet<string> ImmutableClassTypes = new HashSet<string>
     {
-        nameof(Boolean), nameof(Byte), nameof(SByte), nameof(Char), nameof(Decimal), nameof(Double), nameof(Single),
-        nameof(Int32), nameof(UInt32), nameof(Int64), nameof(UInt64), nameof(Int16), nameof(UInt16), nameof(String)
+        nameof(Boolean),  nameof(Byte),   nameof(SByte), nameof(Char),   nameof(Decimal), nameof(Double), nameof(Single),
+        nameof(Int32),    nameof(UInt32), nameof(Int64), nameof(UInt64), nameof(Int16),   nameof(UInt16), nameof(String),
+        nameof(DateTime), nameof(Guid),   nameof(Enum)
     };
 
     /// <summary>
