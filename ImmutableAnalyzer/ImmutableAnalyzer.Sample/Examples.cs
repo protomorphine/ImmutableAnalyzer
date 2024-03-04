@@ -2,10 +2,14 @@
 // ReSharper disable UnusedMember.Global
 
 using System.Collections.Generic;
-
 namespace ImmutableAnalyzer.Sample;
 
 // If you don't see warnings, build the Analyzers Project.
+public enum Test
+{
+    Value1,
+    Value2
+}
 
 [Immutable]
 public class Person
@@ -13,6 +17,8 @@ public class Person
     public long Id { get; set; }
 
     public List<string> Names { get; init; } = new();
+
+    public Test SomeEnumProperty { get; init; }
 
     public IReadOnlySet<int> CompanyIds { get; private set; } = new HashSet<int>();
 }
