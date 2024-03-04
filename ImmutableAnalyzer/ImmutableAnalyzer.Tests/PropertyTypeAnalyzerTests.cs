@@ -20,7 +20,7 @@ public class PropertyTypeAnalyzerTests
     [Theory]
     [MemberData(nameof(ImmutableTypes))]
     [MemberData(nameof(ImmutableGenericTypes))]
-    public async Task BuildInClassPropertyType_ShouldNotAlert(string property)
+    public async Task BuiltInClassPropertyType_ShouldNotAlert(string property)
     {
         var analyzerTest =  new CSharpAnalyzerTest<ImmutablePropertyTypeAnalyzer, XUnitVerifier>
         {
@@ -37,18 +37,72 @@ public class PropertyTypeAnalyzerTests
 
         await analyzerTest.RunAsync().ConfigureAwait(false);
 
-        Assert.True(true);
+        Assert.True(true); // SonarLint S2699
     }
 
     [Theory]
     [MemberData(nameof(MutableTypes))]
-    public async Task BuildInClassPropertyType_ShouldAlert(string property)
+    public async Task BuiltInClassPropertyType_ShouldAlert(string property)
     {
         var source = SourceFactory.ImmutableClassWithProperty(property);
 
         var expected = Verifier.Diagnostic().WithLocation(21, 12).WithArguments(property);
         await Verifier.VerifyAnalyzerAsync(source, expected).ConfigureAwait(false);
     }
+
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public async Task UserDefinedTypes_ClassesWithImmutableAttribute_ShouldBeConsideredImmutable(bool shouldAlert)
+    {
+        var source = @$"
+{SourceFactory.CommonSource}
+
+{(shouldAlert ? string.Empty : "[Immutable]")}
+public class Person
+{{
+    public int Id {{ get; init; }}
+}}
+
+[Immutable]
+public class Pet
+{{
+    public string Name {{ get; }}
+    public Person Owner {{ get; init; }}
+}}
+";
+        if (!shouldAlert)
+            await Verifier.VerifyAnalyzerAsync(source);
+        else
+            await Verifier.VerifyAnalyzerAsync(
+                source, Verifier.Diagnostic().WithLocation(28, 12).WithArguments("Person")
+            );
+    }
+
+    [Fact]
+    public async Task UserDefinedTypes_Enums_ShouldBeConsideredImmutable()
+    {
+        const string source = @$"
+{SourceFactory.CommonSource}
+
+public enum PetType
+{{
+    Dog,
+    Cat,
+    Parrot
+}}
+
+[Immutable]
+public class Pet
+{{
+    public string Name {{ get; }}
+    public PetType PetType {{ get; init; }}
+}}
+";
+        await Verifier.VerifyAnalyzerAsync(source);
+    }
+
+    #region Test Data
 
     /// <summary>
     /// Immutable class declarations.
@@ -73,8 +127,9 @@ public class PropertyTypeAnalyzerTests
     public static IEnumerable<object[]> MutableTypes => new List<object[]>()
     {
         new object[] { nameof(Object) },
-        new object[] { nameof(DateTime) },
         new object[] { typeof(List<>).Name[..^2] + "<int>" },
         new object[] { typeof(Dictionary<,>).Name[..^2] + "<int, int>" }
     };
+
+    #endregion
 }

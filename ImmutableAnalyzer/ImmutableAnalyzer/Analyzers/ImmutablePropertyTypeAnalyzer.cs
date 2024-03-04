@@ -36,8 +36,9 @@ internal sealed class ImmutablePropertyTypeAnalyzer : BaseImmutableAnalyzer
     /// </summary>
     public static readonly IReadOnlySet<string> ImmutableClassTypes = new HashSet<string>
     {
-        nameof(Boolean), nameof(Byte), nameof(SByte), nameof(Char), nameof(Decimal), nameof(Double), nameof(Single),
-        nameof(Int32), nameof(UInt32), nameof(Int64), nameof(UInt64), nameof(Int16), nameof(UInt16), nameof(String)
+        nameof(Boolean),  nameof(Byte),   nameof(SByte), nameof(Char),   nameof(Decimal), nameof(Double), nameof(Single),
+        nameof(Int32),    nameof(UInt32), nameof(Int64), nameof(UInt64), nameof(Int16),   nameof(UInt16), nameof(String),
+        nameof(DateTime), nameof(Guid),   nameof(Enum)
     };
 
     /// <summary>
@@ -45,10 +46,10 @@ internal sealed class ImmutablePropertyTypeAnalyzer : BaseImmutableAnalyzer
     /// </summary>
     public static readonly IReadOnlySet<string> ImmutableGenericClassTypes = new HashSet<string>
     {
-        typeof(ImmutableArray<>).Name, typeof(ImmutableDictionary<,>).Name, typeof(ImmutableList<>).Name,
+        typeof(ImmutableArray<>).Name,   typeof(ImmutableDictionary<,>).Name,       typeof(ImmutableList<>).Name,
         typeof(ImmutableHashSet<>).Name, typeof(ImmutableSortedDictionary<,>).Name, typeof(ImmutableSortedSet<>).Name,
-        typeof(ImmutableStack<>).Name, typeof(ImmutableQueue<>).Name, typeof(IReadOnlyList<>).Name,
-        typeof(IReadOnlySet<>).Name, typeof(IReadOnlyCollection<>).Name, typeof(IReadOnlyDictionary<,>).Name
+        typeof(ImmutableStack<>).Name,   typeof(ImmutableQueue<>).Name,             typeof(IReadOnlyList<>).Name,
+        typeof(IReadOnlySet<>).Name,     typeof(IReadOnlyCollection<>).Name,        typeof(IReadOnlyDictionary<,>).Name
     };
 
     /// <inheritdoc/>
@@ -63,7 +64,7 @@ internal sealed class ImmutablePropertyTypeAnalyzer : BaseImmutableAnalyzer
                 continue;
 
             var symbol = context.SemanticModel.GetSymbolInfo(propertyDeclarationNode.Type).Symbol;
-            if (symbol is null || IsImmutable(propertyDeclarationNode, symbol))
+            if (symbol is null || IsImmutable((INamedTypeSymbol)symbol))
                 continue;
 
             var diagnostic = Diagnostic.Create(
@@ -74,15 +75,17 @@ internal sealed class ImmutablePropertyTypeAnalyzer : BaseImmutableAnalyzer
         }
     }
 
-    private static bool IsImmutable(BasePropertyDeclarationSyntax prop, ISymbol symbol)
+    private static bool IsImmutable(INamedTypeSymbol symbol)
     {
         if (symbol.IsUserDefinedImmutable())
             return true;
 
-        return prop.Type switch
-        {
-            GenericNameSyntax => ImmutableGenericClassTypes.Contains(symbol.MetadataName),
-            _ => ImmutableClassTypes.Contains(symbol.Name)
-        };
+        if (symbol.IsGenericType)
+            return ImmutableGenericClassTypes.Contains(symbol.MetadataName);
+
+        if (symbol.BaseType is { } baseType)
+            return ImmutableClassTypes.Contains(symbol.Name) || IsImmutable(baseType);
+
+        return false;
     }
 }

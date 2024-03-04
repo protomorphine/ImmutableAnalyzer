@@ -18,7 +18,7 @@ See [Diagnostics](ImmutableAnalyzer/ImmutableAnalyzer/doc/diagnostics.md) page.
 See [How To Use](ImmutableAnalyzer/ImmutableAnalyzer/doc/how-to-use.md) page.
 
 ## Sample
-See [Samples](ImmutableAnalyzer/ImmutableAnalyzer.Sample/Samples.md) page.
+See [Samples](ImmutableAnalyzer/ImmutableAnalyzer.Sample/doc/Samples.md) page.
 
 ## Documentation
 Made with:
