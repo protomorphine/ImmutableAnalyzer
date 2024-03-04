@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Immutable Analyzer: Related Pages</title>
+<title>Immutable Analyzer: Samples</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -74,7 +74,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('pages.html',''); initResizable(); });
+$(function(){initNavTree('samples.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -99,22 +99,34 @@ $(function(){initNavTree('pages.html',''); initResizable(); });
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">Related Pages</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">Samples</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock">Here is a list of all related documentation pages:</div><div class="directory">
-<div class="levels">[detail level <span onclick="javascript:dynsection.toggleLevel(1);">1</span><span onclick="javascript:dynsection.toggleLevel(2);">2</span>]</div><table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_0_" class="arrow" onclick="dynsection.toggleFolder('0_')">&#9660;</span><a class="el" href="md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2diagnostics.html" target="_self">Available Diagnostics</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a class="el" href="im0001.html" target="_self">IM0001</a></td><td class="desc"></td></tr>
-<tr id="row_0_1_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a class="el" href="im0002.html" target="_self">IM0002</a></td><td class="desc"></td></tr>
-<tr id="row_1_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2how-to-use.html" target="_self">How To Use</a></td><td class="desc"></td></tr>
-<tr id="row_2_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_2_" class="arrow" onclick="dynsection.toggleFolder('2_')">&#9660;</span><a class="el" href="samples.html" target="_self">Samples</a></td><td class="desc"></td></tr>
-<tr id="row_2_0_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a class="el" href="enum-sample.html" target="_self">Example with enums</a></td><td class="desc"></td></tr>
-<tr id="row_2_1_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a class="el" href="user-defined-types.html" target="_self">Example with user defined types</a></td><td class="desc"></td></tr>
+<div class="textblock"><p><a class="anchor" id="md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2doc_2Samples"></a> </p><div style="display: none"> <a class="el" href="enum-sample.html">Example with enums</a> <a class="el" href="user-defined-types.html">Example with user defined types</a> </div><h1><a class="anchor" id="example-with-built-in-types"></a>
+Example with built-in types</h1>
+<div class="fragment"><div class="line">[Immutable]</div>
+<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>Person</div>
+<div class="line">{</div>
+<div class="line">    <span class="keyword">public</span> <span class="keywordtype">long</span> Id { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> List&lt;string&gt; Names { <span class="keyword">get</span>; init; } = <span class="keyword">new</span>();</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> IReadOnlySet&lt;int&gt; CompanyIds { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; } = <span class="keyword">new</span> HashSet&lt;int&gt;();</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>In the example above:</p><ul>
+<li>the <code>Id</code> property would be considered mutable due to it's public setter;</li>
+<li>the <code>Names</code> list would be considered mutable due to it's mutable type;</li>
+<li>the <code>CompanyIds</code> set would be considered immutable;</li>
+</ul>
+<div class="section_buttons"></div><div class="section_buttons"><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">Previous   </th><th class="markdownTableHeadRight">Next    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft"><a class="el" href="index.html#md_README">Home</a>   </td><td class="markdownTableBodyRight"><a class="el" href="user-defined-types.html#md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2doc_2user-defined-types-sample">User defined types</a>   </td></tr>
 </table>
-</div><!-- directory -->
-</div><!-- contents -->
+</div><div class="section_buttons"></div> </div></div><!-- contents -->
+</div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

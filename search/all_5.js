@@ -5,5 +5,5 @@ var searchData=
   ['im0002_2',['IM0002',['../im0002.html',1,'md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2diagnostics']]],
   ['im0002_2emd_3',['IM0002.md',['../IM0002_8md.html',1,'']]],
   ['immutable_20analyzer_4',['Immutable Analyzer',['../index.html',1,'']]],
-  ['in_20types_5',['Example with build in types',['../md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2Samples.html#example-with-build-in-types',1,'']]]
+  ['in_20types_5',['Example with built-in types',['../samples.html#example-with-built-in-types',1,'']]]
 ];

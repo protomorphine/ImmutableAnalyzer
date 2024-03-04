@@ -1,5 +1,6 @@
 var NAVTREEINDEX0 =
 {
+"enum-sample.html":[7,1],
 "im0001.html":[5,0],
 "im0001.html#supported-property-types":[5,0,0],
 "im0002.html":[5,1],
@@ -11,8 +12,8 @@ var NAVTREEINDEX0 =
 "index.html#sample":[3],
 "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2diagnostics.html":[5],
 "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2how-to-use.html":[6],
-"md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2Samples.html":[7],
-"md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2Samples.html#example-with-build-in-types":[7,0],
-"md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2Samples.html#example-with-user-defined-types":[7,1],
-"pages.html":[]
+"pages.html":[],
+"samples.html":[7],
+"samples.html#example-with-built-in-types":[7,0],
+"user-defined-types.html":[7,2]
 };

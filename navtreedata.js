@@ -32,16 +32,13 @@ var NAVTREE =
     [ "Documentation", "index.html#documentation", null ],
     [ "Available Diagnostics", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2diagnostics.html", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2diagnostics" ],
     [ "How To Use", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2how-to-use.html", null ],
-    [ "Samples", "md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2Samples.html", [
-      [ "Example with build in types", "md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2Samples.html#example-with-build-in-types", null ],
-      [ "Example with user defined types", "md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2Samples.html#example-with-user-defined-types", null ]
-    ] ]
+    [ "Samples", "samples.html", "samples" ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"im0001.html"
+"enum-sample.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
