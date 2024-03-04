@@ -20,7 +20,7 @@ public class PropertyTypeAnalyzerTests
     [Theory]
     [MemberData(nameof(ImmutableTypes))]
     [MemberData(nameof(ImmutableGenericTypes))]
-    public async Task BuildInClassPropertyType_ShouldNotAlert(string property)
+    public async Task BuiltInClassPropertyType_ShouldNotAlert(string property)
     {
         var analyzerTest =  new CSharpAnalyzerTest<ImmutablePropertyTypeAnalyzer, XUnitVerifier>
         {
@@ -37,12 +37,12 @@ public class PropertyTypeAnalyzerTests
 
         await analyzerTest.RunAsync().ConfigureAwait(false);
 
-        Assert.True(true);
+        Assert.True(true); // SonarLint S2699
     }
 
     [Theory]
     [MemberData(nameof(MutableTypes))]
-    public async Task BuildInClassPropertyType_ShouldAlert(string property)
+    public async Task BuiltInClassPropertyType_ShouldAlert(string property)
     {
         var source = SourceFactory.ImmutableClassWithProperty(property);
 

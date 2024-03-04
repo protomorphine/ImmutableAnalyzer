@@ -5,7 +5,7 @@
 /// </summary>
 public static class SourceFactory
 {
-    private const string CommonSource = @"
+    public const string CommonSource = @"
 using System;
 using System.ComponentModel;
 using System.Collections.Generic;
@@ -40,16 +40,16 @@ public class TestImmutableClass
     /// <summary>
     /// Creates source code with immutable class with given property set accessor.
     /// </summary>
-    /// <param name="propertyAccessor">Property set accessor.</param>
+    /// <param name="propertySetAccessor">Property set accessor.</param>
     /// <returns>String, that represent source code.</returns>
-    public static string ImmutableClassWithPropertyAccessor(string propertyAccessor) =>
+    public static string ImmutableClassWithPropertyAccessor(string propertySetAccessor) =>
         $@"
 {CommonSource}
 
 [Immutable]
 public class TestImmutableClass
 {{
-    public int Id {{get; {propertyAccessor};}}
+    public int Id {{get; {propertySetAccessor};}}
 }}
 ";
 }
