@@ -36,8 +36,8 @@ jobs:
 
     - name: update test badge in README.md
       run: |
-        url_raw=$(echo ${{ toJson(steps.test_report.outputs.url_html) }} | sed 's/\//\\\//g')
-        sed -i '2s/.*/[![Tests](https:\/\/github.com\/protomorphine\/ImmutableAnalyzer\/actions\/workflows\/test-report.yaml\/badge.svg)]('"$url_raw"')/' README.md
+        test_report_url=$(echo ${{ toJson(steps.test_report.outputs.url_html) }} | sed 's/\//\\\//g')
+        sed -i '2s/.*/[![Tests](https:\/\/github.com\/protomorphine\/ImmutableAnalyzer\/actions\/workflows\/test-report.yaml\/badge.svg)]('"$test_report_url"')/' README.md
 
     - name: commit changes
       uses: EndBug/add-and-commit@v9
