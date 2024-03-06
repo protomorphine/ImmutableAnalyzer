@@ -35,7 +35,9 @@ jobs:
         fail-on-error: true
 
     - name: update README.md
-      run: sed -i '2s/.*/[![Tests](https:\/\/github.com\/protomorphine\/ImmutableAnalyzer\/actions\/workflows\/test-report.yaml\/badge.svg)]($(echo ${{ steps.test_report.outputs.url_html }} | sed 's/\//\\\//g' ))/' README.md
+      run: \
+        url=$(echo ${{ toJson(steps.test_report.outputs.url_html) }} | sed 's/\//\\\//g')
+        sed -i '2s/.*/[![Tests](https:\/\/github.com\/protomorphine\/ImmutableAnalyzer\/actions\/workflows\/test-report.yaml\/badge.svg)]('"$url"')/' README.md
 
     - name: add & commit
       uses: EndBug/add-and-commit@v9
