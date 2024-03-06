@@ -44,8 +44,8 @@ jobs:
         
         echo "Badge URL: $badge_url"
         echo "Report URL: $test_report_url"
-        https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/test-report.yaml/badge.svg
-        sed -i '2s/.*/[![${{ github.workflow }}]("https:\/\/github.com\/protomorphine\/ImmutableAnalyzer\/actions\/workflows\/test-report.yaml\/badge.svg")]('"$test_report_url"')/' README.md
+        
+        sed -i '2s/.*/[![Tests]('"$badge_url"')]('"$test_report_url"')/' README.md
 
     - name: commit changes
       uses: EndBug/add-and-commit@v9
