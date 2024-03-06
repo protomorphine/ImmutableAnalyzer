@@ -46,7 +46,7 @@ jobs:
 
         echo ${{ env.URL }}
         
-        sed -i '2s/.*/[![Tests](https:\/\/github.com\/protomorphine\/ImmutableAnalyzer\/actions\/workflows\/test-report.yaml\/badge.svg)](${{ env.URL }})/' README.md
+        sed -i '2s/.*/[![Tests](https:\/\/github.com\/protomorphine\/ImmutableAnalyzer\/actions\/workflows\/test-report.yaml\/badge.svg)]('"$url_raw"')/' README.md
         cat README.md
 
     - name: add & commit
