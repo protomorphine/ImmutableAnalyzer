@@ -1,29 +1,30 @@
-name: .NET Core
+name: Tests
 
 on:
   push:
-  workflow_dispatch:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout  
+    - name: checkout  
       uses: actions/checkout@v1
       
-    - name: Setup .NET Core
+    - name: setup .NET
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
 
-    - name: Restore
+    - name: restore
       run: dotnet restore
 
-    - name: Test
+    - name: test
       run: dotnet test --logger "trx;LogFileName=test-results.trx" || true
 
-    - name: Test Report
+    - name: test report
       uses: dorny/test-reporter@v1
       if: always()
       with:
