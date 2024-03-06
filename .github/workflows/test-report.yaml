@@ -47,5 +47,6 @@ jobs:
       with:
           add: README.md
           message: 'update test badge in README.md'
+          new_branch: master
           default_author: github_actions
           fetch: false
