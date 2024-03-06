@@ -12,8 +12,6 @@ jobs:
     steps:
     - name: checkout  
       uses: actions/checkout@v2
-      with:
-        ref: 'master'
       
     - name: setup .NET
       uses: actions/setup-dotnet@v1
@@ -26,7 +24,7 @@ jobs:
     - name: test
       run: dotnet test --logger "trx;LogFileName=test-results.trx" || true
 
-    - name: test report
+    - name: create test report
       uses: dorny/test-reporter@v1
       id: test_report
       if: always()
@@ -36,24 +34,15 @@ jobs:
         reporter: dotnet-trx
         fail-on-error: true
 
-    - name: update README.md
+    - name: update test badge in README.md
       run: |
         url_raw=$(echo ${{ toJson(steps.test_report.outputs.url_html) }} | sed 's/\//\\\//g')
-
-        echo $url_raw
-        
-        echo "URL=$url_raw" >> $GITHUB_ENV
-
-        echo ${{ env.URL }}
-        
         sed -i '2s/.*/[![Tests](https:\/\/github.com\/protomorphine\/ImmutableAnalyzer\/actions\/workflows\/test-report.yaml\/badge.svg)]('"$url_raw"')/' README.md
-        cat README.md
 
-    - name: add & commit
+    - name: commit changes
       uses: EndBug/add-and-commit@v9
       with:
           add: README.md
           message: 'update test badge in README.md'
-          new_branch: master
           default_author: github_actions
           fetch: false
