@@ -43,6 +43,9 @@ jobs:
         echo $url_raw
         
         echo "URL=$url_raw" >> $GITHUB_ENV
+
+        echo ${{ env.URL }}
+        
         sed -i '2s/.*/[![Tests](https:\/\/github.com\/protomorphine\/ImmutableAnalyzer\/actions\/workflows\/test-report.yaml\/badge.svg)](${{ env.URL }})/' README.md
         cat README.md
 
