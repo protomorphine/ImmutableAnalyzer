@@ -26,9 +26,21 @@ jobs:
 
     - name: test report
       uses: dorny/test-reporter@v1
+      id: test_report
       if: always()
       with:
         name: DotNET Tests
         path: "**/test-results.trx"                            
         reporter: dotnet-trx
         fail-on-error: true
+
+    - name: update README.md
+      run: sed -i '2s/.*/[![Tests](https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/test-report.yaml/badge.svg)]({{steps.test_report.outputs.url_html}})/' README.md
+
+    - name: add & commit
+      uses: EndBug/add-and-commit@v9
+      with:
+          add: README.md
+          message: 'update test badge in README.md'
+          default_author: github_action
+          fetch: false
