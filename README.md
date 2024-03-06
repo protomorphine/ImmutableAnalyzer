@@ -1,5 +1,5 @@
 # Immutable Analyzer
-[![Tests](https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/test-report.yaml/badge.svg)](https://github.com/protomorphine/ImmutableAnalyzer/runs/22343677426)
+[![Tests](https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/test-report.yaml/badge.svg)](https://github.com/protomorphine/ImmutableAnalyzer/runs/22343899622)
 [![Docs](https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/docs.yml/badge.svg?branch=master)](https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/docs.yml)
 
 This project is a .NET analyzer tool that utilizes Roslyn to check a class for immutability based on
