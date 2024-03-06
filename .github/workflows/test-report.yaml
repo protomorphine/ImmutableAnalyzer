@@ -37,7 +37,8 @@ jobs:
     - name: update test badge in README.md
       run: |
         test_report_url=$(echo ${{ toJson(steps.test_report.outputs.url_html) }} | sed 's/\//\\\//g')
-        badge_url=$(echo "${{ github.server_url }}/${{ github.repository }}/actions/workflows/test-report.yaml/badge.svg" | sed 's/\//\\\//g')
+        workflow_path=$(echo ${{github.workflow_ref}} | sed 's/@.*//')
+        badge_url=$(echo "$workflow_path/badge.svg" | sed 's/\//\\\//g')
         
         echo $badge_url
         
