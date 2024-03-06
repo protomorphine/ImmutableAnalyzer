@@ -39,8 +39,13 @@ jobs:
     - name: update README.md
       run: |
         url_raw=$(echo ${{ toJson(steps.test_report.outputs.url_html) }} | sed 's/\//\\\//g')
+
+        echo $url_raw
+        
         echo "URL=$url_raw" >> $GITHUB_ENV
         sed -i '2s/.*/[![Tests](https:\/\/github.com\/protomorphine\/ImmutableAnalyzer\/actions\/workflows\/test-report.yaml\/badge.svg)](${{ env.URL }})/' README.md
+
+        echo README.md
 
     - name: add & commit
       uses: EndBug/add-and-commit@v9
