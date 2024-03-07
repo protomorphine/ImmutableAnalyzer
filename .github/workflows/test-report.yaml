@@ -49,9 +49,8 @@ jobs:
         workflow_file=$(echo ${{ github.workflow_ref }} | sed 's/.*\/\(.*\)@.*/\1/')
         badge_url=$(echo "${{ github.server_url }}/${{ github.repository }}/actions/workflows/$workflow_file/badge.svg" | sed 's/\//\\\//g')
         
-        echo "Badge URL: $badge_url"
-        echo "Workflow Path: $workflow_path"
-        echo "Report URL: $test_report_url"
+        echo "Badge URL: ${{ github.server_url }}/${{ github.repository }}/actions/workflows/$workflow_file/badge.svg"
+        echo "Report URL: ${{ toJson(steps.test_report.outputs.url_html) }}"
         
         sed -i '2s/.*/[![${{ github.workflow }}]('"$badge_url"')]('"$test_report_url"')/' README.md
 
