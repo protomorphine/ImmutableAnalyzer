@@ -50,6 +50,8 @@ jobs:
         badge_url=$(echo "https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/test-report.yaml/badge.svg" | sed 's/\//\\\//g')
         
         echo "Badge URL: $badge_url"
+        echo "Workflow Path: $workflow_path"
+        echo "Workflow Ref $ {{ github.workflow_ref }}"
         echo "Report URL: $test_report_url"
         
         sed -i '2s/.*/[![Tests]('"$badge_url"')]('"$test_report_url"')/' README.md
