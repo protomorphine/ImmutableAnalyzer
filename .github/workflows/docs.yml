@@ -17,7 +17,7 @@ jobs:
         submodules: true
         
     - name: Doxygen Action
-      uses: mattnotmitt/doxygen-action@1.9.8-r0
+      uses: mattnotmitt/doxygen-action@1.9.8
       with:
         doxyfile-path: "./doc/Doxyfile"
         working-directory: "."
