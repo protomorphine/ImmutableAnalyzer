@@ -51,7 +51,7 @@ jobs:
         
         echo "Badge URL: $badge_url"
         echo "Workflow Path: $workflow_path"
-        echo "Workflow Ref $ {{ github.workflow_ref }}"
+        echo "Workflow Ref ${{ github.workflow_ref }}"
         echo "Report URL: $test_report_url"
         
         sed -i '2s/.*/[![Tests]('"$badge_url"')]('"$test_report_url"')/' README.md
