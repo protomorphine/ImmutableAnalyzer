@@ -56,6 +56,7 @@ jobs:
 
     - name: commit changes
       uses: EndBug/add-and-commit@v9
+      if: ${{ github.ref }} == 'refs/heads/master'
       with:
           add: README.md
           message: 'update test badge in README.md'
