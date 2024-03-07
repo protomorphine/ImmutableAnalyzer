@@ -1,0 +1,10 @@
+# https://github.com/dotnet/samples/blob/3251b2580b49fd445045846f468fce6c412e9ef9/.github/dependabot.yml
+
+version: 2
+updates:
+  - package-ecosystem: "nuget"
+    directory: "/ImmutableAnalyzer/ImmutableAnalyzer" # ImmutableAnalyzer.csproj
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
