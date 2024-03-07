@@ -30,9 +30,18 @@ var NAVTREE =
     [ "How To Use", "index.html#how-to-use", null ],
     [ "Sample", "index.html#sample", null ],
     [ "Documentation", "index.html#documentation", null ],
-    [ "Available Diagnostics", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2diagnostics.html", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2diagnostics" ],
+    [ "Available Diagnostics", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2diagnostics.html", [
+      [ "IM0001", "im0001.html", [
+        [ "Supported property types", "im0001.html#supported-property-types", null ]
+      ] ],
+      [ "IM0002", "im0002.html", null ]
+    ] ],
     [ "How To Use", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2how-to-use.html", null ],
-    [ "Samples", "samples.html", "samples" ]
+    [ "Samples", "samples.html", [
+      [ "Example with built-in types", "samples.html#example-with-built-in-types", null ],
+      [ "Example with enums", "enum-sample.html", null ],
+      [ "Example with user defined types", "user-defined-types.html", null ]
+    ] ]
   ] ]
 ];
 
