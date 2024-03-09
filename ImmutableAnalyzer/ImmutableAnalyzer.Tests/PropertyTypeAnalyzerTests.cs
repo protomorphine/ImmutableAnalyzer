@@ -8,12 +8,12 @@ using ImmutableAnalyzer.Analyzers;
 using Microsoft.CodeAnalysis.CSharp.Testing;
 using Microsoft.CodeAnalysis.Testing;
 using Microsoft.CodeAnalysis.Testing.Verifiers;
-using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<ImmutableAnalyzer.Analyzers.ImmutablePropertyTypeAnalyzer>;
+using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<ImmutableAnalyzer.Analyzers.PropertyTypeAnalyzer>;
 
 namespace ImmutableAnalyzer.Tests;
 
 /// <summary>
-/// Tests for <see cref="ImmutableAnalyzer.Analyzers.ImmutablePropertyTypeAnalyzer"/>
+/// Tests for <see cref="PropertyTypeAnalyzer"/>
 /// </summary>
 public class PropertyTypeAnalyzerTests
 {
@@ -22,16 +22,16 @@ public class PropertyTypeAnalyzerTests
     [MemberData(nameof(ImmutableGenericTypes))]
     public async Task BuiltInClassPropertyType_ShouldNotAlert(string property)
     {
-        var analyzerTest =  new CSharpAnalyzerTest<ImmutablePropertyTypeAnalyzer, XUnitVerifier>
+        var analyzerTest =  new CSharpAnalyzerTest<PropertyTypeAnalyzer, XUnitVerifier>
         {
             TestState =
             {
                 Sources = { SourceFactory.ImmutableClassWithProperty(property) },
 
                 ReferenceAssemblies = new ReferenceAssemblies(
-                    "net5.0",
-                    new PackageIdentity("Microsoft.NETCore.App.Ref", "5.0.0"),
-                    Path.Combine("ref", "net5.0"))
+                    "net6.0",
+                    new PackageIdentity("Microsoft.NETCore.App.Ref", "6.0.0"),
+                    Path.Combine("ref", "net6.0"))
             }
         };
 
@@ -51,14 +51,14 @@ public class PropertyTypeAnalyzerTests
     }
 
     [Theory]
-    [InlineData(true)]
-    [InlineData(false)]
-    public async Task UserDefinedTypes_ClassesWithImmutableAttribute_ShouldBeConsideredImmutable(bool shouldAlert)
+    [InlineData("[Immutable]")]
+    [InlineData("")]
+    public async Task UserDefinedTypes_ClassesWithImmutableAttribute_ShouldBeConsideredImmutable(string attribute)
     {
         var source = @$"
 {SourceFactory.CommonSource}
 
-{(shouldAlert ? string.Empty : "[Immutable]")}
+{attribute}
 public class Person
 {{
     public int Id {{ get; init; }}
@@ -71,12 +71,11 @@ public class Pet
     public Person Owner {{ get; init; }}
 }}
 ";
-        if (!shouldAlert)
-            await Verifier.VerifyAnalyzerAsync(source);
-        else
-            await Verifier.VerifyAnalyzerAsync(
-                source, Verifier.Diagnostic().WithLocation(28, 12).WithArguments("Person")
-            );
+        await (!string.IsNullOrWhiteSpace(attribute)
+            ? Verifier.VerifyAnalyzerAsync(source)
+            : Verifier.VerifyAnalyzerAsync(source,
+                Verifier.Diagnostic().WithLocation(28, 12).WithArguments("Person")
+            ));
     }
 
     [Fact]
@@ -108,12 +107,12 @@ public class Pet
     /// Immutable class declarations.
     /// </summary>
     public static IEnumerable<object[]> ImmutableTypes =>
-        ImmutablePropertyTypeAnalyzer.ImmutableClassTypes.Select(it => new object[] {it});
+        PropertyTypeAnalyzer.ImmutableClassTypes.Select(it => new object[] {it});
 
     /// <summary>
     /// Immutable generic class declarations.
     /// </summary>
-    public static IEnumerable<object[]> ImmutableGenericTypes => ImmutablePropertyTypeAnalyzer.ImmutableGenericClassTypes
+    public static IEnumerable<object[]> ImmutableGenericTypes => PropertyTypeAnalyzer.ImmutableGenericClassTypes
         .Select(it =>
         {
             var genericParamsCount = it[^1] - '0';
