@@ -13,7 +13,7 @@ namespace ImmutableAnalyzer.Analyzers;
 /// Analyzer to check property types of immutable classes.
 /// </summary>
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-internal sealed class ImmutablePropertyTypeAnalyzer : BaseImmutableAnalyzer
+internal sealed class PropertyTypeAnalyzer : ClassMemberAnalyzer<PropertyDeclarationSyntax>
 {
     /// <inheritdoc />
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(Rule);
@@ -53,26 +53,17 @@ internal sealed class ImmutablePropertyTypeAnalyzer : BaseImmutableAnalyzer
     };
 
     /// <inheritdoc/>
-    protected override void AnalyzeSyntax(
-        ClassDeclarationSyntax classDeclarationNode,
-        SyntaxNodeAnalysisContext context
-    )
+    protected override void AnalyzeSyntax(PropertyDeclarationSyntax node, SyntaxNodeAnalysisContext context)
     {
-        foreach (var member in classDeclarationNode.Members)
-        {
-            if (member is not PropertyDeclarationSyntax propertyDeclarationNode)
-                continue;
+        var symbol = context.SemanticModel.GetSymbolInfo(node.Type).Symbol;
+        if (symbol is null || IsImmutable((INamedTypeSymbol)symbol))
+            return;
 
-            var symbol = context.SemanticModel.GetSymbolInfo(propertyDeclarationNode.Type).Symbol;
-            if (symbol is null || IsImmutable((INamedTypeSymbol)symbol))
-                continue;
-
-            var diagnostic = Diagnostic.Create(
-                Rule, propertyDeclarationNode.Type.GetLocation(),
-                propertyDeclarationNode.Type.ToFullString().Trim()
-            );
-            context.ReportDiagnostic(diagnostic);
-        }
+        var diagnostic = Diagnostic.Create(
+            Rule, node.Type.GetLocation(),
+            node.Type.ToFullString().Trim()
+        );
+        context.ReportDiagnostic(diagnostic);
     }
 
     private static bool IsImmutable(INamedTypeSymbol symbol)

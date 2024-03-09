@@ -1,6 +1,7 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 
@@ -10,7 +11,7 @@ namespace ImmutableAnalyzer.Analyzers;
 /// Analyzer to check set accessor of properties of immutable classes.
 /// </summary>
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-internal sealed class ImmutableSetAccessorAnalyzer : BaseImmutableAnalyzer
+internal sealed class SetAccessorAnalyzer : ClassMemberAnalyzer<PropertyDeclarationSyntax>
 {
     /// <inheritdoc />
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(Rule);
@@ -29,22 +30,19 @@ internal sealed class ImmutableSetAccessorAnalyzer : BaseImmutableAnalyzer
     );
 
     /// <inheritdoc />
-    protected override void AnalyzeSyntax(ClassDeclarationSyntax classDeclarationNode, SyntaxNodeAnalysisContext context)
+    protected override void AnalyzeSyntax(PropertyDeclarationSyntax node, SyntaxNodeAnalysisContext context)
     {
-        foreach (var member in classDeclarationNode.Members)
-        {
-            if (member is not PropertyDeclarationSyntax prop)
-                return;
+        var setAccessor = node.AccessorList?.Accessors.FirstOrDefault(it =>
+            it.IsKind(SyntaxKind.SetAccessorDeclaration)
+        );
 
-            var setAccessor = prop.AccessorList?.Accessors.FirstOrDefault(it => it.Keyword.ValueText is not "get");
-            if (setAccessor is null || !ShouldReport(setAccessor))
-                continue;
+        if (setAccessor is null || !ShouldReport(setAccessor))
+            return;
 
-            var diagnostic = Diagnostic.Create(Rule, setAccessor.GetLocation(),
-                setAccessor.Modifiers.ToFullString() + setAccessor.Keyword.ValueText
-            );
-            context.ReportDiagnostic(diagnostic);
-        }
+        var diagnostic = Diagnostic.Create(Rule, setAccessor.GetLocation(),
+            setAccessor.Modifiers.ToFullString() + setAccessor.Keyword.ValueText
+        );
+        context.ReportDiagnostic(diagnostic);
     }
 
     /// <summary>
@@ -54,16 +52,7 @@ internal sealed class ImmutableSetAccessorAnalyzer : BaseImmutableAnalyzer
     /// <returns>false - if accessor is `init` or `private set`, otherwise - true.</returns>
     private static bool ShouldReport(AccessorDeclarationSyntax setAccessor)
     {
-        var accessorModifiers = setAccessor.Modifiers.Select(it => it.ValueText).ToList();
-        var accessorKeyword = setAccessor.Keyword;
-
-        switch (accessorKeyword.ValueText)
-        {
-            case "init":
-            case "set" when accessorModifiers.Contains("private"):
-                return false;
-            default:
-                return true;
-        }
+        var modifiers = setAccessor.Modifiers;
+        return !(modifiers.Any(SyntaxKind.PrivateKeyword) || modifiers.Any(SyntaxKind.InitKeyword));
     }
 }
