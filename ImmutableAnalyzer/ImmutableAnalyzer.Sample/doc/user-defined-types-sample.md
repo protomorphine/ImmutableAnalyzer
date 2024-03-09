@@ -21,8 +21,8 @@ public class ImmutableExample
 
 <div class="section_buttons">
 
-| Previous                     |                    Next |
-|:-----------------------------|------------------------:|
-| [Built-In types](Samples.md) | [Enums](enum-sample.md) |
+| Previous                     |             Next |
+|:-----------------------------|-----------------:|
+| [Built-In types](Samples.md) | @ref enum-sample |
 
 </div>

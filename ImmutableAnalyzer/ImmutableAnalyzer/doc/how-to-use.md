@@ -1,5 +1,7 @@
 # How To Use
 
+## From source
+
 Create reference to project, containing analyzers, in your `.csproj` file.
 ```xml
     <ItemGroup>

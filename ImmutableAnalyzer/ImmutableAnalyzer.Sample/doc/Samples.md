@@ -1,4 +1,4 @@
-# Samples {#samples}
+# Samples
 
 <div style="display: none">
 @subpage enum-sample
@@ -26,10 +26,8 @@ In the example above:
 
 <div class="section_buttons">
 
-| Previous                   |                                               Next |
-|:---------------------------|---------------------------------------------------:|
-| [Home](../../../README.md) | [User defined types](user-defined-types-sample.md) |
+| Previous                   |                    Next |
+|:---------------------------|------------------------:|
+| [Home](../../../README.md) | @ref user-defined-types |
 
 </div>
-
-

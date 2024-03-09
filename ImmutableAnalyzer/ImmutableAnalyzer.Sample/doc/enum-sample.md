@@ -20,8 +20,8 @@ public class Pet
 
 <div class="section_buttons">
 
-| Previous                                           | Next |
-|:---------------------------------------------------|-----:|
-| [User defined types](user-defined-types-sample.md) |      |
+| Previous                | Next |
+|:------------------------|-----:|
+| @ref user-defined-types |      |
 
 </div>

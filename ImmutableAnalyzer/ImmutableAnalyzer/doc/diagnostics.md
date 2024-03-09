@@ -9,8 +9,8 @@ Rules below are available and tested.
 
 <div class="section_buttons">
 
-| Previous                   |                Next |
-|:---------------------------|--------------------:|
-| [Home](../../../README.md) | [IM0001](IM0001.md) |
+| Previous                   |        Next |
+|:---------------------------|------------:|
+| [Home](../../../README.md) | @ref im0001 |
 
 </div>
