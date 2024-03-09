@@ -28,7 +28,7 @@ var NAVTREE =
     [ "Overview", "index.html#overview", null ],
     [ "Diagnostics", "index.html#diagnostics", null ],
     [ "How To Use", "index.html#how-to-use", null ],
-    [ "Sample", "index.html#sample", null ],
+    [ "Samples", "index.html#samples", null ],
     [ "Documentation", "index.html#documentation", null ],
     [ "Available Diagnostics", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2diagnostics.html", [
       [ "IM0001", "im0001.html", [
@@ -36,9 +36,11 @@ var NAVTREE =
       ] ],
       [ "IM0002", "im0002.html", null ]
     ] ],
-    [ "How To Use", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2how-to-use.html", null ],
-    [ "Samples", "samples.html", [
-      [ "Example with built-in types", "samples.html#example-with-built-in-types", null ],
+    [ "How To Use", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2how-to-use.html", [
+      [ "From source", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2how-to-use.html#from-source", null ]
+    ] ],
+    [ "Samples", "md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2doc_2Samples.html", [
+      [ "Example with built-in types", "md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2doc_2Samples.html#example-with-built-in-types", null ],
       [ "Example with enums", "enum-sample.html", null ],
       [ "Example with user defined types", "user-defined-types.html", null ]
     ] ]

@@ -9,11 +9,12 @@ var NAVTREEINDEX0 =
 "index.html#documentation":[4],
 "index.html#how-to-use":[2],
 "index.html#overview":[0],
-"index.html#sample":[3],
+"index.html#samples":[3],
 "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2diagnostics.html":[5],
 "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2how-to-use.html":[6],
+"md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2how-to-use.html#from-source":[6,0],
+"md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2doc_2Samples.html":[7],
+"md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2doc_2Samples.html#example-with-built-in-types":[7,0],
 "pages.html":[],
-"samples.html":[7],
-"samples.html#example-with-built-in-types":[7,0],
 "user-defined-types.html":[7,2]
 };

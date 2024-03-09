@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['sample_0',['Sample',['../index.html#sample',1,'']]],
-  ['samples_1',['Samples',['../samples.html',1,'']]],
-  ['samples_2emd_2',['Samples.md',['../Samples_8md.html',1,'']]],
-  ['supported_20property_20types_3',['Supported property types',['../im0001.html#supported-property-types',1,'']]]
+  ['readme_2emd_0',['README.md',['../README_8md.html',1,'']]]
 ];
