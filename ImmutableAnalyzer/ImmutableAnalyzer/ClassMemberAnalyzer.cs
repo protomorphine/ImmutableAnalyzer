@@ -3,13 +3,13 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 
-namespace ImmutableAnalyzer.Analyzers;
+namespace ImmutableAnalyzer;
 
 /// <summary>
-/// Base class for immutable analyzers.
-/// <typeparam name="TSyntax">Type of class member to analyze.</typeparam>
+/// Base class for member analyzers in immutable class.
+/// <typeparam name="TMemberSyntax">Type of class member to analyze.</typeparam>
 /// </summary>
-internal abstract class ClassMemberAnalyzer<TSyntax> : DiagnosticAnalyzer
+internal abstract class ClassMemberAnalyzer<TMemberSyntax> : DiagnosticAnalyzer
 {
     /// <inheritdoc />
     public override void Initialize(AnalysisContext context)
@@ -27,23 +27,22 @@ internal abstract class ClassMemberAnalyzer<TSyntax> : DiagnosticAnalyzer
     /// </summary>
     /// <param name="node">Syntax node.</param>
     /// <param name="context">Analysis context.</param>
-    protected abstract void AnalyzeSyntax(TSyntax node, SyntaxNodeAnalysisContext context);
+    protected abstract void AnalyzeSyntax(TMemberSyntax node, SyntaxNodeAnalysisContext context);
 
     /// <summary>
     /// Execute analyzer.
-    /// Executes <see cref="AnalyzeSyntax(TSyntax, SyntaxNodeAnalysisContext)"/> only if class declaration
+    /// Executes <see cref="AnalyzeSyntax(TMemberSyntax, SyntaxNodeAnalysisContext)"/> only if class declaration
     /// marked by <see cref="ImmutableAttribute"/>.
     /// </summary>
     /// <param name="context">Analysis context.</param>
     private void AnalyzeSyntax(SyntaxNodeAnalysisContext context)
     {
-        if (context.Node is not ClassDeclarationSyntax classDeclaration
-            || !classDeclaration.HasAttribute<ImmutableAttribute>())
+        if (context.Node is not TypeDeclarationSyntax typeDeclaration || !typeDeclaration.HasAttribute<ImmutableAttribute>())
             return;
 
-        foreach (var member in classDeclaration.Members)
+        foreach (var member in typeDeclaration.Members)
         {
-            if (member is TSyntax syntaxNode)
+            if (member is TMemberSyntax syntaxNode)
                 AnalyzeSyntax(syntaxNode, context);
         }
     }

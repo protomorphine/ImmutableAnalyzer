@@ -1,8 +1,9 @@
 ﻿using Xunit;
 using System.Threading.Tasks;
-using ImmutableAnalyzer.Analyzers;
+using ImmutableAnalyzer.PropertyAnalyzers;
+using ImmutableAnalyzer.PropertyAnalyzers.SetAccessor;
 using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<
-    ImmutableAnalyzer.Analyzers.SetAccessorAnalyzer>;
+    ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.SetAccessorAnalyzer>;
 
 namespace ImmutableAnalyzer.Tests;
 

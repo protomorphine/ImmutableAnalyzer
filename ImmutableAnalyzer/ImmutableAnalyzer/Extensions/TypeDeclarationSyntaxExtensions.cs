@@ -7,7 +7,7 @@ namespace ImmutableAnalyzer.Extensions;
 /// <summary>
 /// Extensions for <see cref="ClassDeclarationSyntax"/>
 /// </summary>
-public static class ClassDeclarationSyntaxExtensions
+public static class TypeDeclarationSyntaxExtensions
 {
     /// <summary>
     /// Checks if class marked by given attribute.
@@ -15,7 +15,7 @@ public static class ClassDeclarationSyntaxExtensions
     /// <param name="classDeclarationNode">Class declaration node.</param>
     /// <typeparam name="T">Attribute type.</typeparam>
     /// <returns>true - if class has given attribute, otherwise - false.</returns>
-    public static bool HasAttribute<T>(this ClassDeclarationSyntax classDeclarationNode)
+    public static bool HasAttribute<T>(this TypeDeclarationSyntax classDeclarationNode)
         where T : Attribute =>
         classDeclarationNode.AttributeLists
             .Select(al => al.Attributes)

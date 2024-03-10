@@ -4,11 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.IO;
-using ImmutableAnalyzer.Analyzers;
+using ImmutableAnalyzer.PropertyAnalyzers;
+using ImmutableAnalyzer.PropertyAnalyzers.PropertyType;
 using Microsoft.CodeAnalysis.CSharp.Testing;
 using Microsoft.CodeAnalysis.Testing;
 using Microsoft.CodeAnalysis.Testing.Verifiers;
-using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<ImmutableAnalyzer.Analyzers.PropertyTypeAnalyzer>;
+using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<ImmutableAnalyzer.PropertyAnalyzers.PropertyType.PropertyTypeAnalyzer>;
 
 namespace ImmutableAnalyzer.Tests;
 
