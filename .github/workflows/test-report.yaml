@@ -34,7 +34,7 @@ jobs:
     - name: create test report
       uses: dorny/test-reporter@v1
       id: test_report
-      if: always()
+      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
       with:
         name: Tests
         path: "**/test-results.trx"                            
@@ -42,6 +42,7 @@ jobs:
         fail-on-error: true
 
     - name: update test badge in README.md
+      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
       run: |
         echo "Adding test report to README.md file..."
         
