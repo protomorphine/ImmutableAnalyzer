@@ -11,14 +11,27 @@ Immutability is a key concept in functional programming and can help  prevent bu
 The purpose of this tool is to help developers ensure that their classes follow immutability principles,
 which can lead to more stable and predictable code.
 
-## Diagnostics
-See [Diagnostics](ImmutableAnalyzer/ImmutableAnalyzer/doc/diagnostics.md) page.
-
 ## How To Use
-See [How To Use](ImmutableAnalyzer/ImmutableAnalyzer/doc/how-to-use.md) page.
+<div class="tabbed">
 
-## Samples
-See [Samples](ImmutableAnalyzer/ImmutableAnalyzer.Sample/doc/Samples.md) page.
+- <b class="tab-title">Manually</b>
+    Get the sources of analyzer projects
+    ```bash
+    $ git clone https://github.com/protomorphine/ImmutableAnalyzer
+    ```
+    Add project reference to your `.csproj` file:
+    ```xml
+        <ItemGroup>
+            <ProjectReference
+                Include="..\ImmutableAnalyzer\ImmutableAnalyzer.csproj"
+                OutputItemType="Analyzer"
+                ReferenceOutputAssembly="true" />
+        </ItemGroup>
+    ```
+- <b class="tab-title">Nuget</b>
+    At this moment project **NOT** published on [NuGet](https://nuget.org/). Stay tuned.
+
+</div>
 
 ## Documentation
 Made with:
