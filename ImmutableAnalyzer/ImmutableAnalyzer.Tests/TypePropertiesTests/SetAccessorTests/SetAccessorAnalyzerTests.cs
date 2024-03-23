@@ -1,11 +1,10 @@
-﻿using Xunit;
-using System.Threading.Tasks;
-using ImmutableAnalyzer.PropertyAnalyzers;
+﻿using System.Threading.Tasks;
 using ImmutableAnalyzer.PropertyAnalyzers.SetAccessor;
+using Xunit;
 using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<
     ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.SetAccessorAnalyzer>;
 
-namespace ImmutableAnalyzer.Tests;
+namespace ImmutableAnalyzer.Tests.TypePropertiesTests.SetAccessorTests;
 
 /// <summary>
 /// Tests for <see cref="SetAccessorAnalyzer"/>

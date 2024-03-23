@@ -26,6 +26,7 @@ public class SetAccessorCodeFixProvider : CodeFixProvider
     /// Title template to this code fix provider.
     /// </summary>
     private const string Title = "Change property accessor to '{0}'";
+    private const string EquivalencyKey = $"{SetAccessorAnalyzer.DiagnosticId}Fix";
 
     /// <inheritdoc />
     public override ImmutableArray<string> FixableDiagnosticIds =>
@@ -43,27 +44,25 @@ public class SetAccessorCodeFixProvider : CodeFixProvider
         if (root?.FindNode(diagnostic.Location.SourceSpan) is not AccessorDeclarationSyntax diagnosticNode)
             return;
 
-        context.RegisterCodeFix(
-            CodeAction.Create(
-                title: string.Format(Title, "private set"),
-                createChangedDocument: ct => ChangePropertyAccessorAsync(
-                    context.Document, diagnosticNode,
-                    accessor => accessor.WithModifiers(
-                        new SyntaxTokenList(SyntaxFactory.Token(SyntaxKind.PrivateKeyword))
-                    ), ct),
-                equivalenceKey: $"{SetAccessorAnalyzer.DiagnosticId}Fix"),
-            diagnostic
+        var toPrivateSetAction = CodeAction.Create(
+            title:                 string.Format(Title, "private set"),
+            createChangedDocument: ct => ChangePropertyAccessorAsync(context.Document, diagnosticNode, AddPrivateKeyword, ct),
+            equivalenceKey:        EquivalencyKey
         );
+        context.RegisterCodeFix(toPrivateSetAction, diagnostic);
 
-        context.RegisterCodeFix(
-            CodeAction.Create(
-                title: string.Format(Title, "init"),
-                createChangedDocument: ct => ChangePropertyAccessorAsync(
-                    context.Document, diagnosticNode,
-                    accessor => accessor.WithKeyword(SyntaxFactory.Token(SyntaxKind.InitKeyword)), ct),
-                equivalenceKey: $"{SetAccessorAnalyzer.DiagnosticId}Fix"),
-            diagnostic
+        var toInitAction = CodeAction.Create(
+            title:                 string.Format(Title, "init"),
+            createChangedDocument: ct => ChangePropertyAccessorAsync(context.Document, diagnosticNode, WithInitKeyword, ct),
+            equivalenceKey:        EquivalencyKey
         );
+        context.RegisterCodeFix(toInitAction, diagnostic);
+
+        static AccessorDeclarationSyntax AddPrivateKeyword(AccessorDeclarationSyntax accessor) =>
+            accessor.WithModifiers(new SyntaxTokenList(SyntaxFactory.Token(SyntaxKind.PrivateKeyword)));
+
+        static AccessorDeclarationSyntax WithInitKeyword(AccessorDeclarationSyntax accessor) =>
+            accessor.WithKeyword(SyntaxFactory.Token(SyntaxKind.InitKeyword));
     }
 
     /// <summary>
