@@ -34,7 +34,9 @@ var NAVTREE =
       [ "IM0001", "im0001.html", [
         [ "Supported property types", "im0001.html#supported-property-types", null ]
       ] ],
-      [ "IM0002", "im0002.html", null ]
+      [ "IM0002", "im0002.html", [
+        [ "Available code fixes", "im0002.html#available-code-fixes", null ]
+      ] ]
     ] ],
     [ "How To Use", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2how-to-use.html", [
       [ "From source", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2how-to-use.html#from-source", null ]

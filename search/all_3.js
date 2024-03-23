@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['enum_2dsample_2emd_0',['enum-sample.md',['../enum-sample_8md.html',1,'']]],
-  ['enums_1',['Example with enums',['../enum-sample.html',1,'md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2doc_2Samples']]],
-  ['example_20with_20built_20in_20types_2',['Example with built-in types',['../md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2doc_2Samples.html#example-with-built-in-types',1,'']]],
-  ['example_20with_20enums_3',['Example with enums',['../enum-sample.html',1,'md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2doc_2Samples']]],
-  ['example_20with_20user_20defined_20types_4',['Example with user defined types',['../user-defined-types.html',1,'md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2doc_2Samples']]]
+  ['defined_20types_0',['Example with user defined types',['../user-defined-types.html',1,'md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2doc_2Samples']]],
+  ['diagnostics_1',['diagnostics',['../md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2diagnostics.html',1,'Available Diagnostics'],['../index.html#diagnostics',1,'Diagnostics']]],
+  ['diagnostics_2emd_2',['diagnostics.md',['../diagnostics_8md.html',1,'']]],
+  ['documentation_3',['Documentation',['../index.html#documentation',1,'']]]
 ];

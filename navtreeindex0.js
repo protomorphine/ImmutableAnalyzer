@@ -4,6 +4,7 @@ var NAVTREEINDEX0 =
 "im0001.html":[5,0],
 "im0001.html#supported-property-types":[5,0,0],
 "im0002.html":[5,1],
+"im0002.html#available-code-fixes":[5,1,0],
 "index.html":[],
 "index.html#diagnostics":[1],
 "index.html#documentation":[4],
