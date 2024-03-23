@@ -1,16 +1,16 @@
-﻿using Xunit;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using ImmutableAnalyzer.Analyzers;
+using System.Linq;
+using System.Threading.Tasks;
+using ImmutableAnalyzer.PropertyAnalyzers.PropertyType;
 using Microsoft.CodeAnalysis.CSharp.Testing;
 using Microsoft.CodeAnalysis.Testing;
 using Microsoft.CodeAnalysis.Testing.Verifiers;
-using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<ImmutableAnalyzer.Analyzers.PropertyTypeAnalyzer>;
+using Xunit;
+using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<ImmutableAnalyzer.PropertyAnalyzers.PropertyType.PropertyTypeAnalyzer>;
 
-namespace ImmutableAnalyzer.Tests;
+namespace ImmutableAnalyzer.Tests.TypePropertiesTests.PropertyTypeTests;
 
 /// <summary>
 /// Tests for <see cref="PropertyTypeAnalyzer"/>

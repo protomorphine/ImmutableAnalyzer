@@ -17,10 +17,10 @@ public static class SymbolExtensions
     {
         foreach (var syntaxReference in symbol.DeclaringSyntaxReferences)
         {
-            if (syntaxReference.GetSyntax() is not ClassDeclarationSyntax classDeclarationNode)
+            if (syntaxReference.GetSyntax() is not TypeDeclarationSyntax typeDeclarationSyntax)
                 continue;
 
-            if (classDeclarationNode.HasAttribute<ImmutableAttribute>())
+            if (typeDeclarationSyntax.HasAttribute<ImmutableAttribute>())
                 return true;
         }
 

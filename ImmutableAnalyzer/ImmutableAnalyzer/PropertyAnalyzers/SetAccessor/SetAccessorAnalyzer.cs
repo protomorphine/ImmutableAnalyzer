@@ -5,14 +5,15 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 
-namespace ImmutableAnalyzer.Analyzers;
+namespace ImmutableAnalyzer.PropertyAnalyzers.SetAccessor;
 
 /// <summary>
 /// Analyzer to check set accessor of properties of immutable classes.
 /// </summary>
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-internal sealed class SetAccessorAnalyzer : ClassMemberAnalyzer<PropertyDeclarationSyntax>
+internal sealed class SetAccessorAnalyzer : PropertyAnalyzer
 {
+    public const string DiagnosticId = "IM0002";
     /// <inheritdoc />
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(Rule);
 
@@ -20,7 +21,7 @@ internal sealed class SetAccessorAnalyzer : ClassMemberAnalyzer<PropertyDeclarat
     /// Diagnostic descriptor.
     /// </summary>
     private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(
-        id:                 "IM0002",
+        id:                 DiagnosticId,
         title:              "Public setter violates class immutability",
         messageFormat:      "Member of immutable class can't have '{0}' accessor",
         category:           "Design",
