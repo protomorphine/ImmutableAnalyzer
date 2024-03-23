@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['enums_0',['Example with enums',['../enum-sample.html',1,'md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2doc_2Samples']]],
-  ['example_20with_20enums_1',['Example with enums',['../enum-sample.html',1,'md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2doc_2Samples']]],
-  ['example_20with_20user_20defined_20types_2',['Example with user defined types',['../user-defined-types.html',1,'md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2doc_2Samples']]]
+  ['im0001_0',['Diagnostic IM0001',['../im0001.html',1,'md_doc_2md_2diagnostics_2diagnostics']]],
+  ['im0002_1',['Diagnostic IM0002',['../im0002.html',1,'md_doc_2md_2diagnostics_2diagnostics']]],
+  ['immutable_20analyzer_2',['Immutable Analyzer',['../index.html',1,'']]],
+  ['immutable_20attribute_3',['Immutable attribute',['../immutable_attr.html',1,'public_api']]]
 ];

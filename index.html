@@ -27,9 +27,15 @@
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+ <script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
  <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+ <script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+ <script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
  <script type="text/javascript">
-            DoxygenAwesomeDarkModeToggle.init()
+            DoxygenAwesomeDarkModeToggle.init();
+            DoxygenAwesomeTabs.init();
+            DoxygenAwesomeFragmentCopyButton.init();
+            DoxygenAwesomeParagraphLink.init();
  </script>
 </head>
 <body>
@@ -107,22 +113,26 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   <div class="headertitle"><div class="title">Immutable Analyzer </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_README"></a><a href="https://github.com/protomorphine/ImmutableAnalyzer/runs/22472132278"><img src="https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/test-report.yaml/badge.svg" alt="Tests" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/docs.yml"><img src="https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/docs.yml/badge.svg?branch=master" alt="Docs" style="pointer-events: none;" class="inline"/></a></p>
+<div class="textblock"><p><a class="anchor" id="md_README"></a><a href="https://github.com/protomorphine/ImmutableAnalyzer/runs/23012206457"><img src="https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/test-report.yaml/badge.svg" alt="Tests" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/docs.yml"><img src="https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/docs.yml/badge.svg?branch=master" alt="Docs" style="pointer-events: none;" class="inline"/></a></p>
 <p>This project is a .NET analyzer tool that utilizes Roslyn to check a class for immutability based on the types of it's properties and their accessor list.</p>
 <h1><a class="anchor" id="overview"></a>
 Overview</h1>
 <p>Immutability is a key concept in functional programming and can help prevent bugs related to mutable state. <br  />
  The purpose of this tool is to help developers ensure that their classes follow immutability principles, which can lead to more stable and predictable code.</p>
-<h1><a class="anchor" id="diagnostics"></a>
-Diagnostics</h1>
-<p>See <a class="el" href="md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2diagnostics.html">Diagnostics</a> page.</p>
 <h1><a class="anchor" id="how-to-use"></a>
 How To Use</h1>
-<p>See <a class="el" href="md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2how-to-use.html">How To Use</a> page.</p>
-<h1><a class="anchor" id="samples"></a>
-Samples</h1>
-<p>See <a class="el" href="md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2doc_2Samples.html">Samples</a> page.</p>
-<h1><a class="anchor" id="documentation"></a>
+<div class="tabbed"></div><div class="tabbed"><ul>
+<li><b class="tab-title">Manually</b> Get the sources of analyzer projects <div class="fragment"><div class="line">$ git clone https://github.com/protomorphine/ImmutableAnalyzer</div>
+</div><!-- fragment --> Add project reference to your <code>.csproj</code> file: <div class="fragment"><div class="line">&lt;<span class="keywordtype">ItemGroup</span>&gt;</div>
+<div class="line">    &lt;<span class="keywordtype">ProjectReference</span></div>
+<div class="line">        <span class="keyword">Include</span>=<span class="stringliteral">&quot;..\ImmutableAnalyzer\ImmutableAnalyzer.csproj&quot;</span></div>
+<div class="line">        <span class="keyword">OutputItemType</span>=<span class="stringliteral">&quot;Analyzer&quot;</span></div>
+<div class="line">        <span class="keyword">ReferenceOutputAssembly</span>=<span class="stringliteral">&quot;true&quot;</span> /&gt;</div>
+<div class="line">&lt;/<span class="keywordtype">ItemGroup</span>&gt;</div>
+</div><!-- fragment --></li>
+<li><b class="tab-title">Nuget</b> At this moment project <b>NOT</b> published on <a href="https://nuget.org/">NuGet</a>. Stay tuned.</li>
+</ul>
+</div><div class="tabbed"></div><h1><a class="anchor" id="documentation"></a>
 Documentation</h1>
 <p>Made with:</p><ul>
 <li><a href="https://www.doxygen.nl/">Doxygen</a></li>

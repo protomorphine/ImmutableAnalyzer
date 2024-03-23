@@ -26,32 +26,27 @@ var NAVTREE =
 [
   [ "Immutable Analyzer", "index.html", [
     [ "Overview", "index.html#overview", null ],
-    [ "Diagnostics", "index.html#diagnostics", null ],
     [ "How To Use", "index.html#how-to-use", null ],
-    [ "Samples", "index.html#samples", null ],
     [ "Documentation", "index.html#documentation", null ],
-    [ "Available Diagnostics", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2diagnostics.html", [
-      [ "IM0001", "im0001.html", [
-        [ "Supported property types", "im0001.html#supported-property-types", null ]
+    [ "Available Diagnostics", "md_doc_2md_2diagnostics_2diagnostics.html", [
+      [ "Diagnostic IM0001", "im0001.html", [
+        [ "Immutable types", "im0001.html#immutable-types", null ],
+        [ "Examples", "im0001.html#examples", null ]
       ] ],
-      [ "IM0002", "im0002.html", [
-        [ "Available code fixes", "im0002.html#available-code-fixes", null ]
+      [ "Diagnostic IM0002", "im0002.html", [
+        [ "Code fixes", "im0002.html#code-fixes", null ],
+        [ "Examples", "im0002.html#examples-1", null ]
       ] ]
     ] ],
-    [ "How To Use", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2how-to-use.html", [
-      [ "From source", "md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2how-to-use.html#from-source", null ]
-    ] ],
-    [ "Samples", "md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2doc_2Samples.html", [
-      [ "Example with built-in types", "md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2doc_2Samples.html#example-with-built-in-types", null ],
-      [ "Example with enums", "enum-sample.html", null ],
-      [ "Example with user defined types", "user-defined-types.html", null ]
+    [ "Public API", "public_api.html", [
+      [ "Immutable attribute", "immutable_attr.html", null ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"enum-sample.html"
+"im0001.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

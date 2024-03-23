@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Immutable Analyzer: Samples</title>
+<title>Immutable Analyzer: Immutable attribute</title>
 <!--BEGIN PROJECT_ICON-->
 <link rel="icon" href="$projecticon" type="image/x-icon" />
 <!--END PROJECT_ICON-->
@@ -27,9 +27,15 @@
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+ <script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
  <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+ <script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+ <script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
  <script type="text/javascript">
-            DoxygenAwesomeDarkModeToggle.init()
+            DoxygenAwesomeDarkModeToggle.init();
+            DoxygenAwesomeTabs.init();
+            DoxygenAwesomeFragmentCopyButton.init();
+            DoxygenAwesomeParagraphLink.init();
  </script>
 </head>
 <body>
@@ -78,7 +84,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2doc_2Samples.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('immutable_attr.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -104,37 +110,27 @@ $(document).ready(function(){initNavTree('md_ImmutableAnalyzer_2ImmutableAnalyze
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Samples</div></div>
+  <div class="headertitle"><div class="title">Immutable attribute</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="samples-1"></a> </p><div style="display: none"> <a class="el" href="enum-sample.html">Example with enums</a> <a class="el" href="user-defined-types.html">Example with user defined types</a> </div><h1><a class="anchor" id="example-with-built-in-types"></a>
-Example with built-in types</h1>
-<div class="fragment"><div class="line">[Immutable]</div>
-<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>Person</div>
-<div class="line">{</div>
-<div class="line">    <span class="keyword">public</span> <span class="keywordtype">long</span> Id { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
-<div class="line"> </div>
-<div class="line">    <span class="keyword">public</span> List&lt;string&gt; Names { <span class="keyword">get</span>; init; } = <span class="keyword">new</span>();</div>
-<div class="line"> </div>
-<div class="line">    <span class="keyword">public</span> IReadOnlySet&lt;int&gt; CompanyIds { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; } = <span class="keyword">new</span> HashSet&lt;int&gt;();</div>
-<div class="line">}</div>
-</div><!-- fragment --><p>In the example above:</p><ul>
-<li>the <code>Id</code> property would be considered mutable due to it's public setter;</li>
-<li>the <code>Names</code> list would be considered mutable due to it's mutable type;</li>
-<li>the <code>CompanyIds</code> set would be considered immutable;</li>
+<div class="textblock"><ul>
+<li>Can be used on: <code>class | struct | record</code></li>
+<li>Required for: <a class="el" href="im0001.html">IM0001</a>, <a class="el" href="im0002.html">IM0002</a></li>
 </ul>
-<div class="section_buttons"></div><div class="section_buttons"><table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadLeft">Previous   </th><th class="markdownTableHeadRight">Next    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><a class="el" href="index.html#md_README">Home</a>   </td><td class="markdownTableBodyRight"><a class="el" href="user-defined-types.html">Example with user defined types</a>   </td></tr>
-</table>
-</div><div class="section_buttons"></div> </div></div><!-- contents -->
+<p>This attribute tells analyzer that, marked type should be immutable and it content should be analyzed.</p>
+<div class="fragment"><div class="line">[Immutable]</div>
+<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>Pet</div>
+<div class="line">{</div>
+<div class="line">    <span class="keyword">public</span> <span class="keywordtype">string</span> Name { <span class="keyword">get</span>; <span class="keyword">set</span>; }     <span class="comment">// IM0002 will be reported</span></div>
+<div class="line">    <span class="keyword">public</span> List&lt;Toy&gt; Toys { <span class="keyword">get</span>; init; } <span class="comment">// IM0001 will be reported</span></div>
+<div class="line">}</div>
+</div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a class="el" href="public_api.html">Public API</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

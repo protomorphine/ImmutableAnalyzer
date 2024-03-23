@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['how_20to_20use_0',['How To Use',['../md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2how-to-use.html',1,'']]]
+  ['public_20api_0',['Public API',['../public_api.html',1,'']]]
 ];

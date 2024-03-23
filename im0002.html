@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Immutable Analyzer: IM0002</title>
+<title>Immutable Analyzer: Diagnostic IM0002</title>
 <!--BEGIN PROJECT_ICON-->
 <link rel="icon" href="$projecticon" type="image/x-icon" />
 <!--END PROJECT_ICON-->
@@ -27,9 +27,15 @@
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+ <script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
  <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+ <script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+ <script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
  <script type="text/javascript">
-            DoxygenAwesomeDarkModeToggle.init()
+            DoxygenAwesomeDarkModeToggle.init();
+            DoxygenAwesomeTabs.init();
+            DoxygenAwesomeFragmentCopyButton.init();
+            DoxygenAwesomeParagraphLink.init();
  </script>
 </head>
 <body>
@@ -104,37 +110,105 @@ $(document).ready(function(){initNavTree('im0002.html',''); initResizable(); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">IM0002</div></div>
+  <div class="headertitle"><div class="title">Diagnostic IM0002</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>The analyzer checks the accessor list of each property.</p>
-<p>Diagnostic wouldn't report if:</p><ul>
-<li>property has only a getter;</li>
-<li>property has a getter and private setter;</li>
-<li>property has a getter and <code>init</code> set accessor;</li>
+<div class="textblock"><p>Properties must not expose public setter to prevent change it value from outside.</p>
+<p><b>Property value can be setted only when class instance creation!</b></p>
+<h1><a class="anchor" id="code-fixes"></a>
+Code fixes</h1>
+<p>This diagnostic support following code fixes:</p>
+<p><b>Change public property set accessor to private.</b> </p><div class="tabbed"></div><div class="tabbed"><ul>
+<li><b class="tab-title">Before</b> Class <code>UserDto</code> have public set accessor for property <code>Id</code>, which violates immutability of this class, given by <code>Immutable</code> attribute. <div class="fragment"><div class="line">[Immutable]</div>
+<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>UserDto</div>
+<div class="line">{</div>
+<div class="line">    <span class="keyword">public</span> <span class="keywordtype">long</span> Id { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line">    <span class="keyword">public</span> UserRole Role { <span class="keyword">get</span>; init; } </div>
+<div class="line">}</div>
+</div><!-- fragment --></li>
+<li><b class="tab-title">After</b> Now, class <code>UserDto</code> can't be changed from the outer. Every try to set <code>Id</code> property from the outer will fall with compile time error. <div class="fragment"><div class="line">[Immutable]</div>
+<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>UserDto</div>
+<div class="line">{</div>
+<div class="line">    <span class="keyword">public</span> <span class="keywordtype">long</span> Id { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; }</div>
+<div class="line">    <span class="keyword">public</span> UserRole Role { <span class="keyword">get</span>; init; } </div>
+<div class="line">}</div>
+</div><!-- fragment --></li>
 </ul>
-<p>Diagnostic will report if:</p><ul>
-<li>property has a public setter;</li>
+</div><div class="tabbed"></div><p><b>Change public property set accessor to init only</b> </p><div class="tabbed"></div><div class="tabbed"><ul>
+<li><b class="tab-title">Before</b> Class <code>UserDto</code> have public set accessor for property <code>Id</code>, which violates immutability of this class, given by <code>Immutable</code> attribute. <div class="fragment"><div class="line">[Immutable]</div>
+<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>UserDto</div>
+<div class="line">{</div>
+<div class="line">    <span class="keyword">public</span> <span class="keywordtype">long</span> Id { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line">    <span class="keyword">public</span> UserRole Role { <span class="keyword">get</span>; init; } </div>
+<div class="line">}</div>
+</div><!-- fragment --></li>
+<li><b class="tab-title">After</b> Now, class <code>UserDto</code> can't be changed from the outer. Every try to set <code>Id</code> property from the outer will fall with compile time error. <div class="fragment"><div class="line">[Immutable]</div>
+<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>UserDto</div>
+<div class="line">{</div>
+<div class="line">    <span class="keyword">public</span> <span class="keywordtype">long</span> Id { <span class="keyword">get</span>; init; }</div>
+<div class="line">    <span class="keyword">public</span> UserRole Role { <span class="keyword">get</span>; init; } </div>
+<div class="line">}</div>
+</div><!-- fragment --></li>
 </ul>
-<h1><a class="anchor" id="available-code-fixes"></a>
-Available code fixes</h1>
-<p>This diagnostic support following fixes:</p><ul>
-<li><code>set;</code> =&gt; <code>private set;</code></li>
-<li><code>set;</code> =&gt; <code>init;</code></li>
+</div><div class="tabbed"></div><h1><a class="anchor" id="examples-1"></a>
+Examples</h1>
+<p>Following snippet raises <code>IM0002</code> diagnostic, because it violates class immutability, and gives a way for evryone to change property value through public setter.</p>
+<div class="fragment"><div class="line">[Immutable]</div>
+<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>UserDto</div>
+<div class="line">{</div>
+<div class="line">    <span class="keyword">public</span> <span class="keywordtype">long</span> Id { <span class="keyword">get</span>; <span class="keyword">set</span>; } <span class="comment">// IM0002</span></div>
+<div class="line">    ...    </div>
+<div class="line">}</div>
+</div><!-- fragment --><p> Using class from code snippet above, evryone can change <code>Id</code> property of <code>UserDto</code> instance in any place: </p><div class="fragment"><div class="line">UserDto userDto = _userService.GetUser(...);</div>
+<div class="line"> </div>
+<div class="line">userDto.Id = 42;</div>
+</div><!-- fragment --><hr  />
+<p> Following code snippets woudn't raise <code>IM0002</code> diagnostic and shows how you can prevent changes of immutable class properties value. </p><div class="tabbed"></div><div class="tabbed"><ul>
+<li><b class="tab-title"><code>init</code> keyword</b> Properties, with <code>init</code> accessor, can be accessed to write only on class instance creation. <div class="fragment"><div class="line">[Immutable]</div>
+<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>UserDto</div>
+<div class="line">{</div>
+<div class="line">    <span class="keyword">public</span> <span class="keywordtype">long</span> Id { <span class="keyword">get</span>; init; }</div>
+<div class="line">    <span class="keyword">public</span> UserRole Role { <span class="keyword">get</span>; init; } </div>
+<div class="line">}</div>
+<div class="line">...</div>
+<div class="line"> </div>
+<div class="line">public async Task&lt;UserDto&gt; GetUserAsync(<span class="keywordtype">long</span> <span class="keywordtype">id</span>)</div>
+<div class="line">{</div>
+<div class="line">    User user = await _userRepo.GetUserByIdAsync(<span class="keywordtype">id</span>);</div>
+<div class="line">    <span class="keywordflow">return</span> <span class="keyword">new</span> UserDto {</div>
+<div class="line">        Id = user.Id,</div>
+<div class="line">        Role = user.Role</div>
+<div class="line">    };</div>
+<div class="line">}</div>
+</div><!-- fragment --></li>
+<li><b class="tab-title">Parametrized constructor</b> <code>private set</code> properties can be accessed to write only in self class. Often using parametrized constructor. <div class="fragment"><div class="line">[Immutable]</div>
+<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>CompanyDto</div>
+<div class="line">{</div>
+<div class="line">    <span class="keyword">public</span> CompanyDto(<span class="keywordtype">string</span> name, List&lt;long&gt; employeeIds)</div>
+<div class="line">    {</div>
+<div class="line">        Name = name;</div>
+<div class="line">        EmployeeIds = employeeIds;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">public</span> <span class="keywordtype">string</span> Name { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; }</div>
+<div class="line">    <span class="keyword">public</span> IReadOnlyList&lt;long&gt; EmployeeIds { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; }</div>
+<div class="line">}</div>
+<div class="line">...</div>
+<div class="line"> </div>
+<div class="line">public async Task&lt;CompanyDto&gt; GetCompanyEmployeeAsync(<span class="keywordtype">long</span> companyId)</div>
+<div class="line">{</div>
+<div class="line">    var company = await _companies.Include(c =&gt; c.Employee).FirstOrDefaultAsync(c =&gt; c.Id == companyId);</div>
+<div class="line">    <span class="keywordflow">return</span> <span class="keyword">new</span> CompanyDto(company.Name, company.Employee.Select(e =&gt; e.Id).ToList());</div>
+<div class="line">}</div>
+</div><!-- fragment --></li>
 </ul>
-<div class="section_buttons"></div><div class="section_buttons"><table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadLeft">Previous   </th><th class="markdownTableHeadRight">Next    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><a class="el" href="im0001.html">IM0001</a>   </td><td class="markdownTableBodyRight"></td></tr>
-</table>
-</div><div class="section_buttons"></div> </div></div><!-- contents -->
+</div><div class="tabbed"></div> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2diagnostics.html">Available Diagnostics</a></li>
+    <li class="navelem"><a class="el" href="md_doc_2md_2diagnostics_2diagnostics.html">Available Diagnostics</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

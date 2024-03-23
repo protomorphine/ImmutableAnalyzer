@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['how_2dto_2duse_2emd_0',['how-to-use.md',['../how-to-use_8md.html',1,'']]]
+  ['public_5fapi_2emd_0',['public_api.md',['../public__api_8md.html',1,'']]]
 ];

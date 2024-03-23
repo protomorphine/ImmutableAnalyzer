@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['defined_20types_0',['Example with user defined types',['../user-defined-types.html',1,'md_ImmutableAnalyzer_2ImmutableAnalyzer_8Sample_2doc_2Samples']]],
-  ['diagnostics_1',['Available Diagnostics',['../md_ImmutableAnalyzer_2ImmutableAnalyzer_2doc_2diagnostics.html',1,'']]]
+  ['diagnostic_20im0001_0',['Diagnostic IM0001',['../im0001.html',1,'md_doc_2md_2diagnostics_2diagnostics']]],
+  ['diagnostic_20im0002_1',['Diagnostic IM0002',['../im0002.html',1,'md_doc_2md_2diagnostics_2diagnostics']]],
+  ['diagnostics_2',['Available Diagnostics',['../md_doc_2md_2diagnostics_2diagnostics.html',1,'']]]
 ];
