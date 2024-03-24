@@ -13,7 +13,11 @@ namespace ImmutableAnalyzer.PropertyAnalyzers.SetAccessor;
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 internal sealed class SetAccessorAnalyzer : PropertyAnalyzer
 {
+    /// <summary>
+    /// Analyzer Diagnostic Id.
+    /// </summary>
     public const string DiagnosticId = "IM0002";
+
     /// <inheritdoc />
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(Rule);
 

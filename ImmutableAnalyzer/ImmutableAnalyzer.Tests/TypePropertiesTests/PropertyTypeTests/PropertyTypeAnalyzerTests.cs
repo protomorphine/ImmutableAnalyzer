@@ -126,8 +126,22 @@ public class Pet
     public static IEnumerable<object[]> MutableTypes => new List<object[]>()
     {
         new object[] { nameof(Object) },
+
+        new object[] { typeof(IEnumerable<>).Name[..^2] + "<int>" },
+        new object[] { typeof(ICollection<>).Name[..^2] + "<int>" },
+
         new object[] { typeof(List<>).Name[..^2] + "<int>" },
-        new object[] { typeof(Dictionary<,>).Name[..^2] + "<int, int>" }
+        new object[] { typeof(IList<>).Name[..^2] + "<int>" },
+
+        new object[] { typeof(Dictionary<,>).Name[..^2] + "<int, int>" },
+        new object[] { typeof(IDictionary<,>).Name[..^2] + "<int, int>" },
+
+        new object[] { typeof(HashSet<>).Name[..^2] + "<int>" },
+        new object[] { typeof(ISet<>).Name[..^2] + "<int>" },
+
+        new object[] { typeof(Stack<>).Name[..^2] + "<int>" },
+
+        new object[] { typeof(Queue<>).Name[..^2] + "<int>" },
     };
 
     #endregion
