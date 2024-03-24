@@ -8,9 +8,9 @@
 
 <div class="full_width_table">
 
-| Name                               | Usage                       | Notes                                               |
-|------------------------------------|-----------------------------|-----------------------------------------------------|
-| [[Immutable]](@ref immutable_attr) | `class`, `struct`, `record` | Basic attribute to mark immutable types definition. |
+| Name                               | Usage                                    | Notes                                               |
+|------------------------------------|------------------------------------------|-----------------------------------------------------|
+| [[Immutable]](@ref immutable_attr) | `class`, `struct`, `record`, `interface` | Basic attribute to mark immutable types definition. |
 
 </div>
 
