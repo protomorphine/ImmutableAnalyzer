@@ -54,8 +54,7 @@ internal sealed class PropertyTypeAnalyzer : PropertyAnalyzer
     /// <inheritdoc/>
     protected override void AnalyzeSyntax(PropertyDeclarationSyntax node, SyntaxNodeAnalysisContext context)
     {
-        var symbol = context.SemanticModel.GetSymbolInfo(node.Type).Symbol;
-        if (symbol is null || IsImmutable((INamedTypeSymbol) symbol))
+        if (context.SemanticModel.GetSymbolInfo(node.Type).Symbol is not INamedTypeSymbol symbol || IsImmutable(symbol))
             return;
 
         var diagnostic = Diagnostic.Create(
@@ -65,18 +64,29 @@ internal sealed class PropertyTypeAnalyzer : PropertyAnalyzer
         context.ReportDiagnostic(diagnostic);
     }
 
+    /// <summary>
+    /// Checks given symbol for immutability.
+    /// <br />
+    /// Algorithm:
+    /// 1. Check if symbol underlying type marked by <see cref="ImmutableAttribute"/>; <br />
+    /// 2. Check if <see cref="ImmutableClassTypes"/> or <see cref="ImmutableGenericClassTypes"/> contains symbol name; <br />
+    /// 3. If 1 - 2 steps gives false - checks if symbol has a base type to define is we working with interface or not. <br />
+    /// 3.1. If we working with type (not interface) - recursively check symbol base type. <br />
+    /// 3.2. If we working with interface - recursively check all interfaces. <br />
+    /// </summary>
+    /// <param name="symbol">Symbol.</param>
+    /// <returns>true - if symbol is immutable, otherwise - false.</returns>
     private static bool IsImmutable(INamedTypeSymbol symbol)
     {
-        if (symbol.IsUserDefinedImmutable())
+        if (symbol.IsUserDefinedImmutable()                          ||
+            ImmutableClassTypes.Contains(symbol.Name)                ||
+            ImmutableGenericClassTypes.Contains(symbol.MetadataName)
+        )
+        {
             return true;
+        }
 
-        if (ImmutableClassTypes.Contains(symbol.Name) || ImmutableGenericClassTypes.Contains(symbol.MetadataName))
-            return true;
-
-        if (symbol.BaseType is { } baseType)
-            // ReSharper disable once TailRecursiveCall
-            return IsImmutable(baseType);
-
-        return symbol.AllInterfaces.Any(IsImmutable);
+        // ReSharper disable once TailRecursiveCall
+        return symbol.BaseType is { } baseType ? IsImmutable(baseType) : symbol.AllInterfaces.Any(IsImmutable);
     }
 }

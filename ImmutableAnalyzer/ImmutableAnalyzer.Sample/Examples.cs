@@ -5,32 +5,33 @@ using System.Collections.Generic;
 namespace ImmutableAnalyzer.Sample;
 
 // If you don't see warnings, build the Analyzers Project.
-public enum Test
+public enum UserRole
 {
-    Value1,
-    Value2
+    Admin,
+    Moderator,
+    Customer
 }
 
 [Immutable]
-public class Person
+public class UserDto
 {
-    public long Id { get; set; }
+    public int Id { get; set; }
 
-    public List<string> Names { get; init; } = new();
+    public string Name { get; init; } = string.Empty;
 
-    public Test SomeEnumProperty { get; init; }
+    public List<int> FriendsIds { get; init; } = new();
 
-    public IReadOnlySet<int> CompanyIds { get; private set; } = new HashSet<int>();
-}
+    public UserRole Role { get; set; } = UserRole.Customer;
 
-public class NotImmutableExample
-{
-    public List<int> Ints { get; set; } = new();
+    public OrganizationDto Organization { get; init; } = new();
 }
 
 [Immutable]
-public class ImmutableExample
+public class OrganizationDto
 {
-    public Person Person { get; init; } = new();
-    public NotImmutableExample MutableExample { get; init; } = new();
+    public string Name { get; set; } = string.Empty;
+
+    public IList<string> PhoneNumbers { get; set; } = new List<string>();
+
+    public IDictionary<int, string> Departments { get; set; } = new Dictionary<int, string>();
 }

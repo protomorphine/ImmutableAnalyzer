@@ -31,6 +31,7 @@ public static class TypeDeclarationSyntaxExtensions
 
         return typeDeclarationNode
                 .AttributeLists
+                .AsParallel()
                 .SelectMany(a => a.Attributes)
                 .Any(attribute => attribute.Name.ToString() == attributeName);
     }
