@@ -148,23 +148,26 @@ Immutable types</h1>
 </ul>
 <h1><a class="anchor" id="examples"></a>
 Examples</h1>
-<p>Following code snippet will raise <code>IM0001</code> diagnostic, because it allow changes of immutable class instance. </p><div class="fragment"><div class="line">[Immutable]</div>
+<div class="tabbed"></div><div class="tabbed"><ul>
+<li><p class="startli"><b class="tab-title">Will raise <code>IM0001</code></b> Following code snippet will raise <code>IM0001</code> diagnostic, because it allow changes of immutable class instance. </p><div class="fragment"><div class="line">[Immutable]</div>
 <div class="line"><span class="keyword">public</span> <span class="keyword">class </span>UserDto</div>
 <div class="line">{</div>
 <div class="line">  ...</div>
 <div class="line">  <span class="keyword">public</span> List&lt;long&gt; FriendsIds { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; } <span class="comment">// IM0001</span></div>
 <div class="line">}</div>
-</div><!-- fragment --><p>Using this class can breaks immutability, because everyone, who have instance of <code>UserDto</code> can change it state through <code>FriendsIds</code> property. </p><div class="fragment"><div class="line">UserDto userDto = _repo.GetUser(...);</div>
+</div><!-- fragment --><p class="startli">Using this class can breaks immutability, because everyone, who have instance of <code>UserDto</code> can change it state through <code>FriendsIds</code> property. </p><div class="fragment"><div class="line">UserDto userDto = _repo.GetUser(...);</div>
 <div class="line">userDto.FriendsIds.Add(42);</div>
-</div><!-- fragment --> <hr  />
-<p>Correct code example, which doesn't affect class immutability, present below. </p><div class="fragment"><div class="line">[Immutable]</div>
+</div><!-- fragment --></li>
+<li><p class="startli"><b class="tab-title">Woudn't rise <code>IM0001</code></b> Correct code example, which doesn't affect class immutability, present below. </p><div class="fragment"><div class="line">[Immutable]</div>
 <div class="line"><span class="keyword">public</span> <span class="keyword">class </span>UserDto</div>
 <div class="line">{</div>
 <div class="line">  ...</div>
 <div class="line">  <span class="keyword">public</span> IReadOnlyList&lt;long&gt; FriendsIds { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; } = <span class="keyword">new</span> List&lt;long&gt;();</div>
 <div class="line">}</div>
-</div><!-- fragment --><p>Property with type <code>IReadOnlyList&lt;long&gt;</code> doesn't allow to modify list and can be used only for reading. </p>
-</div></div><!-- contents -->
+</div><!-- fragment --><p class="startli">Property with type <code>IReadOnlyList&lt;long&gt;</code> doesn't allow to modify list and can be used only for reading.</p>
+</li>
+</ul>
+</div><div class="tabbed"></div> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->
