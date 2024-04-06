@@ -4,7 +4,7 @@ using Xunit;
 using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<
     ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.SetAccessorAnalyzer>;
 
-namespace ImmutableAnalyzer.Tests.TypePropertiesTests.SetAccessorTests;
+namespace ImmutableAnalyzer.Tests.PropertyAnalyzersTests.SetAccessorTests;
 
 /// <summary>
 /// Tests for <see cref="SetAccessorAnalyzer"/>

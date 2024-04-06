@@ -107,12 +107,12 @@ public class Pet
     /// Immutable class declarations.
     /// </summary>
     public static IEnumerable<object[]> ImmutableTypes =>
-        PropertyTypeAnalyzer.ImmutableClassTypes.Select(it => new object[] {it});
+        TypeChecker.ImmutableClassTypes.Select(it => new object[] {it});
 
     /// <summary>
     /// Immutable generic class declarations.
     /// </summary>
-    public static IEnumerable<object[]> ImmutableGenericTypes => PropertyTypeAnalyzer.ImmutableGenericClassTypes
+    public static IEnumerable<object[]> ImmutableGenericTypes => TypeChecker.ImmutableGenericClassTypes
         .Select(it =>
         {
             var genericParamsCount = it[^1] - '0';

@@ -5,7 +5,7 @@ using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.XUnit.CodeFixVerifier<
     ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.SetAccessorCodeFixProvider
 >;
 
-namespace ImmutableAnalyzer.Tests.TypePropertiesTests.SetAccessorTests;
+namespace ImmutableAnalyzer.Tests.PropertyAnalyzersTests.SetAccessorTests;
 
 public class SetAccessorCodeFixTests
 {
