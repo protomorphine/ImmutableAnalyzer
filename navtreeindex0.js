@@ -6,6 +6,8 @@ var NAVTREEINDEX0 =
 "im0002.html":[3,1],
 "im0002.html#code-fixes":[3,1,0],
 "im0002.html#examples-1":[3,1,1],
+"im0003.html":[3,2],
+"im0003.html#example":[3,2,0],
 "immutable_attr.html":[4,0],
 "index.html":[],
 "index.html#documentation":[2],
