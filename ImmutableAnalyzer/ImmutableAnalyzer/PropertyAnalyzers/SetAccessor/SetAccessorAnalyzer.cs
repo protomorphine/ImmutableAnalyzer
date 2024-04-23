@@ -26,8 +26,8 @@ internal sealed class SetAccessorAnalyzer : PropertyAnalyzer
     /// </summary>
     private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(
         id:                 DiagnosticId,
-        title:              "Public setter violates class immutability",
-        messageFormat:      "Member of immutable class can't have '{0}' accessor",
+        title:              "Public setter violates type immutability",
+        messageFormat:      "Member of immutable type can't have '{0}' accessor",
         category:           "Design",
         defaultSeverity:    DiagnosticSeverity.Error,
         isEnabledByDefault: true,
@@ -35,7 +35,7 @@ internal sealed class SetAccessorAnalyzer : PropertyAnalyzer
     );
 
     /// <inheritdoc />
-    protected override void AnalyzeSyntax(PropertyDeclarationSyntax node, SyntaxNodeAnalysisContext context)
+    protected override void AnalyzeMember(PropertyDeclarationSyntax node, SyntaxNodeAnalysisContext ctx)
     {
         var setAccessor = node.AccessorList?.Accessors.FirstOrDefault(it =>
             it.IsKind(SyntaxKind.SetAccessorDeclaration)
@@ -47,7 +47,7 @@ internal sealed class SetAccessorAnalyzer : PropertyAnalyzer
         var diagnostic = Diagnostic.Create(Rule, setAccessor.GetLocation(),
             setAccessor.Modifiers.ToFullString() + setAccessor.Keyword.ValueText
         );
-        context.ReportDiagnostic(diagnostic);
+        ctx.ReportDiagnostic(diagnostic);
     }
 
     /// <summary>
