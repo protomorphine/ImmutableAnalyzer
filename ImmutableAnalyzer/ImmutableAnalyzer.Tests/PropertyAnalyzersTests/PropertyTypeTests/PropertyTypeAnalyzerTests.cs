@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using ImmutableAnalyzer.PropertyAnalyzers.PropertyType;
-using Microsoft.CodeAnalysis.CSharp.Testing;
-using Microsoft.CodeAnalysis.Testing;
-using Microsoft.CodeAnalysis.Testing.Verifiers;
 using Xunit;
-using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<ImmutableAnalyzer.PropertyAnalyzers.PropertyType.PropertyTypeAnalyzer>;
+using Verifier =
+    Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<
+        ImmutableAnalyzer.PropertyAnalyzers.PropertyType.PropertyTypeAnalyzer>;
 
-namespace ImmutableAnalyzer.Tests.TypePropertiesTests.PropertyTypeTests;
+namespace ImmutableAnalyzer.Tests.PropertyAnalyzersTests.PropertyTypeTests;
 
 /// <summary>
 /// Tests for <see cref="PropertyTypeAnalyzer"/>
@@ -18,131 +13,75 @@ namespace ImmutableAnalyzer.Tests.TypePropertiesTests.PropertyTypeTests;
 public class PropertyTypeAnalyzerTests
 {
     [Theory]
-    [MemberData(nameof(ImmutableTypes))]
-    [MemberData(nameof(ImmutableGenericTypes))]
-    public async Task BuiltInClassPropertyType_ShouldNotAlert(string property)
+    [ClassData(typeof(TestData.ImmutableTypes))]
+    [ClassData(typeof(TestData.ImmutableGenericsTypes))]
+    public async Task Class_with_immutable_property_should_be_immutable(string property)
     {
-        var analyzerTest =  new CSharpAnalyzerTest<PropertyTypeAnalyzer, XUnitVerifier>
-        {
-            TestState =
-            {
-                Sources = { SourceFactory.ImmutableClassWithProperty(property) },
+        var source = SourceFactory.ImmutableClassWithProperty(property, out _, out _);
+        var test = AnalyzerTestFactory.CreateCSharpAnalyzerTest<PropertyTypeAnalyzer>(source);
 
-                ReferenceAssemblies = new ReferenceAssemblies(
-                    "net6.0",
-                    new PackageIdentity("Microsoft.NETCore.App.Ref", "6.0.0"),
-                    Path.Combine("ref", "net6.0"))
-            }
-        };
-
-        await analyzerTest.RunAsync().ConfigureAwait(false);
-
+        await test.RunAsync().ConfigureAwait(false);
         Assert.True(true); // SonarLint S2699
     }
 
     [Theory]
-    [MemberData(nameof(MutableTypes))]
-    public async Task BuiltInClassPropertyType_ShouldAlert(string property)
+    [ClassData(typeof(TestData.MutableTypes))]
+    public async Task Class_with_mutable_property_should_not_be_immutable(string property)
     {
-        var source = SourceFactory.ImmutableClassWithProperty(property);
+        var source = SourceFactory.ImmutableClassWithProperty(property, out var line, out var column);
 
-        var expected = Verifier.Diagnostic().WithLocation(21, 12).WithArguments(property);
+        var expected = Verifier.Diagnostic().WithLocation(line, column).WithArguments(property);
         await Verifier.VerifyAnalyzerAsync(source, expected).ConfigureAwait(false);
     }
 
-    [Theory]
-    [InlineData("[Immutable]")]
-    [InlineData("")]
-    public async Task UserDefinedTypes_ClassesWithImmutableAttribute_ShouldBeConsideredImmutable(string attribute)
+    [Fact]
+    public async Task Class_with_user_defined_immutable_property_type_should_be_immutable()
     {
-        var source = @$"
-{SourceFactory.CommonSource}
+        const string className = "Person";
 
-{attribute}
-public class Person
-{{
-    public int Id {{ get; init; }}
-}}
+        var source =
+            SourceFactory.ImmutableClassWithProperty(propertyType: className, out _, out _) +
+            PureClassWithImmutableProperty(name: className, "[Immutable]");
 
-[Immutable]
-public class Pet
-{{
-    public string Name {{ get; }}
-    public Person Owner {{ get; init; }}
-}}
-";
-        await (!string.IsNullOrWhiteSpace(attribute)
-            ? Verifier.VerifyAnalyzerAsync(source)
-            : Verifier.VerifyAnalyzerAsync(source,
-                Verifier.Diagnostic().WithLocation(28, 12).WithArguments("Person")
-            ));
+        await Verifier.VerifyAnalyzerAsync(source).ConfigureAwait(false);
     }
 
     [Fact]
-    public async Task UserDefinedTypes_Enums_ShouldBeConsideredImmutable()
+    public async Task Class_with_user_defined_mutable_property_type_should_not_be_immutable()
     {
-        const string source = @$"
-{SourceFactory.CommonSource}
+        const string className = "Person";
 
-public enum PetType
-{{
-    Dog,
-    Cat,
-    Parrot
-}}
+        var source =
+            SourceFactory.ImmutableClassWithProperty(propertyType: className, out var line, out var column) +
+            PureClassWithImmutableProperty(name: className);
 
-[Immutable]
-public class Pet
-{{
-    public string Name {{ get; }}
-    public PetType PetType {{ get; init; }}
-}}
-";
+        var expectedDiagnostic = Verifier.Diagnostic().WithLocation(line, column).WithArguments(className);
+        await Verifier.VerifyAnalyzerAsync(source, expectedDiagnostic).ConfigureAwait(false);
+    }
+
+    [Fact]
+    public async Task Class_with_enum_property_type_should_be_immutable()
+    {
+        const string enumName = "TestEnum";
+        var source =
+            SourceFactory.ImmutableClassWithProperty(enumName, out _, out _) +
+            $"public enum {enumName} {{ Value1, Value2, Value3 }}";
+
         await Verifier.VerifyAnalyzerAsync(source);
     }
 
-    #region Test Data
-
     /// <summary>
-    /// Immutable class declarations.
+    /// Creates source code of class (which contains 1 property named `Id` with type `long`) with given name and attributes.
     /// </summary>
-    public static IEnumerable<object[]> ImmutableTypes =>
-        TypeChecker.ImmutableClassTypes.Select(it => new object[] {it});
-
-    /// <summary>
-    /// Immutable generic class declarations.
-    /// </summary>
-    public static IEnumerable<object[]> ImmutableGenericTypes => TypeChecker.ImmutableGenericClassTypes
-        .Select(it =>
-        {
-            var genericParamsCount = it[^1] - '0';
-            var genericParams = $"<{string.Join(',', Enumerable.Range(0, genericParamsCount).Select(_ => "int"))}>";
-            return new object[] {it[..^2] + genericParams};
-        });
-
-    /// <summary>
-    /// Mutable types declarations.
-    /// </summary>
-    public static IEnumerable<object[]> MutableTypes => new List<object[]>()
-    {
-        new object[] { nameof(Object) },
-
-        new object[] { typeof(IEnumerable<>).Name[..^2] + "<int>" },
-        new object[] { typeof(ICollection<>).Name[..^2] + "<int>" },
-
-        new object[] { typeof(List<>).Name[..^2] + "<int>" },
-        new object[] { typeof(IList<>).Name[..^2] + "<int>" },
-
-        new object[] { typeof(Dictionary<,>).Name[..^2] + "<int, int>" },
-        new object[] { typeof(IDictionary<,>).Name[..^2] + "<int, int>" },
-
-        new object[] { typeof(HashSet<>).Name[..^2] + "<int>" },
-        new object[] { typeof(ISet<>).Name[..^2] + "<int>" },
-
-        new object[] { typeof(Stack<>).Name[..^2] + "<int>" },
-
-        new object[] { typeof(Queue<>).Name[..^2] + "<int>" },
-    };
-
-    #endregion
+    /// <param name="name">Class name.</param>
+    /// <param name="attribute">Attributes.</param>
+    /// <returns>Source code of class.</returns>
+    private static string PureClassWithImmutableProperty(string name, string attribute = "") =>
+        $@"
+            {attribute}
+            public class {name}
+            {{
+                public long Id {{ get; init; }}
+            }}
+        ";
 }

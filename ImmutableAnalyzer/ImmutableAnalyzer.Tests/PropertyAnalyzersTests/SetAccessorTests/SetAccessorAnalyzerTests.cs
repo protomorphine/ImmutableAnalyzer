@@ -11,25 +11,32 @@ namespace ImmutableAnalyzer.Tests.PropertyAnalyzersTests.SetAccessorTests;
 /// </summary>
 public class SetAccessorAnalyzerTests
 {
-    [Theory]
-    [InlineData("set")]
-    public async Task ImmutableClassPropertySetAccessor_ShouldReport(string propertyAccessor)
+    [Fact]
+    public async Task Immutable_class_property_could_not_have_a_public_setter()
     {
-        var source = SourceFactory.ImmutableClassWithPropertyAccessor(propertyAccessor);
+        var source = SourceFactory.ImmutableClassWithPropertyAccessor(
+            "set", out var line, out var column
+        );
 
         var expected = Verifier.Diagnostic()
-            .WithLocation(21, 25)
-            .WithArguments(propertyAccessor);
+            .WithLocation(line, column)
+            .WithArguments("set");
 
         await Verifier.VerifyAnalyzerAsync(source, expected).ConfigureAwait(false);
     }
 
-    [Theory]
-    [InlineData("init")]
-    [InlineData("private set")]
-    public async Task ImmutableClassPropertySetAccessor_ShouldNotReport(string propertyAccessor)
+    [Fact]
+    public async Task Immutable_class_property_could_have_init_setter()
     {
-        var source = SourceFactory.ImmutableClassWithPropertyAccessor(propertyAccessor);
+        var source = SourceFactory.ImmutableClassWithPropertyAccessor("init", out _, out _);
+
+        await Verifier.VerifyAnalyzerAsync(source).ConfigureAwait(false);
+    }
+
+    [Fact]
+    public async Task Immutable_class_property_could_have_private_setter()
+    {
+        var source = SourceFactory.ImmutableClassWithPropertyAccessor("private set", out _, out _);
 
         await Verifier.VerifyAnalyzerAsync(source).ConfigureAwait(false);
     }

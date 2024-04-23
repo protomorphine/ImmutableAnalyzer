@@ -40,7 +40,7 @@ internal struct TypeChecker
     /// <param name="ctx">Syntax node analysis context.</param>
     /// <returns>true - if node type is immutable, otherwise - false.</returns>
     public static bool IsImmutable(ParameterSyntax node, SyntaxNodeAnalysisContext ctx) =>
-        IsImmutable((INamedTypeSymbol)GetSymbolFromType(node.Type, ctx));
+        IsImmutable(GetSymbolFromType(node.Type, ctx));
 
     /// <summary>
     /// Check's <see cref="PropertyDeclarationSyntax"/> type for immutability.
@@ -49,7 +49,7 @@ internal struct TypeChecker
     /// <param name="ctx">Syntax node analysis context.</param>
     /// <returns>true - if node type is immutable, otherwise - false.</returns>
     public static bool IsImmutable(PropertyDeclarationSyntax node, SyntaxNodeAnalysisContext ctx) =>
-        IsImmutable((INamedTypeSymbol)GetSymbolFromType(node.Type, ctx));
+        IsImmutable(GetSymbolFromType(node.Type, ctx));
 
     /// <summary>
     /// Returns symbol from type and context.
@@ -59,13 +59,20 @@ internal struct TypeChecker
     /// <returns><see cref="ISymbol"/> of given type.</returns>
     /// <exception cref="ArgumentNullException">Throws when type is null.</exception>
     /// <exception cref="InvalidOperationException">Throws when semantic model can't provide information about type.</exception>
-    private static ISymbol GetSymbolFromType(TypeSyntax? type, SyntaxNodeAnalysisContext ctx)
+    private static ITypeSymbol GetSymbolFromType(TypeSyntax? type, SyntaxNodeAnalysisContext ctx)
     {
         if (type is null)
             throw new ArgumentNullException(nameof(type), "Given parameter syntax node doesn't contain type");
 
-        return ctx.SemanticModel.GetSymbolInfo(type).Symbol ??
-               throw new InvalidOperationException("Semantic model doesn't provide information about symbol");
+        var symbol = ctx.SemanticModel.GetSymbolInfo(type).Symbol ??
+                     throw new InvalidOperationException("Semantic model doesn't provide information about symbol");
+
+        return symbol switch
+        {
+            IArrayTypeSymbol arrayTypeSymbol => arrayTypeSymbol.ElementType,
+            ITypeSymbol typeSymbol => typeSymbol,
+            _ => throw new NotSupportedException("Not supported symbol")
+        };
     }
 
     /// <summary>
@@ -80,7 +87,7 @@ internal struct TypeChecker
     /// </summary>
     /// <param name="symbol">Symbol.</param>
     /// <returns>true - if symbol is immutable, otherwise - false.</returns>
-    private static bool IsImmutable(INamedTypeSymbol symbol)
+    private static bool IsImmutable(ITypeSymbol symbol)
     {
         if (symbol.IsUserDefinedImmutable()
             || ImmutableClassTypes.Contains(symbol.Name)

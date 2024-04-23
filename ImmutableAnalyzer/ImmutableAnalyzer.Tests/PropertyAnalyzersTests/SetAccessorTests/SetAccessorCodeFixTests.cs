@@ -10,13 +10,13 @@ namespace ImmutableAnalyzer.Tests.PropertyAnalyzersTests.SetAccessorTests;
 public class SetAccessorCodeFixTests
 {
     [Fact]
-    public async Task ImmutableClassPropertyWithPublicSetAccessor_ReplaceWithPrivateSet()
+    public async Task Immutable_class_with_public_set_accessor_should_be_fixed_with_private_set()
     {
-        var source = SourceFactory.ImmutableClassWithPropertyAccessor("set");
-        var fixedSource = SourceFactory.ImmutableClassWithPropertyAccessor("private set");
+        var source = SourceFactory.ImmutableClassWithPropertyAccessor("set", out var line, out var column);
+        var fixedSource = SourceFactory.ImmutableClassWithPropertyAccessor("private set", out _, out _);
 
         var expected = Verifier.Diagnostic()
-            .WithLocation(21, 25)
+            .WithLocation(line, column)
             .WithArguments("set");
         await Verifier.VerifyCodeFixAsync(source, expected, fixedSource).ConfigureAwait(false);
     }
