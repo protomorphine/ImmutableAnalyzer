@@ -9,5 +9,5 @@ internal class RemoveSetAccessorStrategy : ChangeSetAccessorStrategy
     public override string GetTitle(string format) => "Remove set accessor";
 
     /// <inheritdoc />
-    protected override AccessorModifier Modifier { get; } = _ => null;
+    protected override AccessorModifier Modifier { get; } = static _ => null;
 }

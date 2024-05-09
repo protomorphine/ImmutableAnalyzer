@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using ImmutableAnalyzer.ParameterAnalyzers;
+using ImmutableAnalyzer.Tests.Factories;
 using Xunit;
 using Verifier =
     Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<
@@ -17,8 +18,8 @@ public class ParameterTypeAnalyzerTests
         var source = SourceFactory.ImmutableRecordWithParameter(property, out _, out _);
         var test = AnalyzerTestFactory.CreateCSharpAnalyzerTest<ParameterTypeAnalyzer>(source);
 
-        await test.RunAsync().ConfigureAwait(false);
-        Assert.True(true); // SonarLint S2699
+        var exception = await Record.ExceptionAsync(() => test.RunAsync());
+        Assert.Null(exception);
     }
 
     [Theory]
@@ -28,6 +29,6 @@ public class ParameterTypeAnalyzerTests
         var source = SourceFactory.ImmutableRecordWithParameter(property, out var line, out var column);
 
         var expected = Verifier.Diagnostic().WithLocation(line, column).WithArguments(property);
-        await Verifier.VerifyAnalyzerAsync(source, expected).ConfigureAwait(false);
+        await Verifier.VerifyAnalyzerAsync(source, expected);
     }
 }

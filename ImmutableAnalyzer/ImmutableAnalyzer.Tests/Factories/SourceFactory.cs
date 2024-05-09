@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Linq;
-using Microsoft.CodeAnalysis.Text;
 
-namespace ImmutableAnalyzer.Tests;
+namespace ImmutableAnalyzer.Tests.Factories;
 
 /// <summary>
 /// Simple factory to create source code to test.

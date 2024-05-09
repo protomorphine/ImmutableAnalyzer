@@ -46,8 +46,8 @@ public class SetAccessorCodeFixProvider : CodeFixProvider
     private static readonly IReadOnlyDictionary<FixStrategy, ChangeSetAccessorStrategy> ChangeSetAccessorStrategies =
         new SortedDictionary<FixStrategy, ChangeSetAccessorStrategy>
         {
-            { FixStrategy.ToPrivate, new ToPrivateSetStrategy()      },
             { FixStrategy.ToInit,    new ToInitStrategy()            },
+            { FixStrategy.ToPrivate, new ToPrivateSetStrategy()      },
             { FixStrategy.Remove,    new RemoveSetAccessorStrategy() },
         };
 

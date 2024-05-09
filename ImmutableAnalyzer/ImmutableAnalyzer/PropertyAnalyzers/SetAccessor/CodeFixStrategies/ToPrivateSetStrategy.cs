@@ -12,6 +12,6 @@ internal class ToPrivateSetStrategy : ChangeSetAccessorStrategy
     public override string GetTitle(string format) => string.Format(format, "private set");
 
     /// <inheritdoc />
-    protected override AccessorModifier Modifier { get; } = static syntax =>
-        syntax.WithModifiers(new SyntaxTokenList(SyntaxFactory.Token(SyntaxKind.PrivateKeyword)));
+    protected override AccessorModifier Modifier { get; } =
+        static syntax => syntax.WithModifiers(new SyntaxTokenList(SyntaxFactory.Token(SyntaxKind.PrivateKeyword)));
 }
