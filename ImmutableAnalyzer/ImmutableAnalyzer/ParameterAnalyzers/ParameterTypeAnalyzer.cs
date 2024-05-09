@@ -1,15 +1,16 @@
 ﻿using System.Collections.Immutable;
+using ImmutableAnalyzer.Abstractions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 
-namespace ImmutableAnalyzer.PropertyAnalyzers.PropertyType;
+namespace ImmutableAnalyzer.ParameterAnalyzers;
 
 /// <summary>
-/// Analyzer to check properties type of immutable types.
+/// Analyzer to check parameter type of records.
 /// </summary>
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-internal sealed class PropertyTypeAnalyzer : PropertyAnalyzer
+internal class ParameterTypeAnalyzer : ParameterAnalyzer
 {
     /// <inheritdoc />
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(Rule);
@@ -18,25 +19,26 @@ internal sealed class PropertyTypeAnalyzer : PropertyAnalyzer
     /// Diagnostic descriptor.
     /// </summary>
     private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(
-        id:                 "IM0001",
-        title:              "Mutable property in immutable type",
-        messageFormat:      "Immutable type can't have property of type '{0}'",
+        id:                 "IM0003",
+        title:              "Mutable parameter in record parameter list",
+        messageFormat:      "Immutable record can't have parameter of type '{0}'",
         category:           "Design",
         defaultSeverity:    DiagnosticSeverity.Error,
         isEnabledByDefault: true,
-        description:        "Class member must have immutable type."
+        description:        "Record parameter must have immutable type."
     );
 
-    /// <inheritdoc/>
-    protected override void AnalyzeMember(PropertyDeclarationSyntax node, SyntaxNodeAnalysisContext ctx)
+    /// <inheritdoc />
+    protected override void AnalyzeParameter(ParameterSyntax node, SyntaxNodeAnalysisContext ctx)
     {
         if (TypeChecker.IsImmutable(node, ctx))
             return;
 
         var diagnostic = Diagnostic.Create(
-            Rule, node.Type.GetLocation(),
+            Rule, node.Type!.GetLocation(),
             node.Type.ToFullString().Trim()
         );
+
         ctx.ReportDiagnostic(diagnostic);
     }
 }
