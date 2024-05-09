@@ -150,6 +150,22 @@ Code fixes</h1>
 <div class="line">}</div>
 </div><!-- fragment --></li>
 </ul>
+</div><div class="tabbed"></div><p><b>Remove property set accessor</b> </p><div class="tabbed"></div><div class="tabbed"><ul>
+<li><b class="tab-title">Before</b> Class <code>UserDto</code> have public set accessor for property <code>Id</code>, which violates immutability of this class, given by <code>Immutable</code> attribute. <div class="fragment"><div class="line">[Immutable]</div>
+<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>UserDto</div>
+<div class="line">{</div>
+<div class="line">    <span class="keyword">public</span> <span class="keywordtype">long</span> Id { <span class="keyword">get</span>; <span class="keyword">set</span>; }</div>
+<div class="line">    <span class="keyword">public</span> UserRole Role { <span class="keyword">get</span>; init; } </div>
+<div class="line">}</div>
+</div><!-- fragment --></li>
+<li><b class="tab-title">After</b> Now, class <code>UserDto</code> can't be changed from the outer. Every try to set <code>Id</code> property from the outer will fall with compile time error. <div class="fragment"><div class="line">[Immutable]</div>
+<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>UserDto</div>
+<div class="line">{</div>
+<div class="line">    <span class="keyword">public</span> <span class="keywordtype">long</span> Id { <span class="keyword">get</span>; }</div>
+<div class="line">    <span class="keyword">public</span> UserRole Role { <span class="keyword">get</span>; init; } </div>
+<div class="line">}</div>
+</div><!-- fragment --></li>
+</ul>
 </div><div class="tabbed"></div><h1><a class="anchor" id="examples-1"></a>
 Examples</h1>
 <p>Following snippet raises <code>IM0002</code> diagnostic, because it violates class immutability, and gives a way for evryone to change property value through public setter.</p>
