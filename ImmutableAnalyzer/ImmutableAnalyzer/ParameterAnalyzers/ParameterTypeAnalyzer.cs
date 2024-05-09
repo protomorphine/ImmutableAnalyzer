@@ -38,6 +38,7 @@ internal class ParameterTypeAnalyzer : ParameterAnalyzer
             Rule, node.Type!.GetLocation(),
             node.Type.ToFullString().Trim()
         );
+
         ctx.ReportDiagnostic(diagnostic);
     }
 }

@@ -37,6 +37,7 @@ internal sealed class PropertyTypeAnalyzer : PropertyAnalyzer
             Rule, node.Type.GetLocation(),
             node.Type.ToFullString().Trim()
         );
+
         ctx.ReportDiagnostic(diagnostic);
     }
 }

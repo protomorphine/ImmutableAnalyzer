@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace ImmutableAnalyzer.Tests;
+namespace ImmutableAnalyzer.Tests.Factories;
 
 /// <summary>
 /// Simple factory to create source code to test.
@@ -9,20 +9,19 @@ namespace ImmutableAnalyzer.Tests;
 public static class SourceFactory
 {
     private const string CommonSource = @"
-        using System;
-        using System.ComponentModel;
-        using System.Collections.Generic;
-        using System.Collections.Immutable;
+using System;
+using System.ComponentModel;
+using System.Collections.Generic;
+using System.Collections.Immutable;
 
-        namespace System.Runtime.CompilerServices
-        {
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public record IsExternalInit;
-        }
+namespace System.Runtime.CompilerServices
+{
+[EditorBrowsable(EditorBrowsableState.Never)]
+public record IsExternalInit;
+}
 
-        [AttributeUsage(AttributeTargets.Class)]
-        public class ImmutableAttribute : Attribute { }
-    ";
+[AttributeUsage(AttributeTargets.Class)]
+public class ImmutableAttribute : Attribute { }";
 
     /// <summary>
     /// Creates source code with immutable class with given property type.
@@ -35,12 +34,11 @@ public static class SourceFactory
     {
         var source = $@"{CommonSource}
 
-            [Immutable]
-            public class TestImmutableClass
-            {{
-                public {propertyType} Id {{ get; init; }}
-            }}
-        ";
+[Immutable]
+public class TestImmutableClass
+{{
+    public {propertyType} Id {{ get; init; }}
+}}";
 
         (line, column) = GetLineAndColumn(source, propertyType);
         return source;
@@ -57,14 +55,30 @@ public static class SourceFactory
     {
         var source = $@"{CommonSource}
 
-            [Immutable]
-            public class TestImmutableClass
-            {{
-                public int Id {{get; {propertySetAccessor};}}
-            }}
-        ";
+[Immutable]
+public class TestImmutableClass
+{{
+    public int Id {{ get; {propertySetAccessor}; }}
+}}";
 
         (line, column) = GetLineAndColumn(source, propertySetAccessor);
+        return source;
+    }
+
+    /// <summary>
+    /// Creates source code with immutable class with getter only.
+    /// </summary>
+    /// <returns>String, that represent source code.</returns>
+    public static string ImmutableClassWithGetOnlyPropertyAccessor()
+    {
+        const string source = $@"{CommonSource}
+
+[Immutable]
+public class TestImmutableClass
+{{
+    public int Id {{ get; }}
+}}";
+
         return source;
     }
 
@@ -79,9 +93,8 @@ public static class SourceFactory
     {
         var source = $@"{CommonSource}
 
-            [Immutable]
-            public record TestImmutableRecord({parameterType} Param);
-        ";
+[Immutable]
+public record TestImmutableRecord({parameterType} Param);";
 
         (line, column) = GetLineAndColumn(source, parameterType);
         return source;

@@ -47,6 +47,7 @@ internal sealed class SetAccessorAnalyzer : PropertyAnalyzer
         var diagnostic = Diagnostic.Create(Rule, setAccessor.GetLocation(),
             setAccessor.Modifiers.ToFullString() + setAccessor.Keyword.ValueText
         );
+
         ctx.ReportDiagnostic(diagnostic);
     }
 

@@ -6,7 +6,7 @@ namespace ImmutableAnalyzer.Extensions;
 /// <summary>
 /// Extensions for <see cref="ISymbol"/>
 /// </summary>
-public static class SymbolExtensions
+internal static class SymbolExtensions
 {
     /// <summary>
     /// Checks if <see cref="symbol"/> has <see cref="ImmutableAttribute"/> in any declaring syntax references.

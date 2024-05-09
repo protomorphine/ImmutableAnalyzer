@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using ImmutableAnalyzer.PropertyAnalyzers.PropertyType;
+using ImmutableAnalyzer.Tests.Factories;
 using Xunit;
 using Verifier =
     Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<
@@ -20,8 +21,8 @@ public class PropertyTypeAnalyzerTests
         var source = SourceFactory.ImmutableClassWithProperty(property, out _, out _);
         var test = AnalyzerTestFactory.CreateCSharpAnalyzerTest<PropertyTypeAnalyzer>(source);
 
-        await test.RunAsync().ConfigureAwait(false);
-        Assert.True(true); // SonarLint S2699
+        var exception = await Record.ExceptionAsync(() => test.RunAsync());
+        Assert.Null(exception);
     }
 
     [Theory]
@@ -31,7 +32,7 @@ public class PropertyTypeAnalyzerTests
         var source = SourceFactory.ImmutableClassWithProperty(property, out var line, out var column);
 
         var expected = Verifier.Diagnostic().WithLocation(line, column).WithArguments(property);
-        await Verifier.VerifyAnalyzerAsync(source, expected).ConfigureAwait(false);
+        await Verifier.VerifyAnalyzerAsync(source, expected);
     }
 
     [Fact]
@@ -43,7 +44,7 @@ public class PropertyTypeAnalyzerTests
             SourceFactory.ImmutableClassWithProperty(propertyType: className, out _, out _) +
             PureClassWithImmutableProperty(name: className, "[Immutable]");
 
-        await Verifier.VerifyAnalyzerAsync(source).ConfigureAwait(false);
+        await Verifier.VerifyAnalyzerAsync(source);
     }
 
     [Fact]
@@ -56,7 +57,7 @@ public class PropertyTypeAnalyzerTests
             PureClassWithImmutableProperty(name: className);
 
         var expectedDiagnostic = Verifier.Diagnostic().WithLocation(line, column).WithArguments(className);
-        await Verifier.VerifyAnalyzerAsync(source, expectedDiagnostic).ConfigureAwait(false);
+        await Verifier.VerifyAnalyzerAsync(source, expectedDiagnostic);
     }
 
     [Fact]

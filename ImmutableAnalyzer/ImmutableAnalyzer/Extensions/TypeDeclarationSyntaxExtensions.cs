@@ -8,7 +8,7 @@ namespace ImmutableAnalyzer.Extensions;
 /// <summary>
 /// Extensions for <see cref="ClassDeclarationSyntax"/>
 /// </summary>
-public static class TypeDeclarationSyntaxExtensions
+internal static class TypeDeclarationSyntaxExtensions
 {
     private const string Attribute = nameof(System.Attribute);
 
@@ -31,7 +31,6 @@ public static class TypeDeclarationSyntaxExtensions
 
         return typeDeclarationNode
                 .AttributeLists
-                .AsParallel()
                 .SelectMany(a => a.Attributes)
                 .Any(attribute => attribute.Name.ToString() == attributeName);
     }
