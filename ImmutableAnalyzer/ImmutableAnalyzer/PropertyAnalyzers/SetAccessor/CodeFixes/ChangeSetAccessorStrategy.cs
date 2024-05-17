@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Editing;
 
-namespace ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.CodeFixStrategies;
+namespace ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.CodeFixes;
 
 /// <summary>
 /// Base class for change set accessor strategy.

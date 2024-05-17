@@ -1,12 +1,12 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 
-namespace ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.CodeFixStrategies;
+namespace ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.CodeFixes;
 
 /// <summary>
 /// Changes access modifier of 'set' accessor to private.
 /// </summary>
-internal class ToPrivateSetStrategy : ChangeSetAccessorStrategy
+internal class ToPrivate : ChangeSetAccessorStrategy
 {
     /// <inheritdoc />
     public override string GetTitle(string format) => string.Format(format, "private set");

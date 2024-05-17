@@ -37,14 +37,16 @@ internal sealed class SetAccessorAnalyzer : PropertyAnalyzer
     /// <inheritdoc />
     protected override void AnalyzeMember(PropertyDeclarationSyntax node, SyntaxNodeAnalysisContext ctx)
     {
-        var setAccessor = node.AccessorList?.Accessors.FirstOrDefault(it =>
-            it.IsKind(SyntaxKind.SetAccessorDeclaration)
-        );
+        var setAccessor = node.AccessorList?
+            .Accessors
+            .FirstOrDefault(syntax => syntax.IsKind(SyntaxKind.SetAccessorDeclaration));
 
         if (setAccessor is null || !ShouldReport(setAccessor))
             return;
 
-        var diagnostic = Diagnostic.Create(Rule, setAccessor.GetLocation(),
+        var diagnostic = Diagnostic.Create(
+            Rule,
+            setAccessor.GetLocation(),
             setAccessor.Modifiers.ToFullString() + setAccessor.Keyword.ValueText
         );
 

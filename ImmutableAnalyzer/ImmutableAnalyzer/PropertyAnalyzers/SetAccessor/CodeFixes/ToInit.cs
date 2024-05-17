@@ -1,11 +1,11 @@
 ﻿using Microsoft.CodeAnalysis.CSharp;
 
-namespace ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.CodeFixStrategies;
+namespace ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.CodeFixes;
 
 /// <summary>
 /// Changes 'set' accessor to 'init'.
 /// </summary>
-internal class ToInitStrategy : ChangeSetAccessorStrategy
+internal class ToInit : ChangeSetAccessorStrategy
 {
     /// <inheritdoc />
     public override string GetTitle(string format) => string.Format(format, "init");

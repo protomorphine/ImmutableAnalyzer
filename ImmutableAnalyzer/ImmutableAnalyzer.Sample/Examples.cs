@@ -46,8 +46,10 @@ public class UserDto
 }
 
 [Immutable]
-public class OrganizationDto
+public struct OrganizationDto
 {
+    public OrganizationDto() { }
+
     public string Name { get; init; } = string.Empty;
 
     /// <summary>
@@ -63,7 +65,7 @@ public class OrganizationDto
     public IDictionary<int, string> Departments { get; set; } = new Dictionary<int, string>();
 }
 
-public class PhoneNumber
+public record PhoneNumber
 {
     public string CountryCode { get; set; } = string.Empty;
 
@@ -75,3 +77,23 @@ public class PhoneNumber
 /// </summary>
 [Immutable]
 public record PetInfo(List<string> Toys);
+
+[Immutable]
+public interface IPaginationSpecification
+{
+    int Page { get; }
+
+    int PerPage { get; }
+}
+
+[Immutable]
+public class UserSpecification : IPaginationSpecification
+{
+    public int Page { get; init; }
+    public int PerPage { get; init; }
+
+    /// <summary>
+    /// IM0001 - immutable class property can't have a mutable type.
+    /// </summary>
+    public IEnumerable<string> Organization { get; init; } = Array.Empty<string>();
+}
