@@ -3,7 +3,7 @@ using System.Collections.Immutable;
 using System.Composition;
 using System.Linq;
 using System.Threading.Tasks;
-using ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.CodeFixStrategies;
+using ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.CodeFixes;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
@@ -22,11 +22,11 @@ public class SetAccessorCodeFixProvider : CodeFixProvider
     /// </summary>
     public enum FixStrategy
     {
-        /// <summary>Mapped to <see cref="ToInitStrategy"/>.</summary>
+        /// <summary>Mapped to <see cref="CodeFixes.ToInit"/>.</summary>
         ToInit    = 0,
-        /// <summary>Mapped to <see cref="ToPrivateSetStrategy"/>.</summary>
+        /// <summary>Mapped to <see cref="CodeFixes.ToPrivate"/>.</summary>
         ToPrivate = 1,
-        /// <summary>Mapped to <see cref="RemoveSetAccessorStrategy"/>.</summary>
+        /// <summary>Mapped to <see cref="RemoveSetAccessor"/>.</summary>
         Remove    = 2,
     }
 
@@ -46,9 +46,9 @@ public class SetAccessorCodeFixProvider : CodeFixProvider
     private static readonly IReadOnlyDictionary<FixStrategy, ChangeSetAccessorStrategy> ChangeSetAccessorStrategies =
         new SortedDictionary<FixStrategy, ChangeSetAccessorStrategy>
         {
-            { FixStrategy.ToInit,    new ToInitStrategy()            },
-            { FixStrategy.ToPrivate, new ToPrivateSetStrategy()      },
-            { FixStrategy.Remove,    new RemoveSetAccessorStrategy() },
+            { FixStrategy.ToInit,    new ToInit()            },
+            { FixStrategy.ToPrivate, new ToPrivate()         },
+            { FixStrategy.Remove,    new RemoveSetAccessor() },
         };
 
     /// <inheritdoc />

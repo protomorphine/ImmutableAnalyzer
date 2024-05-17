@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using ImmutableAnalyzer.Utils.TypeChecking;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -30,11 +31,11 @@ internal sealed class PropertyTypeAnalyzer : PropertyAnalyzer
     /// <inheritdoc/>
     protected override void AnalyzeMember(PropertyDeclarationSyntax node, SyntaxNodeAnalysisContext ctx)
     {
-        if (TypeChecker.IsImmutable(node, ctx))
+        if (node is { Type: not null } && TypeChecker.IsImmutable(node.Type, ctx))
             return;
 
         var diagnostic = Diagnostic.Create(
-            Rule, node.Type.GetLocation(),
+            Rule, node.Type!.GetLocation(),
             node.Type.ToFullString().Trim()
         );
 

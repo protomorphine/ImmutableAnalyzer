@@ -1,5 +1,5 @@
-﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using System.Linq;
+using Microsoft.CodeAnalysis;
 
 namespace ImmutableAnalyzer.Extensions;
 
@@ -9,21 +9,10 @@ namespace ImmutableAnalyzer.Extensions;
 internal static class SymbolExtensions
 {
     /// <summary>
-    /// Checks if <see cref="symbol"/> has <see cref="ImmutableAttribute"/> in any declaring syntax references.
+    /// Checks if <see cref="symbol"/> marked by given attribute.
     /// </summary>
     /// <param name="symbol">Symbol, exposed by compiler.</param>
-    /// <returns>true - if symbol has <see cref="ImmutableAttribute"/>, otherwise - false.</returns>
-    public static bool IsUserDefinedImmutable(this ISymbol symbol)
-    {
-        foreach (var syntaxReference in symbol.DeclaringSyntaxReferences)
-        {
-            if (syntaxReference.GetSyntax() is not TypeDeclarationSyntax typeDeclarationSyntax)
-                continue;
-
-            if (typeDeclarationSyntax.HasAttribute<ImmutableAttribute>())
-                return true;
-        }
-
-        return false;
-    }
+    /// <returns>true - if symbol marked by given attribute, otherwise - false.</returns>
+    public static bool HasAttribute<T>(this ISymbol symbol) =>
+        symbol.GetAttributes().Any(data => data.AttributeClass?.Name == typeof(T).Name);
 }

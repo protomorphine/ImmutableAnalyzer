@@ -37,9 +37,10 @@ internal abstract class TypeDeclarationAnalyzer<TDeclarationSyntax> : Diagnostic
     /// <param name="context">Syntax node analysis context.</param>
     private void AnalyzeSyntax(SyntaxNodeAnalysisContext context)
     {
-        if (context.Node is not TDeclarationSyntax typeDeclaration || !typeDeclaration.HasAttribute<ImmutableAttribute>())
+        if (context.ContainingSymbol is { } symbol && !symbol.HasAttribute<ImmutableAttribute>())
             return;
 
-        AnalyzeTypeDeclaration(typeDeclaration, context);
+        if (context.Node is TDeclarationSyntax typeDeclarationSyntax)
+            AnalyzeTypeDeclaration(typeDeclarationSyntax, context);
     }
 }

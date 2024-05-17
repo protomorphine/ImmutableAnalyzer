@@ -1,5 +1,6 @@
 ﻿using System.Collections.Immutable;
 using ImmutableAnalyzer.Abstractions;
+using ImmutableAnalyzer.Utils.TypeChecking;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -31,7 +32,7 @@ internal class ParameterTypeAnalyzer : ParameterAnalyzer
     /// <inheritdoc />
     protected override void AnalyzeParameter(ParameterSyntax node, SyntaxNodeAnalysisContext ctx)
     {
-        if (TypeChecker.IsImmutable(node, ctx))
+        if (node is { Type: not null } && TypeChecker.IsImmutable(node.Type, ctx))
             return;
 
         var diagnostic = Diagnostic.Create(
