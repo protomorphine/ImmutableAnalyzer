@@ -34,7 +34,7 @@ jobs:
     - name: create test report
       uses: dorny/test-reporter@v1
       id: test_report
-      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+      if: github.ref == 'refs/heads/master' && github.event_name == 'push' || github.event_name == 'workflow_dispatch'
       with:
         name: Tests
         path: "**/test-results.trx"                            
@@ -42,7 +42,7 @@ jobs:
         fail-on-error: true
 
     - name: update test badge in README.md
-      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+      if: github.ref == 'refs/heads/master' && github.event_name == 'push' || github.event_name == 'workflow_dispatch'
       run: |
         echo "Adding test report to README.md file..."
         
@@ -57,7 +57,7 @@ jobs:
 
     - name: commit changes
       uses: EndBug/add-and-commit@v9
-      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+      if: github.ref == 'refs/heads/master' && github.event_name == 'push' || github.event_name == 'workflow_dispatch'
       with:
           add: README.md
           message: 'update test badge in README.md'
