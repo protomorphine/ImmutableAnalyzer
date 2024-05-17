@@ -65,6 +65,7 @@ public struct OrganizationDto
     public IDictionary<int, string> Departments { get; set; } = new Dictionary<int, string>();
 }
 
+// ReSharper disable once ClassNeverInstantiated.Global
 public record PhoneNumber
 {
     public string CountryCode { get; set; } = string.Empty;
@@ -76,6 +77,7 @@ public record PhoneNumber
 /// IM0003 - immutable record can't have a mutable parameter.
 /// </summary>
 [Immutable]
+// ReSharper disable once NotAccessedPositionalProperty.Global
 public record PetInfo(List<string> Toys);
 
 [Immutable]
@@ -89,7 +91,9 @@ public interface IPaginationSpecification
 [Immutable]
 public class UserSpecification : IPaginationSpecification
 {
+    // ReSharper disable once UnusedAutoPropertyAccessor.Global
     public int Page { get; init; }
+    // ReSharper disable once UnusedAutoPropertyAccessor.Global
     public int PerPage { get; init; }
 
     /// <summary>
