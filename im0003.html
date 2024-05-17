@@ -113,20 +113,12 @@ $(document).ready(function(){initNavTree('im0003.html',''); initResizable(); });
   <div class="headertitle"><div class="title">Diagnostic IM0003</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Immutable <code>record</code> parameter can't have a mutable type.</p>
-<dl class="section note"><dt>Note</dt><dd>This rule is identical of <a class="el" href="im0001.html">IM0001</a></dd></dl>
+<div class="textblock"><p>Primary ctor of immutable record can't have a mutable type parameter.</p>
 <h1><a class="anchor" id="example"></a>
 Example</h1>
-<div class="fragment"><div class="line"> </div>
-<div class="line">[Immutable]</div>
-<div class="line"><span class="keyword">public</span> record PetInfo(List&lt;string&gt; Toys);</div>
-</div><!-- fragment --><p><br  />
-</p>
-<blockquote class="doxtable">
-<p>&zwj;The reason of splitting same functional into two rules is design of <a href="https://learn.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.csharp.syntax.propertydeclarationsyntax?view=roslyn-dotnet-4.7.0"><code>PropertyDeclarationSyntax</code></a> and <a href="https://learn.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.csharp.syntax.parametersyntax?view=roslyn-dotnet-4.9.0"><code>ParameterSyntax</code></a>. <br  />
- This two types doesn't have a common parent, which contain <code>Type</code> property. </p>
-</blockquote>
-</div></div><!-- contents -->
+<div class="fragment"><div class="line">[Immutable]</div>
+<div class="line"><span class="keyword">public</span> record PetInfo(List&lt;string&gt; Toys); <span class="comment">// IM0003 - immutable record can&#39;t have a mutable parameter.</span></div>
+</div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->

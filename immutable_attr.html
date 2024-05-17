@@ -115,16 +115,10 @@ $(document).ready(function(){initNavTree('immutable_attr.html',''); initResizabl
 <div class="contents">
 <div class="textblock"><ul>
 <li>Can be used on: <code>class | struct | record | interface</code></li>
-<li>Required for: <a class="el" href="im0001.html">IM0001</a>, <a class="el" href="im0002.html">IM0002</a></li>
+<li>Required for: <a class="el" href="im0001.html">IM0001</a>, <a class="el" href="im0002.html">IM0002</a>, <a class="el" href="im0003.html">IM0003</a></li>
 </ul>
-<p>This attribute tells analyzer that, marked type should be immutable and it content should be analyzed.</p>
-<div class="fragment"><div class="line">[Immutable]</div>
-<div class="line"><span class="keyword">public</span> <span class="keyword">class </span>Pet</div>
-<div class="line">{</div>
-<div class="line">    <span class="keyword">public</span> <span class="keywordtype">string</span> Name { <span class="keyword">get</span>; <span class="keyword">set</span>; }     <span class="comment">// IM0002 will be reported</span></div>
-<div class="line">    <span class="keyword">public</span> List&lt;Toy&gt; Toys { <span class="keyword">get</span>; init; } <span class="comment">// IM0001 will be reported</span></div>
-<div class="line">}</div>
-</div><!-- fragment --> </div></div><!-- contents -->
+<p>Attribute indicates that, the marked type should be immutable and it content should be analyzed. </p>
+</div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->

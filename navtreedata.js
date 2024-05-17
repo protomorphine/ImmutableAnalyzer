@@ -34,7 +34,7 @@ var NAVTREE =
         [ "Examples", "im0001.html#examples", null ]
       ] ],
       [ "Diagnostic IM0002", "im0002.html", [
-        [ "Code fixes", "im0002.html#code-fixes", null ],
+        [ "Available code fixes", "im0002.html#available-code-fixes", null ],
         [ "Examples", "im0002.html#examples-1", null ]
       ] ],
       [ "Diagnostic IM0003", "im0003.html", [

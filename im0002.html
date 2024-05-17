@@ -114,9 +114,8 @@ $(document).ready(function(){initNavTree('im0002.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>Properties must not expose public setter to prevent change it value from outside.</p>
-<p><b>Property value can be setted only when class instance creation!</b></p>
-<h1><a class="anchor" id="code-fixes"></a>
-Code fixes</h1>
+<h1><a class="anchor" id="available-code-fixes"></a>
+Available code fixes</h1>
 <p>This diagnostic support following code fixes:</p>
 <p><b>Change public property set accessor to private.</b> </p><div class="tabbed"></div><div class="tabbed"><ul>
 <li><b class="tab-title">Before</b> Class <code>UserDto</code> have public set accessor for property <code>Id</code>, which violates immutability of this class, given by <code>Immutable</code> attribute. <div class="fragment"><div class="line">[Immutable]</div>
@@ -173,7 +172,7 @@ Examples</h1>
 <div class="line"><span class="keyword">public</span> <span class="keyword">class </span>UserDto</div>
 <div class="line">{</div>
 <div class="line">    <span class="keyword">public</span> <span class="keywordtype">long</span> Id { <span class="keyword">get</span>; <span class="keyword">set</span>; } <span class="comment">// IM0002</span></div>
-<div class="line">    ...    </div>
+<div class="line">    <span class="comment">// ...    </span></div>
 <div class="line">}</div>
 </div><!-- fragment --><p> Using class from code snippet above, evryone can change <code>Id</code> property of <code>UserDto</code> instance in any place: </p><div class="fragment"><div class="line">UserDto userDto = _userService.GetUser(...);</div>
 <div class="line"> </div>
@@ -186,9 +185,9 @@ Examples</h1>
 <div class="line">    <span class="keyword">public</span> <span class="keywordtype">long</span> Id { <span class="keyword">get</span>; init; }</div>
 <div class="line">    <span class="keyword">public</span> UserRole Role { <span class="keyword">get</span>; init; } </div>
 <div class="line">}</div>
-<div class="line">...</div>
+<div class="line"><span class="comment">// ...</span></div>
 <div class="line"> </div>
-<div class="line">public async Task&lt;UserDto&gt; GetUserAsync(<span class="keywordtype">long</span> <span class="keywordtype">id</span>)</div>
+<div class="line"><span class="keyword">public</span> async Task&lt;UserDto&gt; GetUserAsync(<span class="keywordtype">long</span> <span class="keywordtype">id</span>)</div>
 <div class="line">{</div>
 <div class="line">    User user = await _userRepo.GetUserByIdAsync(<span class="keywordtype">id</span>);</div>
 <div class="line">    <span class="keywordflow">return</span> <span class="keyword">new</span> UserDto {</div>
@@ -209,9 +208,9 @@ Examples</h1>
 <div class="line">    <span class="keyword">public</span> <span class="keywordtype">string</span> Name { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; }</div>
 <div class="line">    <span class="keyword">public</span> IReadOnlyList&lt;long&gt; EmployeeIds { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; }</div>
 <div class="line">}</div>
-<div class="line">...</div>
+<div class="line"><span class="comment">// ...</span></div>
 <div class="line"> </div>
-<div class="line">public async Task&lt;CompanyDto&gt; GetCompanyEmployeeAsync(<span class="keywordtype">long</span> companyId)</div>
+<div class="line"><span class="keyword">public</span> async Task&lt;CompanyDto&gt; GetCompanyEmployeeAsync(<span class="keywordtype">long</span> companyId)</div>
 <div class="line">{</div>
 <div class="line">    var company = await _companies.Include(c =&gt; c.Employee).FirstOrDefaultAsync(c =&gt; c.Id == companyId);</div>
 <div class="line">    <span class="keywordflow">return</span> <span class="keyword">new</span> CompanyDto(company.Name, company.Employee.Select(e =&gt; e.Id).ToList());</div>
