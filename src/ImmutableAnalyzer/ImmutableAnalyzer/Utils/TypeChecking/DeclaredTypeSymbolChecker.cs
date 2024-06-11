@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis;
 namespace ImmutableAnalyzer.Utils.TypeChecking;
 
 /// <summary>
-/// 
+/// Checks <see cref="ITypeSymbol"/> for immutability by declared types.
 /// </summary>
 internal class DeclaredTypeSymbolChecker : TypeChecker
 {
@@ -15,6 +15,7 @@ internal class DeclaredTypeSymbolChecker : TypeChecker
         _inner = inner;
     }
 
+    /// <inheritdoc />
     public override bool IsImmutable(ITypeSymbol typeSymbol)
     {
         var isImmutableFromInner = _inner?.IsImmutable(typeSymbol);

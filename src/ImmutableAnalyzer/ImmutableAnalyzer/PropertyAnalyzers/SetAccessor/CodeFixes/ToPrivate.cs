@@ -13,5 +13,5 @@ internal class ToPrivate : ChangeSetAccessorStrategy
 
     /// <inheritdoc />
     protected override AccessorModifier Modifier { get; } =
-        static syntax => syntax.WithModifiers(new SyntaxTokenList(SyntaxFactory.Token(SyntaxKind.PrivateKeyword)));
+        syntax => syntax.WithModifiers(new SyntaxTokenList(SyntaxFactory.Token(SyntaxKind.PrivateKeyword)));
 }

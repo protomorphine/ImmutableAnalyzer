@@ -12,5 +12,5 @@ internal class ToInit : ChangeSetAccessorStrategy
 
     /// <inheritdoc />
     protected override AccessorModifier Modifier { get; } =
-        static syntax => syntax.WithKeyword(SyntaxFactory.Token(SyntaxKind.InitKeyword));
+        syntax => syntax.WithKeyword(SyntaxFactory.Token(SyntaxKind.InitKeyword));
 }
