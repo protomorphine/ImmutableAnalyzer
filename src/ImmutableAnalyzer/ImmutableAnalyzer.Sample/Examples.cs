@@ -63,6 +63,8 @@ public struct OrganizationDto
     /// IM0002 - immutable class property can't have a public set accessor.
     /// </summary>
     public IDictionary<int, string> Departments { get; set; } = new Dictionary<int, string>();
+
+    public IReadOnlyList<int> BuildingIds { get; init; } = new List<int>();
 }
 
 // ReSharper disable once ClassNeverInstantiated.Global

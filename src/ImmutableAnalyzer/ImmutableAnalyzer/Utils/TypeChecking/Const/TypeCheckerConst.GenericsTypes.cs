@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 
-namespace ImmutableAnalyzer.Utils.TypeChecking;
+namespace ImmutableAnalyzer.Utils.TypeChecking.Const;
 
-internal partial struct TypeChecker
+internal partial struct TypeCheckerConst
 {
     /// <summary>
     /// Set of generic immutable class types.

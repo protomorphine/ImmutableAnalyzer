@@ -1,18 +1,23 @@
 ﻿using System.Collections.Immutable;
-using ImmutableAnalyzer.Abstractions;
+using ImmutableAnalyzer.Extensions;
 using ImmutableAnalyzer.Utils.TypeChecking;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 
-namespace ImmutableAnalyzer.ParameterAnalyzers;
+namespace ImmutableAnalyzer.PropertyAnalyzers.PropertyType;
 
 /// <summary>
-/// Analyzer to check parameter type of records.
+/// Analyzer to check properties type of immutable types.
 /// </summary>
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-internal class ParameterTypeAnalyzer : ParameterAnalyzer
+internal sealed class PropertyTypeAnalyzer : PropertyAnalyzer
 {
+    /// <summary>
+    /// Instance of <see cref="TypeChecker"/>.
+    /// </summary>
+    private static readonly TypeChecker Checker = TypeCheckerFactory.GetOrCreate();
+
     /// <inheritdoc />
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(Rule);
 
@@ -20,19 +25,21 @@ internal class ParameterTypeAnalyzer : ParameterAnalyzer
     /// Diagnostic descriptor.
     /// </summary>
     private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(
-        id:                 "IM0003",
-        title:              "Mutable parameter in record parameter list",
-        messageFormat:      "Immutable record can't have parameter of type '{0}'",
+        id:                 "IM0001",
+        title:              "Mutable property in immutable type",
+        messageFormat:      "Immutable type can't have property of type '{0}'",
         category:           "Design",
         defaultSeverity:    DiagnosticSeverity.Error,
         isEnabledByDefault: true,
-        description:        "Record parameter must have immutable type."
+        description:        "Class member must have immutable type."
     );
 
-    /// <inheritdoc />
-    protected override void AnalyzeParameter(ParameterSyntax node, SyntaxNodeAnalysisContext ctx)
+    /// <inheritdoc/>
+    protected override void AnalyzeMember(PropertyDeclarationSyntax node, SyntaxNodeAnalysisContext ctx)
     {
-        if (node is { Type: not null } && TypeChecker.IsImmutable(node.Type, ctx))
+        var typeSymbol = ctx.SemanticModel.GetTypeSymbolFromSyntaxNode(node.Type);
+
+        if (Checker.IsImmutable(typeSymbol))
             return;
 
         var diagnostic = Diagnostic.Create(
