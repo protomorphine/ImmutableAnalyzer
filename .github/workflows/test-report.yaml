@@ -26,9 +26,11 @@ jobs:
         dotnet-version: 6.0.x
 
     - name: restore
+      working-directory: ./src
       run: dotnet restore
 
     - name: test
+      working-directory: ./src
       run: dotnet test --logger "trx;LogFileName=test-results.trx" || true
 
     - name: create test report
