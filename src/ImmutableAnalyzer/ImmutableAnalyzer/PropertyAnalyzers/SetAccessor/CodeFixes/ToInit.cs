@@ -1,4 +1,4 @@
-﻿using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.CodeFixes;
 
@@ -11,6 +11,5 @@ internal class ToInit : ChangeSetAccessorStrategy
     public override string GetTitle(string format) => string.Format(format, "init");
 
     /// <inheritdoc />
-    protected override AccessorModifier Modifier { get; } =
-        syntax => syntax.WithKeyword(SyntaxFactory.Token(SyntaxKind.InitKeyword));
+    protected override AccessorModifier Modifier { get; } = syntax => syntax.WithKeyword(SyntaxFactory.Token(SyntaxKind.InitKeyword));
 }
