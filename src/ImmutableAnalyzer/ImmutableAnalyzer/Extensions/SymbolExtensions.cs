@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 
@@ -23,9 +23,9 @@ internal static class SymbolExtensions
     /// <param name="type">Type syntax expression.</param>
     /// <param name="semanticModel">Semantic model.</param>
     /// <returns><see cref="ITypeSymbol"/> of given type.</returns>
-    public static ITypeSymbol GetTypeSymbolFromSyntaxNode(this SemanticModel semanticModel, SyntaxNode type)
+    public static ITypeSymbol GetTypeSymbolFromSyntaxNode(this SemanticModel semanticModel, SyntaxNode? type)
     {
-        var symbol = semanticModel.GetTypeInfo(type).Type;
+        var symbol = type is not null ? semanticModel.GetTypeInfo(type).Type : null;
 
         return symbol switch
         {

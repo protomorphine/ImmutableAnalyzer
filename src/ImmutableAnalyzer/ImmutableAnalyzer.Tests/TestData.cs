@@ -1,9 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using ImmutableAnalyzer.Utils;
-using ImmutableAnalyzer.Utils.TypeChecking;
-using ImmutableAnalyzer.Utils.TypeChecking.Const;
 using Xunit;
 using TypeCheckerConst = ImmutableAnalyzer.Utils.TypeChecking.Const.TypeCheckerConst;
 
@@ -16,7 +13,7 @@ public static class TestData
 {
     /// <summary>
     /// Represent immutable built-in types.
-    /// <seealso cref="Utils.TypeChecking.Const.TypeCheckerConst.ImmutableTypes"/>
+    /// <seealso cref="TypeCheckerConst.ImmutableTypes"/>
     /// </summary>
     public class ImmutableTypes : TheoryData<string>
     {

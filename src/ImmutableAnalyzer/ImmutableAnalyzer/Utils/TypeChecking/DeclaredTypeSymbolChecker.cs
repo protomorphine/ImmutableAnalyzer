@@ -1,4 +1,4 @@
-﻿using ImmutableAnalyzer.Extensions;
+using ImmutableAnalyzer.Extensions;
 using Microsoft.CodeAnalysis;
 
 namespace ImmutableAnalyzer.Utils.TypeChecking;
@@ -23,7 +23,7 @@ internal class DeclaredTypeSymbolChecker : TypeChecker
         if (isImmutableFromInner.HasValue && !isImmutableFromInner.Value)
             return false;
 
-        return (isImmutableFromInner ?? true) && typeSymbol.HasAttribute<ImmutableAttribute>() ||
+        return ((isImmutableFromInner ?? true) && typeSymbol.HasAttribute<ImmutableAttribute>()) ||
             Const.TypeCheckerConst.ImmutableTypes.Contains(typeSymbol.Name) ||
             Const.TypeCheckerConst.ImmutableGenericTypes.Contains(typeSymbol.MetadataName);
     }
