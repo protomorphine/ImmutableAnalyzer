@@ -6,9 +6,15 @@ namespace ImmutableAnalyzer.Utils.TypeChecking;
 /// <summary>
 /// Checks <see cref="ITypeSymbol"/> for immutability by declared types.
 /// </summary>
-internal class DeclaredTypeSymbolChecker(TypeChecker? inner = null) : TypeChecker
+internal class DeclaredTypeSymbolChecker : TypeChecker
 {
-    private readonly TypeChecker? _inner = inner;
+    private readonly TypeChecker? _inner;
+
+    /// <summary>
+    /// Creates new instance of <see cref="RecursiveTypeSymbolChecker"/>.
+    /// </summary>
+    /// <param name="inner">Inner checker.</param>
+    public DeclaredTypeSymbolChecker(TypeChecker? inner = null) { _inner = inner; }
 
     /// <inheritdoc />
     public override bool IsImmutable(ITypeSymbol typeSymbol)
