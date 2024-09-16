@@ -1,7 +1,7 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 
-namespace ImmutableAnalyzer.Abstractions;
+namespace ImmutableAnalyzer.Common;
 
 /// <summary>
 /// Base class for parameter analyzer in immutable records.

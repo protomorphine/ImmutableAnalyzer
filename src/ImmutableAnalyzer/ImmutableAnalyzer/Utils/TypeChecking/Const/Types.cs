@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Immutable;
 
 namespace ImmutableAnalyzer.Utils.TypeChecking.Const;
 
-internal partial struct TypeCheckerConst
+internal partial struct Types
 {
     /// <summary>
     /// Set of valid immutable types.

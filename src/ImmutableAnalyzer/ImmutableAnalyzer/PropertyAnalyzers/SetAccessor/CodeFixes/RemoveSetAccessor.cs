@@ -1,13 +1,13 @@
-﻿namespace ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.CodeFixes;
+namespace ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.CodeFixes;
 
 /// <summary>
 /// Removes 'set' accessor.
 /// </summary>
-internal class RemoveSetAccessor : ChangeSetAccessorStrategy
+internal class RemoveSetAccessor : ChangeSetAccessorCodeFix
 {
     /// <inheritdoc />
     public override string GetTitle(string format) => "Remove set accessor";
 
     /// <inheritdoc />
-    protected override AccessorModifier Modifier { get; } = _ => null;
+    protected override AccessorModifier Modifier { get; } = (node, editor) => editor.RemoveNode(node);
 }

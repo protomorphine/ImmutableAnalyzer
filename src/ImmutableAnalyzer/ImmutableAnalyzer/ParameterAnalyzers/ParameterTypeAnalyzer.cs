@@ -1,5 +1,5 @@
 using System.Collections.Immutable;
-using ImmutableAnalyzer.Abstractions;
+using ImmutableAnalyzer.Common;
 using ImmutableAnalyzer.Extensions;
 using ImmutableAnalyzer.Utils.TypeChecking;
 using Microsoft.CodeAnalysis;
@@ -20,20 +20,22 @@ internal class ParameterTypeAnalyzer : ParameterAnalyzer
     private static readonly TypeChecker Checker = TypeCheckerFactory.GetOrCreate();
 
     /// <inheritdoc />
-    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(Rule);
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } =
+        ImmutableArray.Create(Rule);
 
     /// <summary>
     /// Diagnostic descriptor.
     /// </summary>
-    private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(
-        id:                 "IM0003",
-        title:              "Mutable parameter in record parameter list",
-        messageFormat:      "Immutable record can't have parameter of type '{0}'",
-        category:           "Design",
-        defaultSeverity:    DiagnosticSeverity.Error,
-        isEnabledByDefault: true,
-        description:        "Record parameter must have immutable type."
-    );
+    private static readonly DiagnosticDescriptor Rule =
+        new(
+            id: "IM0003",
+            title: "Mutable parameter in record parameter list",
+            messageFormat: "Immutable record can't have parameter of type '{0}'",
+            category: "Design",
+            defaultSeverity: DiagnosticSeverity.Error,
+            isEnabledByDefault: true,
+            description: "Record parameter must have immutable type."
+        );
 
     /// <inheritdoc />
     protected override void AnalyzeParameter(ParameterSyntax node, SyntaxNodeAnalysisContext ctx)
@@ -42,7 +44,8 @@ internal class ParameterTypeAnalyzer : ParameterAnalyzer
             return;
 
         var diagnostic = Diagnostic.Create(
-            Rule, node.Type!.GetLocation(),
+            Rule,
+            node.Type!.GetLocation(),
             node.Type.ToFullString().Trim()
         );
 

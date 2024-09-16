@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -9,13 +9,13 @@ namespace ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.CodeFixes;
 /// <summary>
 /// Base class for change set accessor strategy.
 /// </summary>
-internal abstract class ChangeSetAccessorStrategy
+internal abstract class ChangeSetAccessorCodeFix
 {
     /// <summary>
     /// Delegate, which used to get new <see cref="AccessorDeclarationSyntax"/> from given.
     /// </summary>
     /// <remarks>We must return new accessor instead of modifying given because it's immutable.</remarks>
-    protected delegate AccessorDeclarationSyntax? AccessorModifier(AccessorDeclarationSyntax originalNode);
+    protected delegate void AccessorModifier(AccessorDeclarationSyntax originalNode, DocumentEditor editor);
 
     /// <summary>
     /// Gets title for code fix.
@@ -30,7 +30,7 @@ internal abstract class ChangeSetAccessorStrategy
     protected abstract AccessorModifier Modifier { get; }
 
     /// <summary>
-    /// Applies <see cref="Modifier"/> to given <see cref="AccessorDeclarationSyntax"/> node.
+    /// Applies <see cref="Modifier"/> to given <paramref name="node"/>.
     /// </summary>
     /// <param name="originalDocument">Original <see cref="Document"/>.</param>
     /// <param name="node">Node to apply changes.</param>
@@ -39,12 +39,7 @@ internal abstract class ChangeSetAccessorStrategy
     public async Task<Document> ChangeDocument(Document originalDocument, AccessorDeclarationSyntax node, CancellationToken ct)
     {
         var editor = await DocumentEditor.CreateAsync(originalDocument, ct).ConfigureAwait(false);
-        var newNode = Modifier.Invoke(node);
-
-        if (newNode is null)
-            editor.RemoveNode(node);
-        else
-            editor.ReplaceNode(node, newNode);
+        Modifier.Invoke(node, editor);
 
         return editor.GetChangedDocument();
     }

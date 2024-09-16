@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using ImmutableAnalyzer.Extensions;
 using ImmutableAnalyzer.Utils.TypeChecking;
 using Microsoft.CodeAnalysis;
@@ -24,14 +24,14 @@ internal sealed class PropertyTypeAnalyzer : PropertyAnalyzer
     /// <summary>
     /// Diagnostic descriptor.
     /// </summary>
-    private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(
-        id:                 "IM0001",
-        title:              "Mutable property in immutable type",
-        messageFormat:      "Immutable type can't have property of type '{0}'",
-        category:           "Design",
-        defaultSeverity:    DiagnosticSeverity.Error,
+    private static readonly DiagnosticDescriptor Rule = new(
+        id: "IM0001",
+        title: "Mutable property in immutable type",
+        messageFormat: "Immutable type can't have property of type '{0}'",
+        category: "Design",
+        defaultSeverity: DiagnosticSeverity.Error,
         isEnabledByDefault: true,
-        description:        "Class member must have immutable type."
+        description: "Class member must have immutable type."
     );
 
     /// <inheritdoc/>

@@ -1,13 +1,14 @@
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 
-namespace ImmutableAnalyzer.Abstractions;
+namespace ImmutableAnalyzer.Common;
 
 /// <summary>
 /// Base class for member analyzers in immutable class.
 /// <typeparam name="TMemberSyntax">Type of class member to analyze.</typeparam>
 /// </summary>
-internal abstract class MemberAnalyzer<TMemberSyntax> : TypeDeclarationAnalyzer<TypeDeclarationSyntax>
+internal abstract class MemberAnalyzer<TMemberSyntax>
+    : TypeDeclarationAnalyzer<TypeDeclarationSyntax>
 {
     /// <summary>
     /// Execute analyzer.
@@ -18,8 +19,7 @@ internal abstract class MemberAnalyzer<TMemberSyntax> : TypeDeclarationAnalyzer<
 
     /// <summary>
     /// Execute analyzer.
-    /// Executes <see cref="AnalyzeMember"/> only if class declaration
-    /// marked by <see cref="ImmutableAttribute"/>.
+    /// Executes <see cref="AnalyzeMember"/> only if class declaration marked by <see cref="ImmutableAttribute"/>.
     /// </summary>
     /// <param name="typeDeclaration">Type declaration node.</param>
     /// <param name="ctx">Analysis context.</param>

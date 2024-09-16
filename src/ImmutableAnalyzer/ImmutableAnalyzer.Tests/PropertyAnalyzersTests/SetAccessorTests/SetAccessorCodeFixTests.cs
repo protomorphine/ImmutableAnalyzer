@@ -5,14 +5,14 @@ using ImmutableAnalyzer.Tests.Factories;
 using Microsoft.CodeAnalysis.Testing;
 using Xunit;
 using FixStrategy = ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.SetAccessorCodeFixProvider.FixStrategy;
-using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.XUnit.CodeFixVerifier<
-    ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.SetAccessorAnalyzer,
-    ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.SetAccessorCodeFixProvider
->;
 using SetAccessorCodeFixTest = Microsoft.CodeAnalysis.CSharp.Testing.CSharpCodeFixTest<
     ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.SetAccessorAnalyzer,
     ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.SetAccessorCodeFixProvider,
     Microsoft.CodeAnalysis.Testing.Verifiers.XUnitVerifier
+>;
+using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.XUnit.CodeFixVerifier<
+    ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.SetAccessorAnalyzer,
+    ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.SetAccessorCodeFixProvider
 >;
 
 namespace ImmutableAnalyzer.Tests.PropertyAnalyzersTests.SetAccessorTests;
@@ -60,10 +60,10 @@ public class SetAccessorCodeFixTests
 
         var fixedSource = fixStrategy switch
         {
-            FixStrategy.Remove    => SourceFactory.ImmutableClassWithGetOnlyPropertyAccessor(),
-            FixStrategy.ToInit    => SourceFactory.ImmutableClassWithPropertyAccessor("init", out _, out _),
+            FixStrategy.Remove => SourceFactory.ImmutableClassWithGetOnlyPropertyAccessor(),
+            FixStrategy.ToInit => SourceFactory.ImmutableClassWithPropertyAccessor("init", out _, out _),
             FixStrategy.ToPrivate => SourceFactory.ImmutableClassWithPropertyAccessor("private set", out _, out _),
-            _                     => throw new ArgumentOutOfRangeException(nameof(fixStrategy), fixStrategy, null)
+            _ => throw new ArgumentOutOfRangeException(nameof(fixStrategy), fixStrategy, null)
         };
 
         return new SetAccessorCodeFixTest

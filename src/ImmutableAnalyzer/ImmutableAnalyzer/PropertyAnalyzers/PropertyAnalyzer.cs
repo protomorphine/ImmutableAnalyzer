@@ -1,4 +1,4 @@
-﻿using ImmutableAnalyzer.Abstractions;
+using ImmutableAnalyzer.Common;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace ImmutableAnalyzer.PropertyAnalyzers;

@@ -6,27 +6,18 @@ namespace ImmutableAnalyzer.Utils.TypeChecking;
 /// <summary>
 /// Decorator to check <see cref="ITypeSymbol"/> recursively.
 /// </summary>
-internal class RecursiveTypeSymbolChecker : TypeChecker
+internal class RecursiveTypeSymbolChecker(TypeChecker inner) : TypeChecker
 {
-    private readonly TypeChecker _inner;
-
-    public RecursiveTypeSymbolChecker(TypeChecker inner)
-    {
-        _inner = inner;
-    }
+    private readonly TypeChecker _inner = inner;
 
     /// <inheritdoc />
     public override bool IsImmutable(ITypeSymbol typeSymbol)
     {
-        while (true)
-        {
-            if (_inner.IsImmutable(typeSymbol))
-                return true;
+        if (_inner.IsImmutable(typeSymbol))
+            return true;
 
-            if (typeSymbol.BaseType is not { } baseType)
-                return typeSymbol.AllInterfaces.Any(IsImmutable);
-
-            typeSymbol = baseType;
-        }
+        return typeSymbol.BaseType is not null
+            ? IsImmutable(typeSymbol.BaseType)
+            : typeSymbol.AllInterfaces.Any(IsImmutable);
     }
 }
