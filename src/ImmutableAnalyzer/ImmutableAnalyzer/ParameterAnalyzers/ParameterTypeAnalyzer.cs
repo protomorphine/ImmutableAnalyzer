@@ -40,7 +40,7 @@ internal class ParameterTypeAnalyzer : ParameterAnalyzer
     /// <inheritdoc />
     protected override void AnalyzeParameter(ParameterSyntax node, SyntaxNodeAnalysisContext ctx)
     {
-        if (node.Type is not null && Checker.IsImmutable(ctx.SemanticModel.GetTypeSymbolFromSyntaxNode(node.Type)))
+        if (Checker.IsImmutable(ctx.SemanticModel.GetTypeSymbolFromSyntaxNode(node.Type)))
             return;
 
         var diagnostic = Diagnostic.Create(

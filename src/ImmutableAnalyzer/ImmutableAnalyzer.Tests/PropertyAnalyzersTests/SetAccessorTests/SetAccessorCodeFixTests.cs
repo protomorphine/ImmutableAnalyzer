@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using ImmutableAnalyzer.PropertyAnalyzers.SetAccessor;
 using ImmutableAnalyzer.Tests.Factories;
@@ -70,8 +70,8 @@ public class SetAccessorCodeFixTests
         {
             TestCode = source,
             FixedCode = fixedSource,
-            CodeActionIndex = (int) fixStrategy,
-            ExpectedDiagnostics = {expectedDiagnostic}
+            CodeActionIndex = (int)fixStrategy,
+            ExpectedDiagnostics = { expectedDiagnostic }
         };
     }
 }

@@ -1,9 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using ImmutableAnalyzer.Utils;
-using ImmutableAnalyzer.Utils.TypeChecking;
-using ImmutableAnalyzer.Utils.TypeChecking.Const;
 using Xunit;
 using Types = ImmutableAnalyzer.Utils.TypeChecking.Const.Types;
 
