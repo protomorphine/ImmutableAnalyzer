@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -24,21 +24,20 @@ internal sealed class SetAccessorAnalyzer : PropertyAnalyzer
     /// <summary>
     /// Diagnostic descriptor.
     /// </summary>
-    private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(
-        id:                 DiagnosticId,
-        title:              "Public setter violates type immutability",
-        messageFormat:      "Member of immutable type can't have '{0}' accessor",
-        category:           "Design",
-        defaultSeverity:    DiagnosticSeverity.Error,
+    private static readonly DiagnosticDescriptor Rule = new(
+        id: DiagnosticId,
+        title: "Public setter violates type immutability",
+        messageFormat: "Member of immutable type can't have '{0}' accessor",
+        category: "Design",
+        defaultSeverity: DiagnosticSeverity.Error,
         isEnabledByDefault: true,
-        description:        "Setter can't be public, because it's give possibility to change member from the outer."
+        description: "Setter can't be public, because it's give possibility to change member from the outer."
     );
 
     /// <inheritdoc />
     protected override void AnalyzeMember(PropertyDeclarationSyntax node, SyntaxNodeAnalysisContext ctx)
     {
-        var setAccessor = node.AccessorList?
-            .Accessors
+        var setAccessor = node.AccessorList?.Accessors
             .FirstOrDefault(syntax => syntax.IsKind(SyntaxKind.SetAccessorDeclaration));
 
         if (setAccessor is null || !ShouldReport(setAccessor))

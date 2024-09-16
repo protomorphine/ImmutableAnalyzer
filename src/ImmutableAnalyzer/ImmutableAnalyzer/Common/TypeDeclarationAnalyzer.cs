@@ -1,9 +1,9 @@
-﻿using ImmutableAnalyzer.Extensions;
+using ImmutableAnalyzer.Extensions;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 
-namespace ImmutableAnalyzer.Abstractions;
+namespace ImmutableAnalyzer.Common;
 
 /// <summary>
 /// Base class for type declaration analyzer.
@@ -40,7 +40,9 @@ internal abstract class TypeDeclarationAnalyzer<TDeclarationSyntax> : Diagnostic
         if (context.ContainingSymbol is { } symbol && !symbol.HasAttribute<ImmutableAttribute>())
             return;
 
-        if (context.Node is TDeclarationSyntax typeDeclarationSyntax)
-            AnalyzeTypeDeclaration(typeDeclarationSyntax, context);
+        if (context.Node is not TDeclarationSyntax typeDeclarationSyntax)
+            return;
+
+        AnalyzeTypeDeclaration(typeDeclarationSyntax, context);
     }
 }

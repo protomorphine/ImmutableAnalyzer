@@ -1,30 +1,23 @@
-﻿using ImmutableAnalyzer.Extensions;
 using Microsoft.CodeAnalysis;
+using ImmutableAnalyzer.Extensions;
 
 namespace ImmutableAnalyzer.Utils.TypeChecking;
 
 /// <summary>
 /// Checks <see cref="ITypeSymbol"/> for immutability by declared types.
 /// </summary>
-internal class DeclaredTypeSymbolChecker : TypeChecker
+internal class DeclaredTypeSymbolChecker(TypeChecker? inner = null) : TypeChecker
 {
-    private readonly TypeChecker? _inner;
-
-    public DeclaredTypeSymbolChecker(TypeChecker? inner = null)
-    {
-        _inner = inner;
-    }
+    private readonly TypeChecker? _inner = inner;
 
     /// <inheritdoc />
     public override bool IsImmutable(ITypeSymbol typeSymbol)
     {
-        var isImmutableFromInner = _inner?.IsImmutable(typeSymbol);
-
-        if (isImmutableFromInner.HasValue && !isImmutableFromInner.Value)
+        if (_inner?.IsImmutable(typeSymbol) == false)
             return false;
 
-        return (isImmutableFromInner ?? true) && typeSymbol.HasAttribute<ImmutableAttribute>() ||
-            Const.TypeCheckerConst.ImmutableTypes.Contains(typeSymbol.Name) ||
-            Const.TypeCheckerConst.ImmutableGenericTypes.Contains(typeSymbol.MetadataName);
+        return typeSymbol.HasAttribute<ImmutableAttribute>() ||
+            Const.Types.ImmutableTypes.Contains(typeSymbol.Name) ||
+            Const.Types.Generic.Contains(typeSymbol.MetadataName);
     }
 }

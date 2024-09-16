@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Composition;
 using System.Linq;
@@ -23,11 +23,11 @@ public class SetAccessorCodeFixProvider : CodeFixProvider
     public enum FixStrategy
     {
         /// <summary>Mapped to <see cref="CodeFixes.ToInit"/>.</summary>
-        ToInit    = 0,
+        ToInit = 0,
         /// <summary>Mapped to <see cref="CodeFixes.ToPrivate"/>.</summary>
         ToPrivate = 1,
         /// <summary>Mapped to <see cref="RemoveSetAccessor"/>.</summary>
-        Remove    = 2,
+        Remove = 2,
     }
 
     /// <summary>
@@ -43,8 +43,8 @@ public class SetAccessorCodeFixProvider : CodeFixProvider
     /// <summary>
     /// Key-Value pairs of strategies to codefix.
     /// </summary>
-    private static readonly IReadOnlyDictionary<FixStrategy, ChangeSetAccessorStrategy> ChangeSetAccessorStrategies =
-        new SortedDictionary<FixStrategy, ChangeSetAccessorStrategy>
+    private static readonly IReadOnlyDictionary<FixStrategy, ChangeSetAccessorCodeFix> ChangeSetAccessorFixes =
+        new SortedDictionary<FixStrategy, ChangeSetAccessorCodeFix>
         {
             { FixStrategy.ToInit,    new ToInit()            },
             { FixStrategy.ToPrivate, new ToPrivate()         },
@@ -67,12 +67,12 @@ public class SetAccessorCodeFixProvider : CodeFixProvider
         if (root?.FindNode(diagnostic.Location.SourceSpan) is not AccessorDeclarationSyntax node)
             return;
 
-        foreach (var strategy in ChangeSetAccessorStrategies.Values)
+        foreach (var strategy in ChangeSetAccessorFixes.Values)
         {
             var action = CodeAction.Create(
-                title:                 strategy.GetTitle(TitleFormat),
+                title: strategy.GetTitle(TitleFormat),
                 createChangedDocument: ct => strategy.ChangeDocument(context.Document, node, ct),
-                equivalenceKey:        EquivalencyKey
+                equivalenceKey: EquivalencyKey
             );
 
             context.RegisterCodeFix(action, diagnostic);

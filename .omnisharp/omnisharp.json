@@ -1,0 +1,9 @@
+{
+  "RoslynExtensionsOptions": {
+    "enableImportCompletion": true,
+    "enableAnalyzersSupport": true,
+    "locationPaths": [
+      "../src/ImmutableAnalyzer/ImmutableAnalyzer/bin/Release/netstandard2.0/publish/ImmutableAnalyzer.dll"
+    ]
+  }
+}

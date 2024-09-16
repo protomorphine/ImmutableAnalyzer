@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 
 namespace ImmutableAnalyzer.Utils.TypeChecking;

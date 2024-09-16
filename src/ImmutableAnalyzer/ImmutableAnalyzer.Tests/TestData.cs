@@ -5,7 +5,7 @@ using ImmutableAnalyzer.Utils;
 using ImmutableAnalyzer.Utils.TypeChecking;
 using ImmutableAnalyzer.Utils.TypeChecking.Const;
 using Xunit;
-using TypeCheckerConst = ImmutableAnalyzer.Utils.TypeChecking.Const.TypeCheckerConst;
+using Types = ImmutableAnalyzer.Utils.TypeChecking.Const.Types;
 
 namespace ImmutableAnalyzer.Tests;
 
@@ -16,26 +16,26 @@ public static class TestData
 {
     /// <summary>
     /// Represent immutable built-in types.
-    /// <seealso cref="Utils.TypeChecking.Const.TypeCheckerConst.ImmutableTypes"/>
+    /// <seealso cref="Types.ImmutableTypes"/>
     /// </summary>
     public class ImmutableTypes : TheoryData<string>
     {
         public ImmutableTypes()
         {
-            foreach (var typeName in TypeCheckerConst.ImmutableTypes)
+            foreach (var typeName in Types.ImmutableTypes)
                 Add(typeName);
         }
     }
 
     /// <summary>
     /// Represent immutable built-in generic types.
-    /// <seealso cref="TypeCheckerConst.ImmutableGenericTypes"/>
+    /// <seealso cref="Types.Generic"/>
     /// </summary>
     public class ImmutableGenericsTypes : TheoryData<string>
     {
         public ImmutableGenericsTypes()
         {
-            foreach (var typeName in TypeCheckerConst.ImmutableGenericTypes)
+            foreach (var typeName in Types.Generic)
                 Add(CreateGenericTypeStringWithParams(typeName, nameof(Int32)));
         }
 

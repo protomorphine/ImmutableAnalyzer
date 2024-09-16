@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using ImmutableAnalyzer.PropertyAnalyzers.SetAccessor;
 using ImmutableAnalyzer.Tests.Factories;
 using Xunit;
