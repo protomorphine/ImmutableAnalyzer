@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Immutable Analyzer: Available Diagnostics</title>
+<title>Immutable Analyzer: Immutable types</title>
 <!--BEGIN PROJECT_ICON-->
 <link rel="icon" href="$projecticon" type="image/x-icon" />
 <!--END PROJECT_ICON-->
@@ -84,7 +84,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('md_doc_2md_2diagnostics_2diagnostics.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('immutable_types.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -110,25 +110,46 @@ $(document).ready(function(){initNavTree('md_doc_2md_2diagnostics_2diagnostics.h
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Available Diagnostics</div></div>
+  <div class="headertitle"><div class="title">Immutable types</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="available-diagnostics"></a> </p><div style="display: none;"> <a class="el" href="im0001.html">Diagnostic IM0001</a> <a class="el" href="im0002.html">Diagnostic IM0002</a> <a class="el" href="im0003.html">Diagnostic IM0003</a> </div><p>Rules below are available and tested.</p>
-<div class="full_width_table"></div><div class="full_width_table"><table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Rule ID   </th><th class="markdownTableHeadNone">Category   </th><th class="markdownTableHeadNone">Severity   </th><th class="markdownTableHeadNone">Notes    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="im0001.html">IM0001</a>   </td><td class="markdownTableBodyNone">Design   </td><td class="markdownTableBodyNone">Error   </td><td class="markdownTableBodyNone">Immutable types should not contain mutable members.    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="im0002.html">IM0002</a>   </td><td class="markdownTableBodyNone">Design   </td><td class="markdownTableBodyNone">Error   </td><td class="markdownTableBodyNone">Members of immutable types should not have public setters.    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="im0003.html">IM0003</a>   </td><td class="markdownTableBodyNone">Design   </td><td class="markdownTableBodyNone">Error   </td><td class="markdownTableBodyNone">Immutable structs should not contain mutable parameters.   </td></tr>
-</table>
-</div><div class="full_width_table"></div><div class="section_buttons"></div><div class="section_buttons"><table class="markdownTable">
+<div class="textblock"><p>Following list contains types, which allowed to use as property type in immutable type:</p>
+<ul>
+<li>User defined immutable types (marked by <a class="el" href="immutable_attr.html">`ImmutableAttribute`</a>);</li>
+<li>Types from <a class="el" href="config.html">`ImmutableTypes.txt`</a> additional file;</li>
+<li>Built-in immutable types:<ul>
+<li>Generic:<ul>
+<li><code>ImmutableArray&lt;&gt;</code>;</li>
+<li><code>ImmutableDictionary&lt;,&gt;</code>;</li>
+<li><code>ImmutableList&lt;&gt;</code>;</li>
+<li><code>ImmutableHashSet&lt;&gt;</code>;</li>
+<li><code>ImmutableSortedDictionary&lt;,&gt;</code>;</li>
+<li><code>ImmutableSortedSet&lt;&gt;</code>;</li>
+<li><code>ImmutableStack&lt;&gt;</code>;</li>
+<li><code>ImmutableQueue&lt;&gt;</code>;</li>
+<li><code>IReadOnlyList&lt;&gt;</code>;</li>
+<li><code>IReadOnlyCollection&lt;&gt;</code>;</li>
+<li><code>IReadOnlyDictionary&lt;,&gt;</code>;</li>
+</ul>
+</li>
+<li>NonGeneric:<ul>
+<li>integral types: <code>byte</code>, <code>sbyte</code>, <code>short</code>, <code>ushort</code>, <code>char</code>, <code>int</code>, <code>uint</code>, <code>long</code>, <code>ulong</code>;</li>
+<li>floating point types: <code>float</code>, <code>double</code>, <code>decimal</code>;</li>
+<li><code>bool</code>;</li>
+<li><code>string</code>;</li>
+<li>enums;</li>
+<li><code>Guid</code>;</li>
+<li><code>DateTime</code>;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="section_buttons"></div><div class="section_buttons"><table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">Previous   </th><th class="markdownTableHeadRight">Next    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><a class="el" href="index.html#md_README">Home</a>   </td><td class="markdownTableBodyRight"><a class="el" href="public_api.html">Public API</a>   </td></tr>
+<td class="markdownTableBodyLeft"><a class="el" href="diagnostics.html">Available Diagnostics</a>   </td><td class="markdownTableBodyRight"><a class="el" href="public_api.html">Public API</a>   </td></tr>
 </table>
 </div><div class="section_buttons"></div> </div></div><!-- contents -->
 </div><!-- PageDoc -->

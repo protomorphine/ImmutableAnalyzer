@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['diagnostics_2emd_0',['diagnostics.md',['../diagnostics_8md.html',1,'']]]
+  ['configuration_2emd_0',['configuration.md',['../configuration_8md.html',1,'']]]
 ];

@@ -113,7 +113,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   <div class="headertitle"><div class="title">Immutable Analyzer </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_README"></a><a href="https://github.com/protomorphine/ImmutableAnalyzer/runs/26549659135"><img src="https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/test-report.yaml/badge.svg" alt="Tests" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/docs.yml"><img src="https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/docs.yml/badge.svg?branch=master" alt="Docs" style="pointer-events: none;" class="inline"/></a></p>
+<div class="textblock"><p><a class="anchor" id="md_README"></a><a href="https://github.com/protomorphine/ImmutableAnalyzer/runs/30222165790"><img src="https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/test-report.yaml/badge.svg" alt="Tests" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/docs.yml"><img src="https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/docs.yml/badge.svg?branch=master" alt="Docs" style="pointer-events: none;" class="inline"/></a></p>
 <p>This project is a .NET analyzer tool that utilizes Roslyn to check a class for immutability based on the types of it's properties and their accessor list.</p>
 <h1><a class="anchor" id="overview"></a>
 Overview</h1>
@@ -124,10 +124,9 @@ How To Use</h1>
 <div class="tabbed"></div><div class="tabbed"><ul>
 <li><b class="tab-title">Manually</b> Get the sources of analyzer projects <div class="fragment"><div class="line">$ git clone https://github.com/protomorphine/ImmutableAnalyzer</div>
 </div><!-- fragment --> Add project reference to your <code>.csproj</code> file: <div class="fragment"><div class="line">&lt;<span class="keywordtype">ItemGroup</span>&gt;</div>
-<div class="line">    &lt;<span class="keywordtype">ProjectReference</span></div>
-<div class="line">        <span class="keyword">Include</span>=<span class="stringliteral">&quot;..\ImmutableAnalyzer\ImmutableAnalyzer.csproj&quot;</span></div>
-<div class="line">        <span class="keyword">OutputItemType</span>=<span class="stringliteral">&quot;Analyzer&quot;</span></div>
-<div class="line">        <span class="keyword">ReferenceOutputAssembly</span>=<span class="stringliteral">&quot;true&quot;</span> /&gt;</div>
+<div class="line">    &lt;<span class="keywordtype">ProjectReference</span> <span class="keyword">Include</span>=<span class="stringliteral">&quot;../ImmutableAnalyzer.Attributes/ImmutableAnalyzer.Attributes.csproj&quot;</span> /&gt;</div>
+<div class="line">    &lt;<span class="keywordtype">ProjectReference</span> <span class="keyword">Include</span>=<span class="stringliteral">&quot;../ImmutableAnalyzer.CodeFixes/ImmutableAnalyzer.CodeFixes.csproj&quot;</span> /&gt;</div>
+<div class="line">    &lt;<span class="keywordtype">ProjectReference</span> <span class="keyword">Include</span>=<span class="stringliteral">&quot;../ImmutableAnalyzer/ImmutableAnalyzer.csproj&quot;</span> <span class="keyword">OutputItemType</span>=<span class="stringliteral">&quot;Analyzer&quot;</span> <span class="keyword">ReferenceOutputAssembly</span>=<span class="stringliteral">&quot;false&quot;</span> /&gt;</div>
 <div class="line">&lt;/<span class="keywordtype">ItemGroup</span>&gt;</div>
 </div><!-- fragment --></li>
 <li><b class="tab-title">Nuget</b> At this moment project <b>NOT</b> published on <a href="https://nuget.org/">NuGet</a>. Stay tuned.</li>

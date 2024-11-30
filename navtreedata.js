@@ -28,9 +28,11 @@ var NAVTREE =
     [ "Overview", "index.html#overview", null ],
     [ "How To Use", "index.html#how-to-use", null ],
     [ "Documentation", "index.html#documentation", null ],
-    [ "Available Diagnostics", "md_doc_2md_2diagnostics_2diagnostics.html", [
+    [ "Configuration", "config.html", [
+      [ "File content", "config.html#file-content", null ]
+    ] ],
+    [ "Available Diagnostics", "diagnostics.html", [
       [ "Diagnostic IM0001", "im0001.html", [
-        [ "Immutable types", "im0001.html#immutable-types", null ],
         [ "Examples", "im0001.html#examples", null ]
       ] ],
       [ "Diagnostic IM0002", "im0002.html", [
@@ -41,6 +43,7 @@ var NAVTREE =
         [ "Example", "im0003.html#example", null ]
       ] ]
     ] ],
+    [ "Immutable types", "immutable_types.html", null ],
     [ "Public API", "public_api.html", [
       [ "Immutable attribute", "immutable_attr.html", null ]
     ] ]
@@ -49,7 +52,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"im0001.html"
+"config.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
