@@ -13,6 +13,7 @@ using System;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using ImmutableAnalyzer.Attributes;
 
 namespace System.Runtime.CompilerServices
 {
@@ -20,8 +21,11 @@ namespace System.Runtime.CompilerServices
 public record IsExternalInit;
 }
 
+namespace ImmutableAnalyzer.Attributes
+{
 [AttributeUsage(AttributeTargets.Class)]
-public class ImmutableAttribute : Attribute { }";
+public class ImmutableAttribute : Attribute { }
+}";
 
     /// <summary>
     /// Creates source code with immutable class with given property type.

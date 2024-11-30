@@ -1,10 +1,7 @@
 using System.Threading.Tasks;
-using ImmutableAnalyzer.ParameterAnalyzers;
 using ImmutableAnalyzer.Tests.Factories;
 using Xunit;
-using Verifier =
-    Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<
-        ImmutableAnalyzer.ParameterAnalyzers.ParameterTypeAnalyzer>;
+using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.CSharpAnalyzerVerifier<ImmutableAnalyzer.ParameterTypeAnalyzer, Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
 
 namespace ImmutableAnalyzer.Tests.RecordAnalyzersTests;
 

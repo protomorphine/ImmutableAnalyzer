@@ -4,7 +4,9 @@
     @subpage immutable_attr
 </div>
 
-**Attributes:**
+**ImmutableAnalyzer.Attributes assembly**
+
+`ImmutableAnalyzer.Attributes` provides following attributes:
 
 <div class="full_width_table">
 

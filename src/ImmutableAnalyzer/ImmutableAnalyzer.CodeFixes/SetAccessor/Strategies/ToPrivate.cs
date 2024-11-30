@@ -1,7 +1,7 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 
-namespace ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.CodeFixes;
+namespace ImmutableAnalyzer.CodeFixes.SetAccessor.Strategies;
 
 /// <summary>
 /// Changes access modifier of 'set' accessor to private.

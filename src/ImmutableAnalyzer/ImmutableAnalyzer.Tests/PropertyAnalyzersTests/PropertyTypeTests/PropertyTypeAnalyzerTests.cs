@@ -1,10 +1,8 @@
 using System.Threading.Tasks;
-using ImmutableAnalyzer.PropertyAnalyzers.PropertyType;
 using ImmutableAnalyzer.Tests.Factories;
 using Xunit;
 using Verifier =
-    Microsoft.CodeAnalysis.CSharp.Testing.XUnit.AnalyzerVerifier<
-        ImmutableAnalyzer.PropertyAnalyzers.PropertyType.PropertyTypeAnalyzer>;
+    Microsoft.CodeAnalysis.CSharp.Testing.CSharpAnalyzerVerifier<ImmutableAnalyzer.PropertyTypeAnalyzer, Microsoft.CodeAnalysis.Testing.DefaultVerifier>;
 
 namespace ImmutableAnalyzer.Tests.PropertyAnalyzersTests.PropertyTypeTests;
 

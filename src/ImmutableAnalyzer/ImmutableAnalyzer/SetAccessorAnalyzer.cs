@@ -4,19 +4,16 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using IM0002_Const = ImmutableAnalyzer.Const.AnalyzerConstants.SetAccessorAnalyzer;
 
-namespace ImmutableAnalyzer.PropertyAnalyzers.SetAccessor;
+namespace ImmutableAnalyzer;
 
 /// <summary>
 /// Analyzer to check set accessor of properties of immutable classes.
 /// </summary>
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
-internal sealed class SetAccessorAnalyzer : PropertyAnalyzer
+internal sealed class SetAccessorAnalyzer : ImmutableAnalyzer
 {
-    /// <summary>
-    /// Analyzer Diagnostic Id.
-    /// </summary>
-    public const string DiagnosticId = "IM0002";
 
     /// <inheritdoc />
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(Rule);
@@ -25,7 +22,7 @@ internal sealed class SetAccessorAnalyzer : PropertyAnalyzer
     /// Diagnostic descriptor.
     /// </summary>
     private static readonly DiagnosticDescriptor Rule = new(
-        id: DiagnosticId,
+        id: IM0002_Const.DiagnosticId,
         title: "Public setter violates type immutability",
         messageFormat: "Member of immutable type can't have '{0}' accessor",
         category: "Design",
@@ -35,7 +32,30 @@ internal sealed class SetAccessorAnalyzer : PropertyAnalyzer
     );
 
     /// <inheritdoc />
-    protected override void AnalyzeMember(PropertyDeclarationSyntax node, SyntaxNodeAnalysisContext ctx)
+    public override void Initialize(AnalysisContext context)
+    {
+        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
+        context.EnableConcurrentExecution();
+        context.RegisterSyntaxNodeAction(
+            (ctx) =>
+            {
+                if (!IsAnalysisNodeMarkedImmutable(ctx))
+                    return;
+
+                if (ctx.Node is not TypeDeclarationSyntax typeDeclarationSyntax)
+                    return;
+
+                var properties = typeDeclarationSyntax.Members.OfType<PropertyDeclarationSyntax>();
+
+                foreach (var property in properties)
+                    AnalyzeSetAccessor(property, ctx);
+            },
+            SyntaxKind.ClassDeclaration, SyntaxKind.StructDeclaration, SyntaxKind.InterfaceDeclaration,
+            SyntaxKind.RecordDeclaration, SyntaxKind.RecordStructDeclaration
+        );
+    }
+
+    private static void AnalyzeSetAccessor(PropertyDeclarationSyntax node, SyntaxNodeAnalysisContext ctx)
     {
         var setAccessor = node.AccessorList?.Accessors
             .FirstOrDefault(syntax => syntax.IsKind(SyntaxKind.SetAccessorDeclaration));
@@ -62,4 +82,5 @@ internal sealed class SetAccessorAnalyzer : PropertyAnalyzer
         var modifiers = setAccessor.Modifiers;
         return !(modifiers.Any(SyntaxKind.PrivateKeyword) || modifiers.Any(SyntaxKind.InitKeyword));
     }
+
 }

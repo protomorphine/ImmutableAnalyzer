@@ -1,4 +1,4 @@
-namespace ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.CodeFixes;
+namespace ImmutableAnalyzer.CodeFixes.SetAccessor.Strategies;
 
 /// <summary>
 /// Removes 'set' accessor.

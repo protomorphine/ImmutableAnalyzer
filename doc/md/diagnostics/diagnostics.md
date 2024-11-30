@@ -1,4 +1,4 @@
-# Available Diagnostics
+# Available Diagnostics {#diagnostics}
 
 <div style="display: none;">
     @subpage im0001
@@ -20,8 +20,8 @@ Rules below are available and tested.
 
 <div class="section_buttons">
 
-| Previous                      |                          Next |
-|:------------------------------|------------------------------:|
-| [Home](../../../README.md)    | [Public API](@ref public_api) |
+| Previous                        |                                    Next |
+|:--------------------------------|----------------------------------------:|
+| [Configuration](@ref config)    | [Immutable types](@ref immutable_types) |
 
 </div>
