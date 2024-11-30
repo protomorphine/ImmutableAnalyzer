@@ -6,7 +6,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\ImmutableAnalyzer\ImmutableAnalyzer.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="true" />
+        <ProjectReference Include="../ImmutableAnalyzer.Attributes/ImmutableAnalyzer.Attributes.csproj" />
+        <ProjectReference Include="../ImmutableAnalyzer.CodeFixes/ImmutableAnalyzer.CodeFixes.csproj" />
+        <ProjectReference Include="../ImmutableAnalyzer/ImmutableAnalyzer.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="ImmutableTypes.txt" /> 
     </ItemGroup>
 
 </Project>

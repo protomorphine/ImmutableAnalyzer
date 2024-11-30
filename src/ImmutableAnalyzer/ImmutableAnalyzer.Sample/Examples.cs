@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using ImmutableAnalyzer.Attributes;
 
 namespace ImmutableAnalyzer.Sample;
 
@@ -43,6 +44,8 @@ public class UserDto
     /// IM0001 - immutable class property can't be an array of mutable type.
     /// </summary>
     public PhoneNumber[] PhoneNumbers { get; init; } = Array.Empty<PhoneNumber>();
+
+    public DateOnly Date { get; init; }
 }
 
 [Immutable]
@@ -81,6 +84,10 @@ public record PhoneNumber
 [Immutable]
 // ReSharper disable once NotAccessedPositionalProperty.Global
 public record PetInfo(List<string> Toys);
+
+[Immutable]
+// ReSharper disable once NotAccessedPositionalProperty.Global
+public record struct PetInfoV2(List<string> Toys);
 
 [Immutable]
 public interface IPaginationSpecification

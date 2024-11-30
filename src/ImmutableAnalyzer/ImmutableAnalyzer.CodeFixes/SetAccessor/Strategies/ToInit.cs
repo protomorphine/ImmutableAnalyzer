@@ -1,6 +1,6 @@
 using Microsoft.CodeAnalysis.CSharp;
 
-namespace ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.CodeFixes;
+namespace ImmutableAnalyzer.CodeFixes.SetAccessor.Strategies;
 
 /// <summary>
 /// Changes 'set' accessor to 'init'.

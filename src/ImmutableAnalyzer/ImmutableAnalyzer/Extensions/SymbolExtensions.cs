@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using Microsoft.CodeAnalysis;
 
 namespace ImmutableAnalyzer.Extensions;
@@ -9,14 +8,6 @@ namespace ImmutableAnalyzer.Extensions;
 /// </summary>
 internal static class SymbolExtensions
 {
-    /// <summary>
-    /// Checks if <paramref name="symbol"/> marked by given attribute.
-    /// </summary>
-    /// <param name="symbol">Symbol, exposed by compiler.</param>
-    /// <returns>true - if <paramref name="symbol"/> marked by given attribute, otherwise - false.</returns>
-    public static bool HasAttribute<T>(this ISymbol symbol) =>
-        symbol.GetAttributes().Any(data => data.AttributeClass?.Name == typeof(T).Name);
-
     /// <summary>
     /// Returns symbol from type.
     /// </summary>
@@ -30,7 +21,7 @@ internal static class SymbolExtensions
         return symbol switch
         {
             IArrayTypeSymbol arrayTypeSymbol => arrayTypeSymbol.ElementType, // detect arrays e.g. int[] -> int
-            not null => symbol,                                              // just return type symbol
+            not null => symbol,                      // just return type symbol
             _ => throw new NotSupportedException("Not supported symbol")
         };
     }

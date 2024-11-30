@@ -21,12 +21,11 @@ which can lead to more stable and predictable code.
     ```
     Add project reference to your `.csproj` file:
     ```xml
-        <ItemGroup>
-            <ProjectReference
-                Include="..\ImmutableAnalyzer\ImmutableAnalyzer.csproj"
-                OutputItemType="Analyzer"
-                ReferenceOutputAssembly="true" />
-        </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../ImmutableAnalyzer.Attributes/ImmutableAnalyzer.Attributes.csproj" />
+        <ProjectReference Include="../ImmutableAnalyzer.CodeFixes/ImmutableAnalyzer.CodeFixes.csproj" />
+        <ProjectReference Include="../ImmutableAnalyzer/ImmutableAnalyzer.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    </ItemGroup>
     ```
 - <b class="tab-title">Nuget</b>
     At this moment project **NOT** published on [NuGet](https://nuget.org/). Stay tuned.

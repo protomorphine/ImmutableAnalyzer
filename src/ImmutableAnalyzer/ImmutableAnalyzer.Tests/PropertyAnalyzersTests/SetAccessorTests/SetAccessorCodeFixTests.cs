@@ -1,18 +1,18 @@
 using System;
 using System.Threading.Tasks;
-using ImmutableAnalyzer.PropertyAnalyzers.SetAccessor;
 using ImmutableAnalyzer.Tests.Factories;
 using Microsoft.CodeAnalysis.Testing;
 using Xunit;
-using FixStrategy = ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.SetAccessorCodeFixProvider.FixStrategy;
+using FixStrategy = ImmutableAnalyzer.CodeFixes.SetAccessor.SetAccessorCodeFixProvider.FixStrategy;
 using SetAccessorCodeFixTest = Microsoft.CodeAnalysis.CSharp.Testing.CSharpCodeFixTest<
-    ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.SetAccessorAnalyzer,
-    ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.SetAccessorCodeFixProvider,
-    Microsoft.CodeAnalysis.Testing.Verifiers.XUnitVerifier
+    ImmutableAnalyzer.SetAccessorAnalyzer,
+    ImmutableAnalyzer.CodeFixes.SetAccessor.SetAccessorCodeFixProvider,
+    Microsoft.CodeAnalysis.Testing.DefaultVerifier
 >;
-using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.XUnit.CodeFixVerifier<
-    ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.SetAccessorAnalyzer,
-    ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.SetAccessorCodeFixProvider
+using Verifier = Microsoft.CodeAnalysis.CSharp.Testing.CSharpCodeFixVerifier<
+    ImmutableAnalyzer.SetAccessorAnalyzer,
+    ImmutableAnalyzer.CodeFixes.SetAccessor.SetAccessorCodeFixProvider,
+    Microsoft.CodeAnalysis.Testing.DefaultVerifier
 >;
 
 namespace ImmutableAnalyzer.Tests.PropertyAnalyzersTests.SetAccessorTests;

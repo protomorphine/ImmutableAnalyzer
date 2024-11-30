@@ -3,13 +3,14 @@ using System.Collections.Immutable;
 using System.Composition;
 using System.Linq;
 using System.Threading.Tasks;
-using ImmutableAnalyzer.PropertyAnalyzers.SetAccessor.CodeFixes;
+using ImmutableAnalyzer.CodeFixes.SetAccessor.Strategies;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using IM0002_Const = ImmutableAnalyzer.Const.AnalyzerConstants.SetAccessorAnalyzer;
 
-namespace ImmutableAnalyzer.PropertyAnalyzers.SetAccessor;
+namespace ImmutableAnalyzer.CodeFixes.SetAccessor;
 
 /// <summary>
 /// Provides code fix for <see cref="SetAccessorAnalyzer"/> diagnostic.
@@ -38,7 +39,7 @@ public class SetAccessorCodeFixProvider : CodeFixProvider
     /// <summary>
     /// Key, used to determine the equivalence of the <see cref="CodeAction"/> with other <see cref="CodeAction"/>s.
     /// </summary>
-    private const string EquivalencyKey = $"{SetAccessorAnalyzer.DiagnosticId}Fix";
+    private const string EquivalencyKey = $"{IM0002_Const.DiagnosticId}Fix";
 
     /// <summary>
     /// Key-Value pairs of strategies to codefix.
@@ -53,7 +54,7 @@ public class SetAccessorCodeFixProvider : CodeFixProvider
 
     /// <inheritdoc />
     public override ImmutableArray<string> FixableDiagnosticIds { get; } =
-        ImmutableArray.Create(SetAccessorAnalyzer.DiagnosticId);
+        ImmutableArray.Create(IM0002_Const.DiagnosticId);
 
     /// <inheritdoc />
     public override FixAllProvider? GetFixAllProvider() => null;

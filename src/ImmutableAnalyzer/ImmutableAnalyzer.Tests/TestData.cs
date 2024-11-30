@@ -1,16 +1,37 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Xunit;
-using Types = ImmutableAnalyzer.Utils.TypeChecking.Const.Types;
 
 namespace ImmutableAnalyzer.Tests;
 
 /// <summary>
 /// Represent test data.
 /// </summary>
+[ExcludeFromCodeCoverage] 
 public static class TestData
 {
+    /// <summary>
+    /// Set of generic immutable class types.
+    /// </summary>
+    public static readonly ImmutableArray<string> Generics = ImmutableArray.Create(
+        typeof(ImmutableArray<>).Name, typeof(ImmutableDictionary<,>).Name, typeof(ImmutableList<>).Name,
+        typeof(ImmutableHashSet<>).Name, typeof(ImmutableSortedDictionary<,>).Name, typeof(ImmutableSortedSet<>).Name,
+        typeof(ImmutableStack<>).Name, typeof(ImmutableQueue<>).Name, typeof(IReadOnlyList<>).Name,
+        typeof(IReadOnlyCollection<>).Name, typeof(IReadOnlyDictionary<,>).Name
+    );
+
+    /// <summary>
+    /// Set of valid immutable types.
+    /// </summary>
+    public static readonly ImmutableArray<string> BasicTypes = ImmutableArray.Create(
+        nameof(Boolean), nameof(Byte), nameof(SByte), nameof(Char), nameof(Decimal), nameof(Double), nameof(Single),
+        nameof(Int32), nameof(UInt32), nameof(Int64), nameof(UInt64), nameof(Int16), nameof(UInt16), nameof(String),
+        nameof(DateTime), nameof(Guid), nameof(Enum)
+    );
+
     /// <summary>
     /// Represent immutable built-in types.
     /// <seealso cref="Types.ImmutableTypes"/>
@@ -19,7 +40,7 @@ public static class TestData
     {
         public ImmutableTypes()
         {
-            foreach (var typeName in Types.ImmutableTypes)
+            foreach (var typeName in BasicTypes)
                 Add(typeName);
         }
     }
@@ -32,7 +53,7 @@ public static class TestData
     {
         public ImmutableGenericsTypes()
         {
-            foreach (var typeName in Types.Generic)
+            foreach (var typeName in Generics)
                 Add(CreateGenericTypeStringWithParams(typeName, nameof(Int32)));
         }
 
