@@ -49,10 +49,10 @@ jobs:
       - name: setup dotnet
         uses: actions/setup-dotnet@v4
       - name: build release
-        working-directory: ./src
         run: |
           mkdir -p artifacts
           dotnet pack                         \
+            src/ImmutableAnalyzer.sln         \
             -c Release                        \
             -o "artifacts"                    \
             /p:Version="${RELEASE_VERSION}"   \
