@@ -14,6 +14,7 @@
       <IncludeBuildOutput>false</IncludeBuildOutput>
       <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
       <PackageId>Protomorphine.ImmutableAnalyzer</PackageId>
+      <PackageReadmeFile>README.md</PackageReadmeFile>
       <Authors>Daniil Zaycev</Authors>
       <Description>Roslyn Analyzers to check object immutability.</Description>
       <PackageTags>roslyn, analyzer, immutability</PackageTags>
@@ -40,7 +41,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="..\..\..\README.md" Pack="true" PackagePath="\"/>
+      <None Include="..\..\..\README.md" Pack="true" PackagePath="\" />
       <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers\dotnet\cs" Visible="false" />
       <None Include="..\$(AssemblyName).CodeFixes\bin\$(Configuration)\netstandard2.0\$(AssemblyName).CodeFixes.dll" Pack="true" PackagePath="analyzers\dotnet\cs" Visible="false" />
       <None Include="..\$(AssemblyName).Attributes\bin\$(Configuration)\netstandard2.0\$(AssemblyName).Attributes.dll" Pack="true" PackagePath="lib\netstandard2.0" />

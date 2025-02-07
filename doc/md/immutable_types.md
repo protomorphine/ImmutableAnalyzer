@@ -29,7 +29,7 @@ Following list contains types, which allowed to use as property type in immutabl
 <div class="section_buttons">
 
 | Previous                                  |                          Next |
-|-------------------------------------------|-------------------------------|
+|:------------------------------------------|------------------------------:|
 | [Available Diagnostics](@ref diagnostics) | [Public API](@ref public_api) |
 
 </div>
