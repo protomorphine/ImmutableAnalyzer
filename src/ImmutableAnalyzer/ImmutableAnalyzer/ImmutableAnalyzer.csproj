@@ -2,7 +2,6 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <IsPackable>false</IsPackable>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
 
@@ -11,6 +10,15 @@
 
         <RootNamespace>ImmutableAnalyzer</RootNamespace>
         <AssemblyName>ImmutableAnalyzer</AssemblyName>
+
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageId>Protomorphine.ImmutableAnalyzer</PackageId>
+        <Authors>Daniil Zaycev</Authors>
+        <Description>Roslyn Analyzers to check object immutability.</Description>
+        <PackageTags>roslyn, analyzer, immutability</PackageTags>
+        <RepositoryUrl>https://github.com/protomorphine/ImmutableAnalyzer</RepositoryUrl>
+        <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
     </PropertyGroup>
 
     <ItemGroup>
@@ -24,7 +32,17 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="../ImmutableAnalyzer.Const/ImmutableAnalyzer.Const.csproj" />
+      <ProjectReference Include="..\ImmutableAnalyzer.Const\ImmutableAnalyzer.Const.csproj" PrivateAssets="all" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Resources\immutable_types.txt" LogicalName="ImmutableTypes.txt" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers\dotnet\cs" Visible="false" />
+      <None Include="..\$(AssemblyName).CodeFixes\bin\$(Configuration)\netstandard2.0\$(AssemblyName).CodeFixes.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+      <None Include="..\$(AssemblyName).Attributes\bin\$(Configuration)\netstandard2.0\$(AssemblyName).Attributes.dll" Pack="true" PackagePath="lib\netstandard2.0" />
     </ItemGroup>
 
     <ItemGroup>
