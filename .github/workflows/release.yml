@@ -51,9 +51,9 @@ jobs:
       - name: build release
         run: |
           mkdir -p artifacts
-          dotnet build -c Release src/ImmutableAnalyzer/ImmutableAnalyzer/ImmutableAnalyzer.csproj
-          dotnet build -c Release src/ImmutableAnalyzer/ImmutableAnalyzer.Attributes/ImmutableAnalyzer.Attributes.csproj
           dotnet build -c Release src/ImmutableAnalyzer/ImmutableAnalyzer.CodeFixes/ImmutableAnalyzer.CodeFixes.csproj
+          dotnet build -c Release src/ImmutableAnalyzer/ImmutableAnalyzer.Attributes/ImmutableAnalyzer.Attributes.csproj
+          dotnet build -c Release src/ImmutableAnalyzer/ImmutableAnalyzer/ImmutableAnalyzer.csproj
           dotnet pack                         \
             src/ImmutableAnalyzer.sln         \
             -c Release                        \
