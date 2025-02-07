@@ -11,7 +11,7 @@ namespace ImmutableAnalyzer;
 internal abstract class ImmutableAnalyzer : DiagnosticAnalyzer
 {
     /// <summary>
-    /// Checks if analysis node should be checked. 
+    /// Checks if analysis node should be checked.
     /// </summary>
     /// <param name="context">Analysis context.</param>
     /// <returns>true - if node should be checked, otherwise - false.</returns>

@@ -1,6 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.IO;
+using System.Reflection;
 using Microsoft.CodeAnalysis;
 
 namespace ImmutableAnalyzer.Services.Rules;
@@ -10,26 +11,29 @@ namespace ImmutableAnalyzer.Services.Rules;
 /// </summary>
 internal class KnownTypesRule : IImmutabilityCheckRule
 {
-    /// <summary>
-    /// Set of generic immutable class types.
-    /// </summary>
-    private static readonly ImmutableArray<string> GenericTypes = ImmutableArray.Create(
-        typeof(ImmutableArray<>).Name, typeof(ImmutableDictionary<,>).Name, typeof(ImmutableList<>).Name,
-        typeof(ImmutableHashSet<>).Name, typeof(ImmutableSortedDictionary<,>).Name, typeof(ImmutableSortedSet<>).Name,
-        typeof(ImmutableStack<>).Name, typeof(ImmutableQueue<>).Name, typeof(IReadOnlyList<>).Name,
-        typeof(IReadOnlyCollection<>).Name, typeof(IReadOnlyDictionary<,>).Name
-    );
+    private static readonly SymbolDisplayFormat SymbolDisplayFormat =
+        new(
+                typeQualificationStyle: SymbolDisplayTypeQualificationStyle.NameAndContainingTypesAndNamespaces,
+                genericsOptions: SymbolDisplayGenericsOptions.None
+        );
 
-    /// <summary>
-    /// Set of valid immutable types.
-    /// </summary>
-    private static readonly ImmutableArray<string> BasicTypes = ImmutableArray.Create(
-        nameof(Boolean), nameof(Byte), nameof(SByte), nameof(Char), nameof(Decimal), nameof(Double), nameof(Single),
-        nameof(Int32), nameof(UInt32), nameof(Int64), nameof(UInt64), nameof(Int16), nameof(UInt16), nameof(String),
-        nameof(DateTime), nameof(Guid), nameof(Enum)
-    );
+    private readonly ImmutableHashSet<string> _immutableTypes;
+
+    public KnownTypesRule()
+    {
+        _immutableTypes = GetTypeNamesFromEmbeddedResources();
+    }
 
     /// <inheritdoc />
-    public bool IsImmutable(ITypeSymbol typeSymbol) =>
-        BasicTypes.Contains(typeSymbol.Name) || GenericTypes.Contains(typeSymbol.MetadataName);
+    public bool IsImmutable(ITypeSymbol typeSymbol) => _immutableTypes.Contains(typeSymbol.OriginalDefinition.ToDisplayString(SymbolDisplayFormat));
+
+    private ImmutableHashSet<string> GetTypeNamesFromEmbeddedResources()
+    {
+        var assembly = Assembly.GetExecutingAssembly();
+
+        using var stream = assembly.GetManifestResourceStream("ImmutableAnalyzer.Resources.immutable_types.txt");
+        using var reader = new StreamReader(stream);
+
+        return reader.ReadToEnd().Split(['\n'], StringSplitOptions.RemoveEmptyEntries).ToImmutableHashSet();
+    }
 }

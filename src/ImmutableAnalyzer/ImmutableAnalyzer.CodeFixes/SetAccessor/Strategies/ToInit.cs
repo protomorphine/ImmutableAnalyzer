@@ -11,5 +11,6 @@ internal class ToInit : ChangeSetAccessorCodeFix
     public override string GetTitle(string format) => string.Format(format, "init");
 
     /// <inheritdoc />
-    protected override AccessorModifier Modifier { get; } = (node, editor) => editor.ReplaceNode(node, node.WithKeyword(SyntaxFactory.Token(SyntaxKind.InitKeyword)));
+    protected override AccessorModifier Modifier { get; } =
+        (node, editor) => editor.ReplaceNode(node, node.WithKeyword(SyntaxFactory.Token(SyntaxKind.InitKeyword)));
 }

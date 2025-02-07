@@ -12,6 +12,6 @@ internal class ToPrivate : ChangeSetAccessorCodeFix
     public override string GetTitle(string format) => string.Format(format, "private set");
 
     /// <inheritdoc />
-    protected override AccessorModifier Modifier { get; } = (node, editor) =>
-        editor.ReplaceNode(node, node.WithModifiers(new SyntaxTokenList(SyntaxFactory.Token(SyntaxKind.PrivateKeyword))));
+    protected override AccessorModifier Modifier { get; } =
+        (node, editor) => editor.ReplaceNode(node, node.WithModifiers(new SyntaxTokenList(SyntaxFactory.Token(SyntaxKind.PrivateKeyword))));
 }

@@ -23,16 +23,14 @@ public static class AnalyzerTestFactory
             new PackageIdentity("Microsoft.NETCore.App.Ref", "6.0.0"),
             Path.Combine("ref", "net6.0"));
 
-        var test = new CSharpAnalyzerTest<TAnalyzer, DefaultVerifier>
+        return new CSharpAnalyzerTest<TAnalyzer, DefaultVerifier>
         {
             TestState =
             {
                 Sources = {source},
-                ReferenceAssemblies = referenceAssembly
+                ReferenceAssemblies = referenceAssembly,
+                AdditionalFiles = {("ImmutableTypes.txt", string.Empty)}
             }
         };
-
-        test.TestState.AdditionalFiles.Add(("ImmutableTypes.txt", string.Empty));
-        return test;
     }
 }

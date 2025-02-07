@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using ImmutableAnalyzer.Services.Rules;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -20,9 +19,10 @@ internal class ImmutableTypeCheckerService
     {
         var rules = new IImmutabilityCheckRule[]
         {
-            new AttributeRule(context),
+            new EnumRule(),
             new KnownTypesRule(),
-            new WhiteListRule(context.Options)
+            new WhiteListRule(context.Options),
+            new AttributeRule(context),
         };
 
         return new ImmutableTypeCheckerService(rules);
@@ -45,13 +45,6 @@ internal class ImmutableTypeCheckerService
     /// </summary>
     /// <param name="typeSymbol">Type symbol to check.</param>
     /// <returns>true - if given <paramref name="typeSymbol"/> is immutable, otherwise - false.</returns>
-    public bool IsImmutable(ITypeSymbol typeSymbol)
-    {
-        if (Array.Exists(_rules, r => r.IsImmutable(typeSymbol)))
-            return true;
-
-        return typeSymbol.BaseType is not null
-            ? IsImmutable(typeSymbol.BaseType)
-            : typeSymbol.AllInterfaces.Any(IsImmutable);
-    }
+    public bool IsImmutable(ITypeSymbol typeSymbol) =>
+        Array.Exists(_rules, r => r.IsImmutable(typeSymbol));
 }

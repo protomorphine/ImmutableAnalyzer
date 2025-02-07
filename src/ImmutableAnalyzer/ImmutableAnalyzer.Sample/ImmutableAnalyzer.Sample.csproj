@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
@@ -7,12 +7,12 @@
 
     <ItemGroup>
         <ProjectReference Include="../ImmutableAnalyzer.Attributes/ImmutableAnalyzer.Attributes.csproj" />
-        <ProjectReference Include="../ImmutableAnalyzer.CodeFixes/ImmutableAnalyzer.CodeFixes.csproj" />
+        <ProjectReference Include="../ImmutableAnalyzer.CodeFixes/ImmutableAnalyzer.CodeFixes.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
         <ProjectReference Include="../ImmutableAnalyzer/ImmutableAnalyzer.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     </ItemGroup>
 
     <ItemGroup>
-        <AdditionalFiles Include="ImmutableTypes.txt" /> 
+        <AdditionalFiles Include="ImmutableTypes.txt" />
     </ItemGroup>
 
 </Project>
