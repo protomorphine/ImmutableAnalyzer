@@ -7,17 +7,17 @@
 
         <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
         <IsRoslynComponent>true</IsRoslynComponent>
+
         <RootNamespace>ImmutableAnalyzer</RootNamespace>
         <AssemblyName>ImmutableAnalyzer</AssemblyName>
 
         <IncludeBuildOutput>false</IncludeBuildOutput>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <!-- <GeneratePackageOnBuild>true</GeneratePackageOnBuild> -->
         <PackageId>Protomorphine.ImmutableAnalyzer</PackageId>
         <Authors>Daniil Zaycev</Authors>
         <Description>Roslyn Analyzers to check object immutability.</Description>
         <PackageTags>roslyn, analyzer, immutability</PackageTags>
         <RepositoryUrl>https://github.com/protomorphine/ImmutableAnalyzer</RepositoryUrl>
-
     </PropertyGroup>
 
     <ItemGroup>
