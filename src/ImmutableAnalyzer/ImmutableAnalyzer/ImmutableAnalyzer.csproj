@@ -18,7 +18,6 @@
         <PackageTags>roslyn, analyzer, immutability</PackageTags>
         <RepositoryUrl>https://github.com/protomorphine/ImmutableAnalyzer</RepositoryUrl>
 
-        <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
     </PropertyGroup>
 
     <ItemGroup>
