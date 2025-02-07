@@ -113,7 +113,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
   <div class="headertitle"><div class="title">Immutable Analyzer </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_README"></a><a href="https://github.com/protomorphine/ImmutableAnalyzer/runs/36878850450"><img src="https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/test-report.yaml/badge.svg" alt="Tests" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/docs.yml"><img src="https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/docs.yml/badge.svg?branch=master" alt="Docs" style="pointer-events: none;" class="inline"/></a></p>
+<div class="textblock"><p><a class="anchor" id="md_README"></a><a href="https://github.com/protomorphine/ImmutableAnalyzer/runs/36880270672"><img src="https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/test-report.yaml/badge.svg" alt="Tests" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/docs.yml"><img src="https://github.com/protomorphine/ImmutableAnalyzer/actions/workflows/docs.yml/badge.svg?branch=master" alt="Docs" style="pointer-events: none;" class="inline"/></a></p>
 <p>This project is a .NET analyzer tool that utilizes Roslyn to check a class for immutability based on the types of it's properties and their accessor list.</p>
 <h1><a class="anchor" id="overview"></a>
 Overview</h1>
@@ -129,7 +129,9 @@ How To Use</h1>
 <div class="line">    &lt;<span class="keywordtype">ProjectReference</span> <span class="keyword">Include</span>=<span class="stringliteral">&quot;../ImmutableAnalyzer/ImmutableAnalyzer.csproj&quot;</span> <span class="keyword">OutputItemType</span>=<span class="stringliteral">&quot;Analyzer&quot;</span> <span class="keyword">ReferenceOutputAssembly</span>=<span class="stringliteral">&quot;false&quot;</span> /&gt;</div>
 <div class="line">&lt;/<span class="keywordtype">ItemGroup</span>&gt;</div>
 </div><!-- fragment --></li>
-<li><b class="tab-title">Nuget</b> At this moment project <b>NOT</b> published on <a href="https://nuget.org/">NuGet</a>. Stay tuned.</li>
+<li><p class="startli"><b class="tab-title">Nuget</b> Add the NuGet Package to your project:</p>
+<div class="fragment"><div class="line">dotnet add package Protomorphine.ImmutableAnalyzer</div>
+</div><!-- fragment --></li>
 </ul>
 </div><div class="tabbed"></div><h1><a class="anchor" id="documentation"></a>
 Documentation</h1>
