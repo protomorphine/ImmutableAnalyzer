@@ -52,6 +52,7 @@ jobs:
         working-directory: ./src
         run: |
           mkdir -p artifacts
+          dotnet build -c Release
           dotnet pack                         \
             --verbosity quiet                 \
             -c Release                        \
