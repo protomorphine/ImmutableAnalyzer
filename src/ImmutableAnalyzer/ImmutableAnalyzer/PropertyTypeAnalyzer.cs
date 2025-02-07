@@ -63,7 +63,7 @@ internal sealed class PropertyTypeAnalyzer : ImmutableAnalyzer
         var diagnostic = Diagnostic.Create(
             Rule,
             propertyType.GetLocation(),
-            propertyType.ToString()
+            propertyType.ToFullString().Trim()
         );
 
         ctx.ReportDiagnostic(diagnostic);
