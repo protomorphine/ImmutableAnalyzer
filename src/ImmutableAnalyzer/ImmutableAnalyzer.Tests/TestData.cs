@@ -10,7 +10,7 @@ namespace ImmutableAnalyzer.Tests;
 /// <summary>
 /// Represent test data.
 /// </summary>
-[ExcludeFromCodeCoverage] 
+[ExcludeFromCodeCoverage]
 public static class TestData
 {
     /// <summary>

@@ -12,5 +12,4 @@ public struct AnalyzerConstants
         /// </summary>
         public const string DiagnosticId = "IM0002";
     }
-
 }

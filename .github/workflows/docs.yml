@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches: [ master ]
-    paths-ignore: 
+    paths-ignore:
       - '.github/**'
 
 jobs:
@@ -14,13 +14,13 @@ jobs:
     - uses: actions/checkout@v2
       with:
         submodules: true
-        
+
     - name: Doxygen Action
       uses: mattnotmitt/doxygen-action@1.9.8
       with:
         doxyfile-path: "./doc/Doxyfile"
         working-directory: "."
-    
+
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:

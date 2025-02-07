@@ -14,7 +14,6 @@ namespace ImmutableAnalyzer;
 [DiagnosticAnalyzer(LanguageNames.CSharp)]
 internal sealed class SetAccessorAnalyzer : ImmutableAnalyzer
 {
-
     /// <inheritdoc />
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = ImmutableArray.Create(Rule);
 

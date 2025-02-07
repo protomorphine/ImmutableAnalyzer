@@ -17,13 +17,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout  
+    - name: checkout
       uses: actions/checkout@v2
-      
+
     - name: setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 8.0.x
 
     - name: restore
       working-directory: ./src
@@ -31,7 +31,7 @@ jobs:
 
     - name: test
       working-directory: ./src
-      run: dotnet test --logger "trx;LogFileName=test-results.trx" || true
+      run: dotnet test --logger "trx;LogFileName=test-results.trx"
 
     - name: create test report
       uses: dorny/test-reporter@v1
@@ -39,7 +39,7 @@ jobs:
       if: github.ref == 'refs/heads/master' && github.event_name == 'push' || github.event_name == 'workflow_dispatch'
       with:
         name: Tests
-        path: "**/test-results.trx"                            
+        path: "**/test-results.trx"
         reporter: dotnet-trx
         fail-on-error: true
 
@@ -47,14 +47,14 @@ jobs:
       if: github.ref == 'refs/heads/master' && github.event_name == 'push' || github.event_name == 'workflow_dispatch'
       run: |
         echo "Adding test report to README.md file..."
-        
+
         test_report_url=$(echo ${{ toJson(steps.test_report.outputs.url_html) }} | sed 's/\//\\\//g')
         workflow_file=$(echo ${{ github.workflow_ref }} | sed 's/.*\/\(.*\)@.*/\1/')
         badge_url=$(echo "${{ github.server_url }}/${{ github.repository }}/actions/workflows/$workflow_file/badge.svg" | sed 's/\//\\\//g')
-        
+
         echo "Badge URL: ${{ github.server_url }}/${{ github.repository }}/actions/workflows/$workflow_file/badge.svg"
         echo "Report URL: ${{ toJson(steps.test_report.outputs.url_html) }}"
-        
+
         sed -i '2s/.*/[![${{ github.workflow }}]('"$badge_url"')]('"$test_report_url"')/' README.md
 
     - name: commit changes

@@ -27,4 +27,7 @@
       <ProjectReference Include="../ImmutableAnalyzer.Const/ImmutableAnalyzer.Const.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <EmbeddedResource Include="Resources\immutable_types.txt" />
+    </ItemGroup>
 </Project>

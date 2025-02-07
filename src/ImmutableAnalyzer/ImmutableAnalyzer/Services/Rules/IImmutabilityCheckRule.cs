@@ -12,5 +12,5 @@ internal interface IImmutabilityCheckRule
     /// </summary>
     /// <param name="typeSymbol">Type symbol to check.</param>
     /// <returns>true - if <paramref name="typeSymbol"/> is immutable, otherwise - false.</returns>
-    bool IsImmutable(ITypeSymbol typeSymbol);
+    public bool IsImmutable(ITypeSymbol typeSymbol);
 }

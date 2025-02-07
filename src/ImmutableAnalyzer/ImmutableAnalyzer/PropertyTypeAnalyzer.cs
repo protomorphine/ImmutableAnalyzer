@@ -44,7 +44,7 @@ internal sealed class PropertyTypeAnalyzer : ImmutableAnalyzer
                 var properties = syntax.Members.OfType<PropertyDeclarationSyntax>();
 
                 foreach (var property in properties)
-                    AnalyzeMember(property, ctx);
+                    AnalyzeProperty(property, ctx);
             },
             SyntaxKind.InterfaceDeclaration,
             SyntaxKind.ClassDeclaration, SyntaxKind.StructDeclaration,
@@ -52,7 +52,7 @@ internal sealed class PropertyTypeAnalyzer : ImmutableAnalyzer
         );
     }
 
-    private static void AnalyzeMember(PropertyDeclarationSyntax property, SyntaxNodeAnalysisContext ctx)
+    private static void AnalyzeProperty(PropertyDeclarationSyntax property, SyntaxNodeAnalysisContext ctx)
     {
         if (property.Type is not { } propertyType)
             return;

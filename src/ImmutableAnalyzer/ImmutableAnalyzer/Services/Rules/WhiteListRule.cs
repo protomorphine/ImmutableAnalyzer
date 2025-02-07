@@ -10,22 +10,19 @@ namespace ImmutableAnalyzer.Services.Rules;
 /// <summary>
 /// Rule to check immutability of types by whitelist file.
 /// </summary>
-internal class WhiteListRule : IImmutabilityCheckRule
+/// <remarks>
+/// Creates new instance of <see cref="WhiteListRule"/>.
+/// </remarks>
+/// <param name="opts">Immutable analyzer options.</param>
+internal class WhiteListRule(AnalyzerOptions opts) : IImmutabilityCheckRule
 {
     private const string WhiteListFile = "ImmutableTypes.txt";
-    private readonly ImmutableHashSet<string> _whiteListTypes;
 
-    /// <summary>
-    /// Creates new instance of <see cref="WhiteListRule"/>.
-    /// </summary>
-    /// <param name="opts">Immutable analyzer options.</param>
-    public WhiteListRule(AnalyzerOptions opts)
-    {
-        _whiteListTypes = GetWhiteListedTypes(opts);
-    }
+    private readonly ImmutableHashSet<string> _whiteListTypes = GetWhiteListedTypes(opts);
+    private static readonly SymbolDisplayFormat SymbolDisplayFormat = new(typeQualificationStyle: SymbolDisplayTypeQualificationStyle.NameAndContainingTypesAndNamespaces);
 
     /// <inheritdoc/>
-    public bool IsImmutable(ITypeSymbol typeSymbol) => _whiteListTypes.Contains(typeSymbol.MetadataName);
+    public bool IsImmutable(ITypeSymbol typeSymbol) => _whiteListTypes.Contains(typeSymbol.ToDisplayString(SymbolDisplayFormat));
 
     /// <summary>
     /// Gets content of <see cref="WhiteListFile"/> as <see cref="ImmutableHashSet{string}"/>.
