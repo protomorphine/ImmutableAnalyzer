@@ -28,7 +28,11 @@ which can lead to more stable and predictable code.
     </ItemGroup>
     ```
 - <b class="tab-title">Nuget</b>
-    At this moment project **NOT** published on [NuGet](https://nuget.org/). Stay tuned.
+    Add the NuGet Package to your project:
+
+    ```sh
+    dotnet add package Protomorphine.ImmutableAnalyzer
+    ```
 
 </div>
 
