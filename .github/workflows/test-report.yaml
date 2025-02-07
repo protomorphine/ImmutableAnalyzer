@@ -31,7 +31,7 @@ jobs:
 
     - name: test
       working-directory: ./src
-      run: dotnet test --logger "trx;LogFileName=test-results.trx" || true
+      run: dotnet test --logger "trx;LogFileName=test-results.trx"
 
     - name: create test report
       uses: dorny/test-reporter@v1
