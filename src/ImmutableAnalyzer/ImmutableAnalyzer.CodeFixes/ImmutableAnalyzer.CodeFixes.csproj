@@ -1,13 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
  <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <IsPackable>false</IsPackable>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
     <DebugType>Embedded</DebugType>
     <DisableImplicitNamespaceImports>true</DisableImplicitNamespaceImports>
-    <BaseOutputPath>bin\$(RoslynVersion)\</BaseOutputPath>
     <RootNamespace>ImmutableAnalyzer.CodeFixes</RootNamespace>
   </PropertyGroup>
 
