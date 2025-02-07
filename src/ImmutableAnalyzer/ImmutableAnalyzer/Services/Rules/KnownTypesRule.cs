@@ -31,7 +31,7 @@ internal class KnownTypesRule : IImmutabilityCheckRule
     {
         var assembly = Assembly.GetExecutingAssembly();
 
-        using var stream = assembly.GetManifestResourceStream("ImmutableAnalyzer.Resources.immutable_types.txt");
+        using var stream = assembly.GetManifestResourceStream("ImmutableTypes.txt");
         using var reader = new StreamReader(stream);
 
         return reader.ReadToEnd().Split(['\n'], StringSplitOptions.RemoveEmptyEntries).ToImmutableHashSet();
