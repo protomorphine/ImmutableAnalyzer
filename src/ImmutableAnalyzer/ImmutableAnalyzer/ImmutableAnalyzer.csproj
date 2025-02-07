@@ -11,7 +11,7 @@
         <RootNamespace>ImmutableAnalyzer</RootNamespace>
         <AssemblyName>ImmutableAnalyzer</AssemblyName>
 
-        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <!-- <IncludeBuildOutput>false</IncludeBuildOutput> -->
         <!-- <GeneratePackageOnBuild>true</GeneratePackageOnBuild> -->
         <PackageId>Protomorphine.ImmutableAnalyzer</PackageId>
         <Authors>Daniil Zaycev</Authors>
