@@ -32,5 +32,8 @@ public static class AnalyzerTestFactory
                 AdditionalFiles = {("ImmutableTypes.txt", string.Empty)}
             }
         };
+
+        test.TestState.AdditionalFiles.Add(("ImmutableTypes.txt", string.Empty));
+        return test;
     }
 }

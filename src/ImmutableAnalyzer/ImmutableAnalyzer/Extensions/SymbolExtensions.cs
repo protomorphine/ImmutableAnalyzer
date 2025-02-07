@@ -21,7 +21,7 @@ internal static class SymbolExtensions
         return symbol switch
         {
             IArrayTypeSymbol arrayTypeSymbol => arrayTypeSymbol.ElementType, // detect arrays e.g. int[] -> int
-            not null => symbol,                                              // just return type symbol
+            not null => symbol,                      // just return type symbol
             _ => throw new NotSupportedException("Not supported symbol")
         };
     }

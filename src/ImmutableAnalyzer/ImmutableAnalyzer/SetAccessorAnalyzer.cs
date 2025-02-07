@@ -66,7 +66,6 @@ internal sealed class SetAccessorAnalyzer : ImmutableAnalyzer
             Rule,
             setAccessor.GetLocation(),
             setAccessor.ToString()
-        // setAccessor.Modifiers.ToFullString() + setAccessor.Keyword.ValueText
         );
 
         ctx.ReportDiagnostic(diagnostic);
