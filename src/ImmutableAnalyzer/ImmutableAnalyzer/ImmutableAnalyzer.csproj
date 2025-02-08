@@ -12,14 +12,15 @@
       <AssemblyName>ImmutableAnalyzer</AssemblyName>
 
       <IncludeBuildOutput>false</IncludeBuildOutput>
-      <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-      <PackageId>Protomorphine.ImmutableAnalyzer</PackageId>
-      <PackageReadmeFile>README.md</PackageReadmeFile>
+      <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+
       <Authors>Daniil Zaycev</Authors>
+      <PackageLicenseExpression>MIT</PackageLicenseExpression>
+      <PackageReadmeFile>README.md</PackageReadmeFile>
+      <PackageId>Protomorphine.ImmutableAnalyzer</PackageId>
       <Description>Roslyn Analyzers to check object immutability.</Description>
       <PackageTags>roslyn, analyzer, immutability</PackageTags>
       <RepositoryUrl>https://github.com/protomorphine/ImmutableAnalyzer</RepositoryUrl>
-      <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
     </PropertyGroup>
 
     <ItemGroup>
@@ -37,10 +38,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Resources\immutable_types.txt" LogicalName="ImmutableTypes.txt" />
-    </ItemGroup>
-
-    <ItemGroup>
       <None Include="..\..\..\README.md" Pack="true" PackagePath="\" />
       <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers\dotnet\cs" Visible="false" />
       <None Include="..\$(AssemblyName).CodeFixes\bin\$(Configuration)\netstandard2.0\$(AssemblyName).CodeFixes.dll" Pack="true" PackagePath="analyzers\dotnet\cs" Visible="false" />
@@ -50,4 +47,5 @@
     <ItemGroup>
       <EmbeddedResource Include="Resources\immutable_types.txt" />
     </ItemGroup>
+
 </Project>
