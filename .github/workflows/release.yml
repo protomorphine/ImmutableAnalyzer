@@ -1,4 +1,4 @@
-name: release
+name: Release
 
 on:
   release:
@@ -22,15 +22,18 @@ jobs:
     outputs:
       version: ${{ steps.extract-version.outputs.RELEASE_VERSION }}
     steps:
+
       - name: checkout git
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - id: extract-version
         name: extract version
         run: echo "RELEASE_VERSION=${RELEASE_NAME#v}" >> "$GITHUB_OUTPUT"
         env:
           RELEASE_NAME: ${{ github.event.release.name }}
+
       - name: extract release notes
         id: extract-release-notes
         run: |
@@ -41,19 +44,23 @@ jobs:
           } >> "$GITHUB_OUTPUT"
         env:
           GH_TOKEN: ${{ github.token }}
+
       - name: convert release notes markdown to text
         id: release-notes-text
         uses: koistya/strip-markdown@v1
         with:
           content: ${{ steps.extract-release-notes.outputs.RELEASE_NOTES }}
+
       - name: setup dotnet
         uses: actions/setup-dotnet@v4
       - name: build release
         run: |
           mkdir -p artifacts
+
           dotnet build -c Release src/ImmutableAnalyzer/ImmutableAnalyzer.CodeFixes/ImmutableAnalyzer.CodeFixes.csproj
           dotnet build -c Release src/ImmutableAnalyzer/ImmutableAnalyzer.Attributes/ImmutableAnalyzer.Attributes.csproj
           dotnet build -c Release src/ImmutableAnalyzer/ImmutableAnalyzer/ImmutableAnalyzer.csproj
+
           dotnet pack                         \
             src/ImmutableAnalyzer.sln         \
             -c Release                        \
@@ -63,8 +70,10 @@ jobs:
         env:
           RELEASE_NOTES: ${{ steps.release-notes-text.outputs.content }}
           RELEASE_VERSION: ${{ steps.extract-version.outputs.RELEASE_VERSION }}
+
       - name: publish nuget
         run: dotnet nuget push './artifacts/*.nupkg' --source "$NUGET_SOURCE" --api-key '${{ secrets.NUGET_API_TOKEN }}'
+
       - name: add release assets
         run: gh release upload "${{ github.event.release.name }}" artifacts/*.nupkg
         env:
